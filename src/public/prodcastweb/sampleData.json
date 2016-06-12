@@ -1,0 +1,39 @@
+{
+ data:[
+ {
+ "Product":"Liptip",
+ "Quantity" : "",
+ "Sub Total":"",
+ "Discount":"80%"
+ "Offer":"10%"
+ }
+ {
+ "Product":"Fanta",
+ "Quantity" : "",
+ "Sub Total":"",
+ "Discount":"80%"
+ "Offer":"10%"
+ }
+ {
+ "Product":"Pesico",
+ "Quantity" : "10",
+ "Sub Total":"110",
+ "Discount":"80%"
+ "Offer":"10%"
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ]
+
+
+
+
+}

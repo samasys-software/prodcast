@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type='text/javascript'
+  src='http://code.jquery.com/jquery-1.8.3.js'></script>
+<link rel="stylesheet"
+  href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" />
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
+<script>
+$( document ).on( "pagecreate", function() {
+    var nextId = 1;
+    $("#add").click(function() {
+        nextId++;
+        var content = "<div data-role='collapsible' id='set" + nextId + "'><h3>Section " + nextId + "</h3><p>I am the collapsible content in a set so this feels like an accordion. I am hidden by default because I have the 'collapsed' state; you need to expand the header to see me.</p></div>";
+        $( "#set" ).append( content ).collapsibleset( "refresh" );
+    });
+    $( "#expand" ).click(function() {
+        $("#set").children(":last").collapsible( "expand" );
+    });
+    $( "#collapse" ).click(function() {
+        $( "#set" ).children( ":last" ).collapsible( "collapse" );
+    });
+});
+</script>
+</head><!--from www. j  av a 2 s.c  o m-->
+<body>
+  <div data-role="page">
+    <div data-role="content">
+  
+	  <button type="button" data-icon="gear" data-iconpos="right" data-mini="true" data-inline="true" id="add">Add</button>
+		<button type="button" data-icon="plus" data-iconpos="right" data-mini="true" data-inline="true" id="expand">Expand last</button>
+		<button type="button" data-icon="minus" data-iconpos="right" data-mini="true" data-inline="true" id="collapse">Collapse last</button>
+		<div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+			<div data-role="collapsible" id="set1" data-collapsed="true">
+				<h3><div class="ui-grid-b">
+					<div class="ui-block-a">
+							Product
+						</div>
+						<div class="ui-block-b">Quantity</div>
+						<div class="ui-block-c">
+							Sub Total
+						</div>
+				</div></h3>
+				
+			</div>
+			<div data-role="collapsible" id="set1" data-collapsed="true">
+				
+				<h3>
+				<div>
+					<fieldset class="ui-grid-b">
+						<div class="ui-block-a">
+							<select></select>  
+						</div>
+						<div class="ui-block-b"><input type="text"/></div>
+						<div class="ui-block-c">
+							<input type="text"/>
+						</div>
+					</fieldset>
+				</div>
+				</h3>
+				<p>
+				<fieldset class="ui-grid-c">
+						<div class="ui-block-a">
+							Discount  
+						</div>
+						<div class="ui-block-b"><input type="text"/></div>
+						<div class="ui-block-c">Offer</div>
+						<div class="ui-block-d">
+							<input type="text"/>
+						</div>
+					</fieldset>
+				</p>
+			</div>
+		</div>
+
+    </div>
+  </div>
+</body>
+</html>

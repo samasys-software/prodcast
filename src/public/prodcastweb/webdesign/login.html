@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Prodcast Login</title>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<section class="login-sec">
+  <div class="admin-logo"><img src="images/admin-logo.png" alt="" /></div>
+  <div class="login-form-area">
+    <div class="login-form">
+      <div class="login-form-box">
+        <h2>Log in to PRODCAST</h2>
+        <form>
+          <ul>
+            <li>
+              <label>Username or email address </label>
+              <div class="input-box"> <span class="input-icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                <input type="text" name="" value="" placeholder="username@domain.com"/>
+              </div>
+              <div id="validationMsg" class="validation-msg">! Invalid Username or Email</div>
+            </li>
+            <li>
+              <label>Password</label>
+              <div class="input-box"> <span class="input-icon"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
+                <input type="password" name="" />
+              </div>
+              <div id="validationMsg" class="validation-msg">! Invalid Username or Email</div>
+            </li>
+          </ul>
+          <div class="btn-sec">
+            <div class="col-half"> <a href="#" class="submit-btn" onclick="document.getElementById('validationMsg').style.display = 'block' ;">Log in</a> 
+              <!--<input type="submit" value="Log in" onclick="document.getElementById('validationMsg').style.display = 'block' ;" />--> 
+            </div>
+            <div class="col-half forgot-pswd"><a href="#">Forgot password?</a></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="copy-right">@Copyright Prodcast</div>
+  <div class="footer-link"><a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> </div>
+</footer>
+</body>
+</html>

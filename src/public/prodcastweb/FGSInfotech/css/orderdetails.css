@@ -1,0 +1,89 @@
+.dynamicTable1,.samplerow{
+width:100%;
+background: transparent;
+
+}
+
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+ 
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+}
+ 
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    background:#FBA16C ; 
+    -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: #FBA16C; 
+}
+
+#table-wrapper {
+  position:relative;
+  width:100%;
+}
+#table-scroll {
+  height:auto;
+  overflow:auto;  
+  width:100%;
+  margin-top:20px;
+  background:transparent;
+}
+#footer {
+    position:fixed;
+    bottom: 0px;
+    width: 100%;
+    margin:0px;
+}
+
+.txtbox {
+ border: none;
+ width: 100%;
+}
+table th
+{
+text-align:"center";
+}
+table td .product
+{
+height:30px;
+text-align:center;
+}
+input {
+ font-size: 17px;
+ height: 30px;
+}
+table {
+ overflow-x:auto;
+}
+
+
+
+@media screen and (max-width:680px) {
+   
+ .dynamicTable1,.samplerow{
+width:auto;
+
+}
+
+.dynamicTable1 td
+{
+ font-size:20px;
+}
+input {
+ font-size:13px;
+ height: 30px;
+}
+
+
+
+}

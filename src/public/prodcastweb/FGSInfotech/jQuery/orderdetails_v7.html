@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Expires" CONTENT="-1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="themes/prodcast.min.css" />
+	<link href="http://code.jquery.com/ui/1.9.2/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script src="jQuery/orderdetails-table-1.js"></script>
+	
+	
+	<style>
+
+		.middleAlign 
+		{
+		vertical-align: middle;
+		horizontal-align : right;
+		}
+		
+		.product
+		{
+			width:30% !important;
+			text-align:left;
+		}
+		.subtotal
+		{
+			width:20% !important;
+			text-align:left;
+		}
+		.quantity
+		{
+			width:10% !important;
+			text-align:left;
+		}
+		.discount
+		{
+			width:10% !important;
+			text-align:left;
+		}
+		.offer
+		{
+			width:10% !important;
+			text-align:left;
+		}		
+		.productvalue
+		{
+			
+			text-align:left;
+		}
+		.subtotalvalue
+		{
+			width:20% !important;
+			text-align:right;
+		}
+		.quantityvalue
+		{
+			width:10% !important;
+			text-align:right;
+		}
+		.discountvalue
+		{
+			width:10% !important;
+			text-align:right;
+		}
+		.offervalue
+		{
+			width:10% !important;
+			text-align:right;
+		}	
+		.listItemNoIcon .ui-icon
+		{
+
+		 display: none;
+
+		}		
+	</style>
+</head>
+<body>
+		<div data-role="header"  >
+		<h1 >PRODCAST</h1>		
+		</div>
+		<div data-role="content" >
+			<div data-controltype="htmlblock">
+					<p>Bill No</p>
+					<p> Customer Name</p>
+					<p>Customer Address</p>
+
+					<p> Order Details </p>
+			</div>		
+	
+		<div data-inset="true" id="tableHeader" data-theme="a" data-content-theme="a">
+				
+				<div class="ui-grid-b" >
+					<div class="ui-block-a" style="width:55%">Product</div>
+					<div class="ui-block-b" style="width:20%">Qty</div>
+					<div class="ui-block-c" style="width:25%">Sub Total</div>
+						
+		
+				</div>
+				
+			</div>
+			
+	<div id="set" >
+		
+		
+			<div  id="1" data-theme="a" style="border: 1px solid #5b544e;padding: 5px">
+				<div id="firstRow1">
+					<fieldset class="ui-grid-b"  data-theme="c" >
+								<div class="ui-block-a" style="width:55%"><input class="productvalue" id="productvalue1" type="text"></div>
+								<div class="ui-block-b" style="width:20%"><input class="qty" id="quantityvalue1" type="text"/></div>
+								<div class="ui-block-c" style="width:25%"><input id="subtotal1" type="text"/></div>
+					</fieldset>
+				</div>
+				<div id="secondRow1">
+					<fieldset class="ui-grid-b" data-theme="c" >
+							<div class="ui-block-a" style="width:20%;height: 100%">
+							<label for="discount1">
+								Dis
+							</label>
+							<input type="text" id="discount1"/>
+							</div>
+							<!--<div class="ui-block-b" style="width:15%"><input type="text" id="discount1"/><//></div>-->
+							<div class="ui-block-b" style="width:20%;vertical-align: middle;">
+							<label for="offer1">
+								Offer
+							</label>
+							<input type="text" id="offer1"/>
+							</div>
+							<div class="ui-block-c" style="width:60%">&nbsp;</div>
+					</fieldset>
+				</div>
+			</div>
+		</div>
+		
+		<div >
+		<!--<a href="" class="add" data-icon="plus" data-role="button" data-mini="true" data-iconpos="notext" data-inline="true" >Add New Entry</a> -->
+		<a href="" class="remove" data-icon="minus" data-role="button" data-mini="true" data-iconpos="notext" data-inline="true" >Remove Selected Entry</a></div>
+		</div>
+		
+<div > <a href="/" data-icon="arrow-l" data-role="button" data-mini="true" data-iconpos="left" data-inline="true" >Main Menu</a></div>
+		
+		
+		<!--<div data-role="footer" data-position="fixed" id="footer">
+			<h3>&copy Copyright Primeforce Inc</h3>
+		</div>-->
+		
+</body>
+</html>

@@ -1,0 +1,455 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Prodcast</title>
+	<link rel="stylesheet" href="greentheme.css" />
+	<link href="http://code.jquery.com/ui/1.9.2/themes/ui-lightness/jquery-ui.css" rel="stylesheet"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js" ></script>
+	<script type="text/javascript" src="jQuery/index.js"></script>
+	<script>
+	$("#outstanding tr:odd").css('background-color', 'red');
+	</script>
+	<style>
+	
+	#review{
+    position: absolute;
+    background: rgba(255,255,255,1.0);
+	top: 0px;
+    display: none;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #FFFFFF;
+    border-radius: 5px;
+	overflow-y:auto;
+    } 
+	
+	
+   #savedialog
+  {
+	 float:left;
+	 
+  }
+   #confirmdialog
+  {
+	 float:left;
+	 
+  }
+	</style>
+</head>
+<body>
+	<div data-role="page" data-theme="a" id="loginhome">
+		<div data-role="header" data-position="inline">
+			<h1>PRODCAST</h1>
+		</div>
+		<div data-role="content" data-theme="a">
+		
+					<div id="loginError">
+						<!-- error will be shown here ! -->
+					</div>
+					 <label for="LoginUserId">
+						Username
+					</label>
+					<input name="" id="LoginUserId" placeholder="Username" value="" type="text" data-inline="true">
+					<label for="LoginPassword">
+						Password
+					</label>
+					<input name="" id="LoginPassword" placeholder="Password" value="" type="password" data-inline="true">
+				
+					<a id="LoginButton" href="" data-role="button" data-inline="true" >Login</a>
+				</div>
+				<div data-role="footer" data-position="fixed">
+			<h3>@Copyright Primeforce Inc</h3>
+		</div>
+		</div>
+		
+	<!-- </div> -->
+
+	<div data-role="page" data-theme="a" id="saleshome">
+ <div data-role="header" data-position="inline">
+			<h1>PRODCAST</h1>
+		</div>
+    <div data-role="content" data-theme="a">
+	<div id="SalesManName">
+	 Welcome, Mr. 
+	</div>
+	<fieldset class="ui-grid-a">
+		<div class="ui-block-a">
+		<a href="#orderentry" data-role="button" data-icon="plus" data-iconpos="top" data-inline="true">  
+		
+				Order Entry
+			</a>
+		</div>
+		<div class="ui-block-b">
+			<a href="#orderentry" data-role="button" data-icon="check" data-iconpos="top" data-inline="true">
+				Collection&nbsp;
+			</a>
+		</div>
+	</fieldset>
+	<fieldset class="ui-grid-a">
+	
+	<div class="ui-block-a">
+    <!--    <a href="#orderentry" data-role="button" data-icon="gear" data-iconpos="top" data-inline="true">  -->
+	<a href="user1.html" data-role="button" data-icon="gear" data-iconpos="top" data-inline="true">
+            &nbsp;Customers&nbsp;
+        </a>
+	</div>
+	<div class="ui-block-b">
+        <a href="#report" data-role="button" data-icon="info" data-iconpos="top" data-inline="true">
+            &nbsp;&nbsp;&nbsp;Report&nbsp;&nbsp;&nbsp;
+        </a>
+	</div>
+	</fieldset>
+    </div>
+    <div data-theme="a" data-role="footer" data-position="fixed">
+        <h2 class="ui-title">
+            @Copyright Primeforce Inc
+        </h2>
+    </div>
+</div>
+	<div data-role="page" data-theme="a" id="orderentry">
+		<div data-role="header" data-position="inline">
+			<h1>PRODCAST</h1>
+		</div>
+		<div data-role="content" data-theme="a">
+			 <label for="selectarea" class="select">Area :</label>
+			<select id="selectarea"   >
+				 <option value="all">All areas</option>
+		   </select>
+		 
+		
+			 <br/>
+          <!--  <ul data-role="listview" data-inset="true" data-filter="true" data-filter-reveal="false" data-filter-placeholder="Search customers..."  
+			id="selectcustomer">
+			</ul>  -->
+			 
+          <div class="ui-block-a" style="width:100%"><input  id="selectcustomer" placeholder="Select Customer..." type="text"></div>
+		  <br>
+		  <div id="outstandingdiv">
+		  		<h3 class="ui-bar ui-bar-a ui-corner-all">Outstanding Bills</h3>
+					<div class="ui-body ui-body-a ui-corner-all">					
+		
+						  <form name="paymentForm">
+						  
+						  <table id="outstanding"  >
+						  <tr>
+						  <th style="width:5%;">&nbsp;</th>
+						  <th style="width:25%;">Bill No</th>
+						  <th style="width:20%;">Bill Date</th>
+						  <th style="width:25%;">Bill Amount</th>
+						  <th style="width:25%;">Outstanding</th>
+						  <tr>
+						  </table>
+						  </form>
+					</div>
+		  <div class="ui-block-a" style="width:100%">Payment <input  id="payment" type="text"></div> 
+		  <a id="paymentSubmit" href="" data-role="button" data-inline="true" >Pay</a>
+		  <a id="newOrder" href="#orderdetailspage" data-role="button" data-inline="true" >New Order</a>
+		  </div>
+		  
+			
+			<div id="selectError">
+						<!-- error will be shown here ! -->
+					</div>
+			
+		</div>
+	</div>
+	
+	<div data-role="page" data-theme="a" id="orderdetailspage">
+	<div data-role="header"  >
+		<h1 >PRODCAST</h1>		
+	</div>
+		<div data-role="content" >
+			<div data-controltype="htmlblock">
+					<p>Bill No</p>
+					<p> Customer Name</p>
+					<p>Customer Address</p>
+
+					<p> Order Details </p>
+			</div>		
+	
+			<div data-inset="true" id="tableHeader" data-theme="a" data-content-theme="a">
+				
+				<div class="ui-grid-b" >
+					<div class="ui-block-a" style="width:55%">Product</div>
+					<div class="ui-block-b" style="width:20%">Qty</div>
+					<div class="ui-block-c" style="width:25%">Sub Total</div>
+						
+		
+				</div>
+				
+			</div>
+			
+	<div id="set" >
+		
+		
+			<div  id="1" data-theme="a" style="border: 1px solid #3aff14;padding: 5px">
+				<div id="firstRow1">
+					<fieldset class="ui-grid-b"  data-theme="c" >
+								<div class="ui-block-a" style="width:55%"><input class="productvalue" id="productvalue1" ><input type="hidden" id="hproductvalue1"/></div>
+								<div class="ui-block-b" style="width:15%"><input class="qty" id="quantityvalue1" type="number" value="0"/></div>
+								<div class="ui-block-c" style="width:30%;margin-top:1%"><label style="text-align:center;padding-left:25%" id="subtotal1">0.00</label></div>
+					</fieldset>
+				</div>
+				<div id="secondRow1">
+					<fieldset class="ui-grid-b" data-theme="c" >
+							<div class="ui-block-a" style="width:20%;height:100%">
+							<label for="unitprice">
+								Unit Price:
+							</label> &nbsp;
+							<label type="number" id="unitprice1" >0.00</label>
+							</div>
+							<!--<div class="ui-block-b" style="width:15%"><input type="text" id="discount1"/><//></div>-->
+							
+							<div class="ui-block-c" style="width:80%">&nbsp;</div>
+					</fieldset>
+				</div>
+			</div>
+		</div>
+		
+		<div >
+		<!--<a href="" class="add" data-icon="plus" data-role="button" data-mini="true" data-iconpos="notext" data-inline="true" >Add New Entry</a> -->
+		<a href="" class="remove" data-icon="minus" data-role="button" data-mini="true" data-iconpos="notext" data-inline="true" >Remove Selected Entry</a>
+		<a href="" class="reviewbtn" data-role="button" data-mini="true" data-iconpos="text" data-inline="true">Review</a>
+		<a href="" class="saveorder" data-role="button" data-mini="true" data-iconpos="text" data-inline="true" >Save  Order</a>
+		
+		
+		<div style="float:right;width:30%">
+		<label for="totalvalue">Total Value : </label>
+		<label type="number" id="totalvalue" >0.00</label>
+		</div>
+		
+		</div>
+		
+	</div>
+	</div>	
+		<div data-role="page" data-theme="a" id="review">
+			<div data-role="header">
+				<h1>Order Review</h1>
+			</div>
+			<div data-role="content">
+				<br>
+				<table id="reviewtable" style="width:100%;height:auto;border:1px solid #3aff14;border-radius:5px;color:#288609">
+				<tr>
+				<th>Product</th>
+				<th>Quantity</th>
+				<th>Unit Price</th>
+				<th>Sub Total</th>
+				</tr>
+				</table>
+				<a href="" class="saveorder" data-role="button" data-mini="true" data-iconpos="text" data-inline="true" >Save  Order</a>
+				<a href="" class="continueorder" data-role="button" data-mini="true" data-iconpos="text" data-inline="true">Continue Order</a>
+		
+				<div class="ui-block-a" style="width:100%" id="savedialog" title="Payment Panel">
+					<div style="margin-left: 23px;">
+						Payment <input  id="sopayment" type="number">
+						<a class="sopaymentbtn" href="" data-role="button" data-mini="true" data-iconpos="text" data-inline="true">Pay</a>
+					</div>
+				</div>
+				<div class="ui-block-a" style="width:100%" id="confirmdialog" title="Successful Order Placement">
+					<div style="margin-left: 23px;">
+							<p style="text-align:left">Your Order is Saved</p>	
+							<a class="confirmpaymentbtn" href="" data-role="button" data-mini="true" data-iconpos="text" data-inline="true" style="float:center">Ok</a>
+					</div>
+				 </div>
+		</div>
+	</div>
+	<div data-role="page" data-theme="a" id="billDetailsPage">
+			<div data-role="header"  >
+				<h1><label id="billNumber"></label>	</h1>
+			</div>
+			<div data-role="content" >
+			
+				<h3 class="ui-bar ui-bar-a ui-corner-all">Bill Details</h3>
+					<div class="ui-body ui-body-a ui-corner-all">					
+							
+							<table >
+								<tr>
+									<td>Bill Date</td>
+									<td><label id="billDate" /></td>
+								</tr>
+								<tr>
+									<td>Customer </td>
+									<td><label id="customerName" /></td>
+								</tr>
+								<tr>
+									<td>Ordered by</td>
+									<td><label id="employeeName" /></td>
+								</tr>
+								<tr>
+									<td>Total</td>
+									<td><label id="totalAmount" /></td>
+								</tr>
+								<tr>
+									<td>Placed on</td>
+									<td><label id="createDateTime" /></td>
+								</tr>
+								<tr>
+									<td>Balanced</td>
+									<td><label id="outstandingBalance" /></td>
+								</tr>
+								
+							</table>	
+					</div>
+				<h3 class="ui-bar ui-bar-a ui-corner-all">Order Details</h3>
+					<div class="ui-body ui-body-a ui-corner-all">					
+							
+							<table id="productsTable" >
+							
+								<thead>
+								
+								<tr>
+								  <th style="width:5%;">&nbsp;</th>
+								  <th style="width:25%;">Product</th>
+								  <th style="width:20%;">Qty</th>
+								  <th style="width:25%;">Price</th>
+								  <th style="width:25%;">SubTotal</th>
+								</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+					</div>
+				<h3 class="ui-bar ui-bar-a ui-corner-all">Collection Details</h3>
+					<div class="ui-body ui-body-a ui-corner-all">					
+
+					<table id="collectionTable" >
+						
+							<thead>
+							
+							<tr>
+							  <th style="width:5%;">&nbsp;</th>
+							  <th style="width:25%;">Date</th>
+							  <th style="width:20%;">Received by</th>
+							  <th style="width:25%;">Amount</th>
+							</tr>
+							</thead>
+							<tbody>
+							</tbody>
+								
+						</table>	
+					</div>
+					<a id="closeBill" href="#orderentry" data-role="button" data-inline="true" >Close</a>
+			</div>
+			
+	</div>
+		<div data-role="page" data-theme="a" id="report">
+				<div data-role="header" data-position="inline">
+					<h1>PRODCAST</h1>
+				</div>
+				<div data-role="content" data-theme="a">
+					
+					<fieldset data-role="controlgroup" data-type="horizontal" >
+					<legend>Report Date : </legend>
+						<input type="radio" name="reportdate" id="reportdate1" value="today" checked="checked" />
+						<label for="reportdate1">Today</label>
+						<input type="radio" name="reportdate" id="reportdate2" value="yesterday"  />
+						<label for="reportdate2">Yesterday</label>
+						<input type="radio" name="reportdate" id="reportdate3" value="week"  />
+						<label for="reportdate3">Week</label>
+						<input type="radio" name="reportdate" id="reportdate4" value="last7"  />
+						<label for="reportdate4">7 Days</label>
+						<input type="radio" name="reportdate" id="reportdate5" value="month"  />
+						<label for="reportdate5">Month</label>
+						<input type="radio" name="reportdate" id="reportdate6" value="last30" />
+						<label for="reportdate6">30 Days</label>
+						<!--<input type="radio" name="reportdate" id="reportdate7" value="custom"  />
+						<label for="reportdate7">Custom</label>-->
+					</fieldset>
+					<div style="display:none">
+					<fieldset data-role="controlgroup" data-type="horizontal" >
+					
+						<label for="startdate">Report Start Date </label>
+						<input type="text" id="startdate">
+						<label for="enddate">Report End Date </label>
+						<input type="text" id="enddate">
+					</fieldset>
+					
+					</div>
+					
+					<fieldset data-role="controlgroup" data-type="horizontal">
+					<legend>Report Details : </legend>
+						<label><input type="checkbox" name="salesreport" checked="checked"/>Sales</label>
+						<label><input type="checkbox" name="collectionreport" checked="checked" />Collections</label>
+					</fieldset>
+					
+					<a id="reportGo" href="" class="goButton" data-role="button" data-inline="true" >Go</a>
+					
+					
+					 <div id="reportoutput">
+					
+						<h3 class="ui-bar ui-bar-a ui-corner-all">Summary</h3>
+							  <div class="ui-body ui-body-a ui-corner-all">					
+									<table id="summaryTable" >
+										<tr>
+											<th style="width:25%">Date</th>
+											<th style="width:25%"><label id="reportdaterun" /></th>
+											<th style="width:25%">Total Sales </th>
+											<th style="width:25%"><label id="lblTotalSales" /></th>
+										</tr>
+										<tr>
+											<th style="width:25%">Total Collection</th>
+											<th style="width:25%"><label id="lblTotalCollection" /></th>
+											<th style="width:25%">Balance</th>
+											<th style="width:25%"><label id="lblBalance" /></th>
+										</tr>
+										<tr>
+											<th style="width:25%">Cash</th>
+											<th style="width:25%"><label id="lblTotalCash" /></th>
+											<th style="width:25%">Other</th>
+											<th style="width:25%"><label id="lblTotalOther" /></th>
+										</tr>
+
+									</table>
+								</div>
+
+						<h3 class="ui-bar ui-bar-a ui-corner-all">Sales Details</h3>
+							  <div class="ui-body ui-body-a ui-corner-all">					
+								
+									<table id="salesTable" ">
+								
+									<thead>
+									
+									<tr>
+									  <th style="width:5%;">&nbsp;</th>
+									  <th style="width:25%;">Customer</th>
+									  <th style="width:20%;">Date</th>
+									  <th style="width:25%;">Total</th>
+									  <th style="width:25%;">Balance</th>
+									</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>	
+							</div>
+						<h3 class="ui-bar ui-bar-a ui-corner-all">Collection Details</h3>
+							  <div class="ui-body ui-body-a ui-corner-all">					
+							
+									<table id="collectionTable" >
+									
+										<thead>
+										
+										<tr>
+										  <th style="width:5%;">&nbsp;</th>
+										  <th style="width:25%;">Customer</th>
+										  <th style="width:20%;">Date</th>
+										  <th style="width:25%;">Amount</th>
+										  <th style="width:25%;">Payment Type</th>
+										</tr>
+										</thead>
+										<tbody>
+										</tbody>
+											
+									</table>	
+							</div>
+						
+					 </div>
+					
+				</div>
+			
+		</div>
+</body>
+</html>

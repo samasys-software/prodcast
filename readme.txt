@@ -1,1 +1,1 @@
-test build
+test jenkin auto build

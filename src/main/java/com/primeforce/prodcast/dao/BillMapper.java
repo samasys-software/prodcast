@@ -14,21 +14,23 @@ public class BillMapper implements RowMapper<Bill> {
 
     boolean mini = true;
 
-    public BillMapper(boolean mini){
+    public BillMapper(boolean mini) {
         this.mini = mini;
     }
-    public BillMapper(){
+
+    public BillMapper() {
 
     }
-    public Bill mapRow(ResultSet rs, int rowNum ) throws SQLException {
+
+    public Bill mapRow(ResultSet rs, int rowNum) throws SQLException {
         Bill bill = new Bill();
 
-        bill.setBillNumber( rs.getLong("bill_no"));
-        bill.setBillAmount( rs.getFloat( "total_amt"));
-        bill.setCustomerId( rs.getLong("cust_id"));
-        bill.setOutstandingBalance( rs.getFloat("outstanding_balance"));
+        bill.setBillNumber(rs.getLong("bill_no"));
+        bill.setBillAmount(rs.getFloat("total_amt"));
+        bill.setCustomerId(rs.getLong("cust_id"));
+        bill.setOutstandingBalance(rs.getFloat("outstanding_balance"));
         bill.setBillDate(rs.getDate("bill_date"));
+        bill.setOrderStatus(rs.getString("order_status"));
         return bill;
     }
-
 }

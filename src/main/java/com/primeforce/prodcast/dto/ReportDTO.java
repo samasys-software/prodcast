@@ -1,6 +1,7 @@
 package com.primeforce.prodcast.dto;
 
 import com.primeforce.prodcast.businessobjects.Collection;
+import com.primeforce.prodcast.businessobjects.Expense;
 import com.primeforce.prodcast.businessobjects.Order;
 
 import java.util.List;
@@ -13,6 +14,16 @@ public class ReportDTO extends ProdcastDTO {
 
     private float totalSales;
     private float totalCollection;
+
+    public List<Expense> getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(List<Expense> expenses) {
+        this.expenses = expenses;
+    }
+
+    private List<Expense> expenses;
 
     public String getReportDates() {
         return reportDates;

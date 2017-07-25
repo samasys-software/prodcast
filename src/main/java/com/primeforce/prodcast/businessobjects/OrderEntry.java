@@ -7,6 +7,35 @@ public class OrderEntry {
 
     private long orderEntryId;
 
+    private float salesTax;
+    private float otherTax;
+
+    public float getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(float subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public float getOtherTax() {
+        return otherTax;
+    }
+
+    public void setOtherTax(float otherTax) {
+        this.otherTax = otherTax;
+    }
+
+    public float getSalesTax() {
+        return salesTax;
+    }
+
+    public void setSalesTax(float salesTax) {
+        this.salesTax = salesTax;
+    }
+
+    private float subtotal;
+
     public String getProductName() {
         return productName;
     }

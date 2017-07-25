@@ -21,6 +21,9 @@ public class CollectionMapper implements RowMapper<Collection> {
         collection.setPaymentType( rs.getString("payment_type"));
         collection.setPaymentDate( rs.getDate("payment_date"));
         collection.setCustomerName( rs.getString("outlet_name"));
+        collection.setRefNo(rs.getString("ref_no"));
+        collection.setRefDetail(rs.getString("ref_detail"));
+
         return collection;
     }
 }

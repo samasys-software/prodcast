@@ -6,6 +6,15 @@ package com.primeforce.prodcast.dto;
 public class AdminDTO<T> extends ProdcastDTO {
 
     private T result;
+    private String successMessage;
+
+    public String getSuccessMessage() {
+        return successMessage;
+    }
+
+    public void setSuccessMessage(String successMessage) {
+        this.successMessage = successMessage;
+    }
 
     public T getResult(){
         return result;

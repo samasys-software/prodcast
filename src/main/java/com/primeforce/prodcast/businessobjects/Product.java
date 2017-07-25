@@ -11,6 +11,38 @@ public class Product {
     private String productName;
     private String productDesc;
     private String productSku;
+    private String brandName;
+    private String categoryName;
+    private String subCategoryName;
+
+    public String getProductDisplayName() {
+        return productDisplayName;
+    }
+
+    public void setProductDisplayName(String productDisplayName) {
+        this.productDisplayName = productDisplayName;
+    }
+
+    private String productDisplayName;
+
+    public String getSalesTax() {
+        return salesTax;
+    }
+
+    public void setSalesTax(String salesTax) {
+        this.salesTax = salesTax;
+    }
+
+    public String getOtherTax() {
+        return otherTax;
+    }
+
+    public void setOtherTax(String otherTax) {
+        this.otherTax = otherTax;
+    }
+
+    private String salesTax;
+    private String otherTax;
 
     public float getUnitPrice() {
         return unitPrice;
@@ -92,11 +124,48 @@ public class Product {
         this.active = active;
     }
 
+    public String getUom() {
+        return uom;
+    }
+
+    public void setUom(String uom) {
+        this.uom = uom;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getSubCategoryName() {
+        return subCategoryName;
+    }
+
+    public void setSubCategoryName(String subCategoryName) {
+        this.subCategoryName = subCategoryName;
+    }
+
     private float unitPrice;
     private String priceType;
     private long categoryId;
     private long subCategoryId;
     private long brandId;
     private boolean active;
+    private String uom;
+    private float retailPrice;
+    public float getRetailPrice(){ return retailPrice;}
+    public void setRetailPrice(float retailPrice) { this.retailPrice=retailPrice; }
+
 
 }

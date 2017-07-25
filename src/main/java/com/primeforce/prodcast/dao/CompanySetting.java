@@ -11,7 +11,7 @@ public class CompanySetting {
     private String address;
     private String city;
     private String stateorprovince;
-    private String postalcode;
+    private String postalcode,timezone;
 
     public long getDistributorId() {
         return distributorId;
@@ -91,6 +91,14 @@ public class CompanySetting {
 
     public void setFaxNumber(String faxNumber) {
         this.faxNumber = faxNumber;
+    }
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
     }
 
     private String country;

@@ -14,6 +14,13 @@ public class EmployeeMapper implements RowMapper<Employee> {
     public Employee mapRow(ResultSet rs, int rowNum ) throws SQLException{
 
         Employee emp = new Employee();
+        try {
+            emp.setAreaId(rs.getLong("area_id"));
+        }
+        catch(Exception er ){
+            //er.printStackTrace();
+            //No Area Id
+        }
         emp.setEmployeeId( rs.getLong("employee_id"));
         emp.setFirstname( rs.getString("firstname"));
         emp.setLastname( rs.getString("lastname"));
@@ -40,6 +47,21 @@ public class EmployeeMapper implements RowMapper<Employee> {
         emp.setDateOfBirth( rs.getDate("dob"));
         emp.setComments( rs.getString("comments"));
         emp.setUserRole( rs.getString("user_role"));
+        emp.setCountryCode(rs.getString("isd_code"));
+        emp.setTimezone(rs.getString("timezone"));
+        try {
+            emp.setCurrencySymbol(rs.getString("currency_symbol"));
+        }
+        catch(Exception er){
+
+        }
+        try{
+            emp.setDistributorName( rs.getString("cust_name"));
+            emp.setOpenToPublic(rs.getBoolean("open_to_public"));
+        }
+        catch(Exception er ){
+            //er.printStackTrace();
+        }
         return emp;
     }
 

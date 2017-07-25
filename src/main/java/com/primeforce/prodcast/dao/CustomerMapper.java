@@ -14,7 +14,8 @@ public class CustomerMapper implements RowMapper<Customer> {
 
     private final boolean miniData ;
 
-    public CustomerMapper(boolean miniData){
+    public CustomerMapper(boolean miniData)
+    {
         this.miniData = miniData;
     }
 
@@ -37,6 +38,7 @@ public class CustomerMapper implements RowMapper<Customer> {
             cust.setState(rs.getString("state"));
 
             cust.setCustomerType( rs.getString("outlet_type"));
+            cust.setActive(rs.getBoolean("active_yn"));
 
             cust.setFirstname( rs.getString("firstname"));
             cust.setLastname( rs.getString("lastname"));
@@ -44,12 +46,19 @@ public class CustomerMapper implements RowMapper<Customer> {
             cust.setPhonenumber( rs.getString("workphone"));
             cust.setCellPhone(rs.getString("cellphone"));
             
-            cust.setArea(rs.getString("area"));
             cust.setNotes( rs.getString("comments"));
             cust.setEmailaddress( rs.getString( "outlet_email_id"));
             cust.setWeekday( rs.getString( "week_day"));
 
             cust.setArea(rs.getString("area"));
+            cust.setCustomerId1( rs.getString("taxid_1"));
+            cust.setCustomerDesc1(rs.getString("desc_1"));
+            cust.setCustomerId2( rs.getString("taxid_2"));
+            cust.setCustomerDesc2(rs.getString("desc_2"));
+            cust.setSmsAllowed( rs.getBoolean("sms_mobile_Y_N"));
+            cust. setStoreType( rs.getLong("store_type_id"));
+
+
         }
         return cust;
     }

@@ -10,6 +10,7 @@ public class Bill {
     private long billNumber;
     private long customerId;
     private Date billDate;
+    private String orderStatus;
 
     public float getBillAmount() {
         return billAmount;
@@ -54,5 +55,13 @@ public class Bill {
 
     public void setOutstandingBalance(float outstandingBalance) {
         this.outstandingBalance = outstandingBalance;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
     }
 }

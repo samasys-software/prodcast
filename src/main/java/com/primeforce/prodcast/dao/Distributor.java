@@ -6,6 +6,16 @@ package com.primeforce.prodcast.dao;
 public class Distributor {
 
     private long distributorId;
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    private String logo;
     private String companyName;
     private String type;
     private String firstName;
@@ -22,6 +32,17 @@ public class Distributor {
     private String state;
     private String postalCode;
     private String country;
+    private String currencySymbol;
+    private String timezone;
+    private boolean openToPublic;
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
 
     public String getComments() {
         return comments;
@@ -32,6 +53,14 @@ public class Distributor {
     }
 
     private String comments;
+
+    public String getCurrencySymbol() {
+        return currencySymbol;
+    }
+
+    public void setCurrencySymbol(String currencySymbol) {
+        this.currencySymbol = currencySymbol;
+    }
 
     public String getGender() {
         return gender;
@@ -191,6 +220,15 @@ public class Distributor {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public boolean isOpenToPublic() {
+        return openToPublic;
+    }
+
+    public void setOpenToPublic(boolean openToPublic)
+    {
+        this.openToPublic = openToPublic;
     }
 
     private String gender;

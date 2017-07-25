@@ -121,6 +121,62 @@ public class Customer {
     private String customerType;
     private String area;
     private String firstname;
+    private String customerId1;
+    private String customerDesc1;
+    private String customerId2;
+
+
+    public String getCustomerDesc2() {
+        return customerDesc2;
+    }
+
+    public void setCustomerDesc2(String customerDesc2) {
+        this.customerDesc2 = customerDesc2;
+    }
+
+    public String getCustomerId2() {
+        return customerId2;
+    }
+
+    public void setCustomerId2(String customerId2) {
+        this.customerId2 = customerId2;
+    }
+
+    public String getCustomerDesc1() {
+        return customerDesc1;
+    }
+
+    public void setCustomerDesc1(String customerDesc1) {
+        this.customerDesc1 = customerDesc1;
+    }
+
+    public String getCustomerId1() {
+        return customerId1;
+    }
+
+    public void setCustomerId1(String customerId1) {
+        this.customerId1 = customerId1;
+    }
+
+    private String customerDesc2;
+    private boolean smsAllowed;
+    private boolean active;
+
+    public boolean isSmsAllowed() {
+        return smsAllowed;
+    }
+
+    public void setSmsAllowed(boolean smsAllowed) {
+        this.smsAllowed = smsAllowed;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public String getCustomerType() {
         return customerType;
@@ -209,4 +265,16 @@ public class Customer {
     private String emailaddress;
     private String notes;
     private String weekday;
+    private long storeType;
+
+
+    public long getStoreType() {
+        return storeType;
+    }
+
+    public void setStoreType(long storeType)
+    {
+        this.storeType = storeType;
+    }
+
 }

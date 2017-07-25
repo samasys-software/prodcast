@@ -13,6 +13,24 @@ public class Collection {
     private long employeeId;
     private String employeeName;
     private String paymentType;
+    private String refNo;
+    private String refDetail;
+
+    public String getRefNo() {
+        return refNo;
+    }
+
+    public void setRefNo(String refNo) {
+        this.refNo = refNo;
+    }
+
+    public String getRefDetail() {
+        return refDetail;
+    }
+
+    public void setRefDetail(String refDetail) {
+        this.refDetail = refDetail;
+    }
 
     public String getCustomerName() {
         return customerName;

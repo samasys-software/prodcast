@@ -20,6 +20,7 @@ public class CompanySettingMapper implements RowMapper<CompanySetting> {
         setting.setStateorprovince(rs.getString("stateorprovince"));
         setting.setPostalcode(rs.getString("postalcode"));
         setting.setCountry(rs.getString("country_id"));
+        setting.setTimezone(rs.getString("timezone"));
         setting.setPhoneNumber(rs.getString("phonenumber"));
         setting.setFaxNumber(rs.getString("faxnumber"));
         return setting;

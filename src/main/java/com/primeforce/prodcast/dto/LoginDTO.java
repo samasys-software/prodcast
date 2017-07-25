@@ -11,6 +11,16 @@ public class LoginDTO extends ProdcastDTO{
 
     private Employee employee;
 
+    private String timezone;
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
+
     public boolean isSuccess() {
         return success;
     }

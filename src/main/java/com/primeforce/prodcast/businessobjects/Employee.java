@@ -15,7 +15,56 @@ public class Employee {
     private String homephone;
     private String workphone;
     private int salary;
+    private String currencySymbol;
+    private String countryCode;
+    private String timezone;
+
+    public boolean isOpenToPublic() {
+        return openToPublic;
+    }
+
+    public void setOpenToPublic(boolean openToPublic) {
+        this.openToPublic = openToPublic;
+    }
+
+    private boolean openToPublic;
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    public String getDistributorName() {
+        return distributorName;
+    }
+
+    public void setDistributorName(String distributorName) {
+        this.distributorName = distributorName;
+    }
+
     private java.sql.Date hireDate;
+    private String distributorName;
+
+    public long getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(long areaId) {
+        this.areaId = areaId;
+    }
+
+    private long areaId;
 
     public long getEmployeeId() {
         return employeeId;
@@ -239,6 +288,14 @@ public class Employee {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getCurrencySymbol() {
+        return currencySymbol;
+    }
+
+    public void setCurrencySymbol(String currencySymbol) {
+        this.currencySymbol = currencySymbol;
     }
 
     private java.sql.Date terminationDate;

@@ -347,7 +347,7 @@ public class GlobalRest {
                             billingAddress2, billingAddress3, city,
                             state, countryId, postalCode, notes, customerid1, desc1, secondId, desc2, smsAllowed, active, Long.parseLong(storeType));
 
-
+                             System.out.println("---");
                          List customerData = databaseManager.fetchMobileNumbers(countryId, cellPhoneNumber);
                         if (customerData.size() == 0) {
 

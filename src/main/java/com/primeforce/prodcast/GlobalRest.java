@@ -46,7 +46,7 @@ public class GlobalRest {
 
         try {
             System.out.println("hai");
-            System.out.println("helljhuuihuigui");
+            System.out.println("hello");
             employee = databaseManager.login(id,password);
             if( employee == null ) dto.setSuccess( false );
             else dto.setSuccess(true);

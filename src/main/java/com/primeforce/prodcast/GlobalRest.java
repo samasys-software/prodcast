@@ -10,12 +10,14 @@ import com.primeforce.prodcast.messaging.MessagingManager;
 import com.primeforce.prodcast.messaging.OrderDataProvider;
 import com.primeforce.prodcast.util.Amazon;
 import com.primeforce.prodcast.util.Notifier;
+import com.primeforce.prodcast.util.TimeZoneConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.inject.Named;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -43,10 +45,6 @@ public class GlobalRest {
         Employee employee = null;
 
         try {
-            System.out.println("hai");
-            System.out.println("Welcome");
-            System.out.println("to");
-            System.out.println("hello");
             employee = databaseManager.login(id,password);
             if( employee == null ) dto.setSuccess( false );
             else dto.setSuccess(true);
@@ -347,7 +345,7 @@ public class GlobalRest {
                             billingAddress2, billingAddress3, city,
                             state, countryId, postalCode, notes, customerid1, desc1, secondId, desc2, smsAllowed, active, Long.parseLong(storeType));
 
-                             System.out.println("gyuhy");
+
                          List customerData = databaseManager.fetchMobileNumbers(countryId, cellPhoneNumber);
                         if (customerData.size() == 0) {
 

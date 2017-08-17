@@ -1110,12 +1110,12 @@ public class DatabaseManager {
                 emailAddress, cellPhoneNumber, homePhoneNumber,
                 billingAddress1, billingAddress2,
                 billingAddress3, city, state,
-                country, postalCode, Boolean.parseBoolean(smsAllowed),date};
+                country, postalCode, Boolean.parseBoolean(smsAllowed),date,};
 
         return template.update(DBSql.CREATE_NEW_CUSTOMER_SQL, obj);
 
     }
-    public int updateNewCustomerRegistrationDetails(String firstName, String lastName, String emailAddress, String cellPhoneNumber,
+    public int updateNewCustomerRegistrationDetails(long customerId,String firstName, String lastName, String emailAddress, String cellPhoneNumber,
                                      String homePhoneNumber, String billingAddress1,
                                      String billingAddress2, String billingAddress3, String city, String state, String country,
                                      String postalCode, String smsAllowed)
@@ -1124,13 +1124,18 @@ public class DatabaseManager {
                 emailAddress, homePhoneNumber,
                 billingAddress1, billingAddress2,
                 billingAddress3, city, state,
-                country, postalCode, Boolean.parseBoolean(smsAllowed),cellPhoneNumber};
+                country, postalCode, Boolean.parseBoolean(smsAllowed),cellPhoneNumber,customerId};
 
         return template.update(DBSql.UPDATE_NEW_CUSTOMER_REG_DETAILS_SQL, obj);
     }
 
-    public NewCustomerRegistrationDetails fetchUpdateSaveNewcustomer(String cellPhoneNumber ) {
+    public NewCustomerRegistrationDetails fetchUpdateSaveNewcustomer(String cellPhoneNumber) {
         return template.queryForObject(DBSql.FETCH__NEW_CUSTOMER_REG_DETAILS, new Object[]{cellPhoneNumber}, new NewCustomerRegistrationDetailsMapper());
+
+
+    }
+    public NewCustomerRegistrationDetails fetchUpdatedSaveNewcustomer(String cellPhoneNumber,String customerId) {
+        return template.queryForObject(DBSql.FETCH__UPDATED_NEWCUSTOMER_REG_DETAILS, new Object[]{cellPhoneNumber,customerId}, new NewCustomerRegistrationDetailsMapper());
 
 
     }
@@ -1211,5 +1216,19 @@ public class DatabaseManager {
     public Boolean isOpenToPublic(long employeeId){
          return template.queryForObject(DBSql.GET_EMP_DIST_PUBLIC, Boolean.class, new Object[]{employeeId});
     }
+    public String fetchCustomerDistId(String cellPhoneNumber) {
+        return template.queryForObject(DBSql.FETCH_CUSTOMER_DISTID, new Object[]{cellPhoneNumber}, String.class);
+    }
+    public String fetchDistributorCustCellNumber(String cellPhoneNumber,String distributorId){
+        try {
+
+            return template.queryForObject(DBSql.CHECK_CUSTOMER_CELLPHONE, new Object[]{ cellPhoneNumber,distributorId}, String.class);
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
+
+
 
 }

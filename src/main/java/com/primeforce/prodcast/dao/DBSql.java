@@ -129,7 +129,8 @@ public class DBSql {
     public final static String GET_CUSTOMER_PHONENUMBER_FROM_PHONENUMBER = "select password from customer_access where username = ?";
     public final static String  CREATE_STORE_TYPE="insert into store_type(store_type_name,active_yn,enter_dt_tm,updt_dt_tm) values (?,'1',NOW(),NOW())";
     public final static String  FETCH__NEW_CUSTOMER_REG_DETAILS="select  firstname,lastname,outlet_email_id,workphone,cellphone,address_1,address_2,address_3,city,state,country_id,postal_code,sms_mobile_Y_N from outlet_dtl where dist_id=-1 and cellphone=?";
-    public final static String  FETCH_NEW_CUSTOMEREG_DETAILS="select  od.firstname,od.lastname,od.outlet_email_id," +
+    public final static String  FETCH__UPDATED_NEWCUSTOMER_REG_DETAILS="select  firstname,lastname,outlet_email_id,workphone,cellphone,address_1,address_2,address_3,city,state,country_id,postal_code,sms_mobile_Y_N from outlet_dtl where outlet_id=? and cellphone=?";
+    public final static String  FETCH_NEW_CUSTOMEREG_DETAILS="select od.outlet_id, od.firstname,od.lastname,od.outlet_email_id," +
             "od.workphone,od.address_1,od.address_2,od.address_3,od.city,od.state,od.country_id,od.postal_code," +
             "od.sms_mobile_Y_N,od.cellphone from outlet_dtl od,customer_access cust where od.dist_id=-1 and  od.cellphone=cust.username and cust.access_id=?";
 
@@ -146,7 +147,7 @@ public class DBSql {
     public final static String  FETCH_MOBILE_NUMBER_OF_CUSTOMERS="select outlet_id,outlet_name,landmark,address_1,address_2,address_3,city,country_id,postal_code,state,outlet_type,active_yn,firstname,lastname,workphone,cellphone,comments,outlet_email_id,week_day,area,taxid_1,desc_1,taxid_2,desc_2,sms_mobile_Y_N,store_type_id from outlet_dtl where country_id=? and cellphone=? ";
 
     public final static String UPDATE_NEW_CUSTOMER_REG_DETAILS_SQL="update outlet_dtl set firstname=?,lastname=?,outlet_email_id=?,workphone=?,address_1=?," +
-            " address_2=?, address_3=?,city=?,state=?,country_id=?,postal_code=?,sms_mobile_Y_N=?,outlet_name=CONCAT_WS(' ',firstname,lastname) where dist_id=-1 and cellphone=? ";
+            " address_2=?, address_3=?,city=?,state=?,country_id=?,postal_code=?,sms_mobile_Y_N=?,outlet_name=CONCAT_WS(' ',firstname,lastname) where  cellphone=? and outlet_id=?";
     //public final static String UPDATE_NEW_CUST_REG_OUTLETNAME_SQL="update outlet_dtl set outlet_name=CONCAT_WS(' ',firstname,lastname)where dist_id=-1 and cellphone=?";
     public final static String GET_DISTRIBUTORS_IF_OPEN_TO_PUBLIC = " select od.outlet_id , dst.*,ctry.currency_symbol from dist_dtl dst,country ctry ,outlet_dtl od, customer_access access where open_to_public='1'and dst.country_id=ctry.country_id and dst.active_yn='1' and access.username = od.cellphone and od.dist_id = -1 and od.country_id = access.country_id and access.access_id = ?";
     public final static String FETCH_ALL_CUSTOMER_SQL ="select * from outlet_dtl";
@@ -166,5 +167,8 @@ public class DBSql {
     public final static String GET_IS_OPEN_TO_PUBLIC_DISTRIBUTOR="select open_to_public from dist_dtl where dist_id=?";
     public final static String CHECK_CUSTOMER_CELLPHONE_UNIQUE="select outlet_id from outlet_dtl where cellphone=? and " +
             " dist_id=(select dist_manf_id from employees where employee_id= ?)";
+    public final static String FETCH_CUSTOMER_DISTID="select dist_id from outlet_dtl where cellPhone=?";
+    public final static String CHECK_CUSTOMER_CELLPHONE="select outlet_id from outlet_dtl where cellphone=? and " +
+            " dist_id=?";
 
 }

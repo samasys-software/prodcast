@@ -121,8 +121,8 @@ public class CustomerRest {
 
         try {
             CustomersLogin custLogin = null;
-            long pinNumber = databaseManager.getConfirmationCode(accessId);
-            if (pinNumber == confirmCode) {
+            long confimationNumber = databaseManager.getConfirmationCode(accessId);
+            if (confimationNumber == confirmCode) {
                 int rowCount = databaseManager.setConfirmationStatus(accessId);
                 if (rowCount == 0) {
                     dto.setError(true);
@@ -390,7 +390,7 @@ public class CustomerRest {
     @Path("saveNewCustomer")
     @Produces(MediaType.APPLICATION_JSON)
     public ProdcastDTO saveNewCustomer(
-
+            @FormParam("customerId") String customerId,
             @FormParam("firstName") String firstName,
             @FormParam("lastName") String lastName,
             @FormParam("emailAddress") String emailAddress,
@@ -409,41 +409,60 @@ public class CustomerRest {
         CustomerListDTO dto = new CustomerListDTO();
         try {
             int result;
+                System.out.println("CustomerId="+customerId);
+                if(customerId == null || customerId.trim().length() == 0 ) {
 
-
-
-               result = databaseManager.createNewCustomer(firstName, lastName,
-                        emailAddress, cellPhoneNumber, homePhoneNumber, billingAddress1,
-                        billingAddress2, billingAddress3, city,
-                        state, country, postalCode, smsAllowed);
-              /* System.out.println("+++++++++++++++++++++++++");
+                    result = databaseManager.createNewCustomer(firstName, lastName,
+                            emailAddress, cellPhoneNumber, homePhoneNumber, billingAddress1,
+                            billingAddress2, billingAddress3, city,
+                            state, country, postalCode, smsAllowed);
+              System.out.println("+++++++++++++++++++++++++");
             System.out.println("NEW Customer Creation Page");
-            System.out.println("+++++++++++++++++++++++");*/
+            System.out.println("+++++++++++++++++++++++");
 
             /* result = databaseManager.createCustomer(-1,firstName+" "+lastName,"W",-1,null, firstName, lastName,
                     emailAddress, cellPhoneNumber, homePhoneNumber, null, billingAddress1,
                     billingAddress2, billingAddress3, city,
                     state, country, postalCode, null, null, null, null, null, smsAllowed, "true", -1);*/
-/*
+
             System.out.println("+++++++++++++++++++++++++");
             System.out.println("NEW Customer Created Successfully");
-            System.out.println("+++++++++++++++++++++++");*/
-            if (result!=1)
-                {
-                    dto.setError(true);
-                    dto.setErrorMessage("Unable to save the Customer");
-                }
-            NewCustomerRegistrationDetails saveNewCustRegDetails=databaseManager.fetchUpdateSaveNewcustomer(cellPhoneNumber);
-           // System.out.print(saveNewCustRegDetails);
-            System.out.println("+++++++++++++++++++++++++");
-            System.out.println("NEW Customer Creation Page");
             System.out.println("+++++++++++++++++++++++");
 
-            dto.setResult(saveNewCustRegDetails);
+
+                }
+                else{
+                    System.out.println("+++++++++++++++++++++++++");
+                    System.out.println("update NEW RESULT BEFORE Customer Creation Page");
+                    System.out.println("+++++++++++++++++++++++");
+                    result = databaseManager.updateNewCustomerRegistrationDetails(Long.parseLong(customerId),firstName, lastName,
+                            emailAddress,cellPhoneNumber, homePhoneNumber, billingAddress1,
+                            billingAddress2, billingAddress3, city,
+                            state, country, postalCode, smsAllowed);
+                    System.out.println("+++++++++++++++++++++++++");
+                    System.out.println("Update New Customer Creation Page");
+                    System.out.println("+++++++++++++++++++++++");
+
+                }
+
+            if (result != 1) {
+                dto.setError(true);
+                dto.setErrorMessage("Unable to save the Customer");
+            }
+           // NewCustomerRegistrationDetails saveNewCustRegDetails = databaseManager.fetchUpdateSaveNewcustomer(cellPhoneNumber);
+            // System.out.print(saveNewCustRegDetails);
+            System.out.println("+++++++++++++++++++++++++");
+            System.out.println("last Page");
+            System.out.println("+++++++++++++++++++++++");
+
+           // dto.setResult(saveNewCustRegDetails);
+
+
 
 
 
         }
+
         catch(Exception er)
         {
             dto.setError( true );
@@ -454,16 +473,17 @@ public class CustomerRest {
 
         return  dto;
     }
-    @POST
+  /*  @POST
     @Path("updateNewCustomerRegistrationDetails")
     @Produces(MediaType.APPLICATION_JSON)
 
     public CustomerListDTO updateNewCustomerRegistrationDetails(
-
+            @FormParam("customerId") String customerId,
+            @FormParam("cellPhone") String cellPhoneNumber,
             @FormParam("firstName") String firstName,
             @FormParam("lastName") String lastName,
             @FormParam("emailAddress") String emailAddress,
-            @FormParam("cellPhone") String cellPhoneNumber,
+
             @FormParam("homePhoneNumber") String homePhoneNumber,
             @FormParam("billingAddress1") String billingAddress1,
             @FormParam("billingAddress2") String billingAddress2,
@@ -478,13 +498,19 @@ public class CustomerRest {
     {
         CustomerListDTO dto = new CustomerListDTO();
         try {
-         int result;
-            result = databaseManager.updateNewCustomerRegistrationDetails(firstName, lastName,
-                emailAddress, cellPhoneNumber, homePhoneNumber, billingAddress1,
-                billingAddress2, billingAddress3, city,
-                state, country, postalCode, smsAllowed);
+         int result=0;
 
+           // String customerDistId=databaseManager.fetchCustomerDistId(cellPhoneNumber);
+           // if(customerDistId != )
 
+            if (customerId !=null)
+            {
+                result = databaseManager.updateNewCustomerRegistrationDetails(customerId,firstName, lastName,
+                        emailAddress,cellPhoneNumber, homePhoneNumber, billingAddress1,
+                        billingAddress2, billingAddress3, city,
+                        state, country, postalCode, smsAllowed);
+
+            }
 
         if ((result  == 0)) {
             dto.setError(true);
@@ -494,7 +520,7 @@ public class CustomerRest {
 
         {
 
-            NewCustomerRegistrationDetails updateNewCustRegDetails=databaseManager.fetchUpdateSaveNewcustomer(cellPhoneNumber);
+            NewCustomerRegistrationDetails updateNewCustRegDetails=databaseManager.fetchUpdatedSaveNewcustomer(cellPhoneNumber,customerId);
 
             dto.setResult(updateNewCustRegDetails);
 
@@ -510,25 +536,27 @@ public class CustomerRest {
 
         return  dto;
 
-    }
+    }*/
     @GET
     @Path("getNewCustomerRegistrationDetails")
     @Produces(MediaType.APPLICATION_JSON)
     public CustomerListDTO getNewCustomerRegistrationDetails(@QueryParam("accessId")long accessId) {
         //AdminDTO dto = new AdminDTO();
         CustomerListDTO dto = new CustomerListDTO();
-
+        NewCustomerRegistrationDetails getNewCustRegDetails;
         try {
 
-            NewCustomerRegistrationDetails getNewCustRegDetails=databaseManager.fetchSaveNewcustomer(accessId);
+            getNewCustRegDetails=databaseManager.fetchSaveNewcustomer(accessId);
 
-            dto.setResult(getNewCustRegDetails);
+
         }
         catch(Exception er){
-            er.printStackTrace();
-            dto.setError( true );
-            dto.setErrorMessage( er.toString() );
+            getNewCustRegDetails=null;
+           // er.printStackTrace();
+           // dto.setError( true );
+          //  dto.setErrorMessage( er.toString() );
         }
+        dto.setResult(getNewCustRegDetails);
         return dto;
     }
 

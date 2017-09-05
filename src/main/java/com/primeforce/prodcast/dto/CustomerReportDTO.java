@@ -11,13 +11,6 @@ public class CustomerReportDTO  extends ProdcastDTO {
     private Object result;
     private float amount,outstandingBalance,amountPaid;
     private String reportDates;
-    public String getReportName() {
-        return reportName;
-    }
-
-    public void setReportName(String reportName) {
-        this.reportName = reportName;
-    }
 
     public String getHeader() {
         return header;
@@ -35,14 +28,13 @@ public class CustomerReportDTO  extends ProdcastDTO {
         this.attributes = attributes;
     }
 
-    public String getReportDates() {
-        return reportDates;
+    public String getReportName() {
+        return reportName;
     }
 
-    public void setReportDates(String reportDates) {
-        this.reportDates = reportDates;
+    public void setReportName(String reportName) {
+        this.reportName = reportName;
     }
-
 
     public Object getResult() {
         return result;
@@ -51,31 +43,36 @@ public class CustomerReportDTO  extends ProdcastDTO {
     public void setResult(Object result) {
         this.result = result;
     }
-    public Object getTotalAmount()
-    {
+
+    public float getAmount() {
         return amount;
     }
-    public Object setTotalAmount(float amount)
-    {
-        return  this.amount=amount;
+
+    public void setAmount(float amount) {
+        this.amount = amount;
     }
 
-    public float getTotalOutstandingBalance()
-    {
+    public float getOutstandingBalance() {
         return outstandingBalance;
     }
-    public void setTotalOutstandingBalance(float outstandingBalance)
-    {
-        this.outstandingBalance=outstandingBalance;
+
+    public void setOutstandingBalance(float outstandingBalance) {
+        this.outstandingBalance = outstandingBalance;
     }
-    public float  getTotalAmountPaid()
-    {
+
+    public float getAmountPaid() {
         return amountPaid;
     }
-    public void  setTotalAmountPaid(float amountPaid)
-    {
-        this.amountPaid=amountPaid;
+
+    public void setAmountPaid(float amountPaid) {
+        this.amountPaid = amountPaid;
     }
 
+    public String getReportDates() {
+        return reportDates;
+    }
 
+    public void setReportDates(String reportDates) {
+        this.reportDates = reportDates;
+    }
 }

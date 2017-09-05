@@ -329,9 +329,9 @@ public class CustomerRest {
 
 
 
-            dto.setTotalAmount( totalAmount );
-            dto.setTotalOutstandingBalance(totalOutstandingBalance);
-            dto.setTotalAmountPaid(totalAmountPaid);
+            dto.setAmount( totalAmount );
+            dto.setOutstandingBalance(totalOutstandingBalance);
+            dto.setAmountPaid(totalAmountPaid);
 
             dto.setResult(billDetails);
 

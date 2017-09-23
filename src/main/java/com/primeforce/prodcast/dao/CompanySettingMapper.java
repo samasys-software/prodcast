@@ -23,6 +23,7 @@ public class CompanySettingMapper implements RowMapper<CompanySetting> {
         setting.setTimezone(rs.getString("timezone"));
         setting.setPhoneNumber(rs.getString("phonenumber"));
         setting.setFaxNumber(rs.getString("faxnumber"));
+        setting.setFulfillmentType(rs.getString("fulfillment_type"));
         return setting;
     }
 }

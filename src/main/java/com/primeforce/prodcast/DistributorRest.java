@@ -248,16 +248,17 @@ public class DistributorRest {
                                                  @FormParam("set_addr") String address,
                                                  @FormParam("set_city") String city ,
                                                  @FormParam("set_state") String state,
-                                                 @FormParam("set_postal") String postal ,
+                                                 @FormParam("set_state") String postal ,
                                                  @FormParam("set_country") String country,
                                                  @FormParam("set_ph") String phonenumber,
                                                  @FormParam("set_fax") String fax,
-                                                 @FormParam("set_timezone") String timezone)
+                                                 @FormParam("set_timezone") String timezone,
+                                                 @FormParam("set_fulfillmenttype") String fulfillmenttype)
     {
         AdminDTO<CompanySetting> dto = new AdminDTO<CompanySetting>();
         try {
             long distributorId = databaseManager.getDistributorForEmployee( Long.parseLong ( employeeId  ) );
-            int rowCount = databaseManager.updateSettings( distributorId,Float.parseFloat(tax) , companyname, address, city, state, postal, country,phonenumber,fax,timezone, Long.parseLong( employeeId));
+            int rowCount = databaseManager.updateSettings( distributorId,Float.parseFloat(tax) , companyname, address, city, state, postal, country,phonenumber,fax,timezone, fulfillmenttype,Long.parseLong( employeeId));
 
             if( rowCount == 0 ) {
                 dto.setError(true);

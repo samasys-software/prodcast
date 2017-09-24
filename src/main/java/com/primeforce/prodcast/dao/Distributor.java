@@ -36,6 +36,16 @@ public class Distributor {
     private String timezone;
     private boolean openToPublic;
 
+    public String getFulfillmentType() {
+        return fulfillmentType;
+    }
+
+    public void setFulfillmentType(String fulfillmentType) {
+        this.fulfillmentType = fulfillmentType;
+    }
+
+    private String fulfillmentType;
+
     public String getTimezone() {
         return timezone;
     }

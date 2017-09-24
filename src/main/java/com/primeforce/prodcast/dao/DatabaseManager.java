@@ -570,18 +570,18 @@ public class DatabaseManager {
     }
 
 
-    public int saveSettings(long distributorId, float tax, String companyname, String address, String city, String state, String postal, String country, String phonenumber, String fax, String timezone, long employeeId) throws ParseException {
+    public int saveSettings(long distributorId, float tax, String companyname, String address, String city, String state, String postal, String country, String phonenumber, String fax, String timezone,String fulfillmenttype,long employeeId) throws ParseException {
 
-        Object[] args = new Object[]{distributorId, tax, companyname, address, city, state, postal, country, phonenumber, fax, timezone, employeeId};
+        Object[] args = new Object[]{distributorId, tax, companyname, address, city, state, postal, country, phonenumber, fax, timezone,fulfillmenttype, employeeId};
         int rowCount = template.update(DistributorDBSql.CREATE_SETTING_SQL, args);
         return rowCount;
     }
 
-    public int updateSettings(long distributorId, float tax, String companyname, String address, String city, String state, String postal, String country, String phonenumber, String fax, String timezone, long employeeId) throws ParseException {
-        Object[] args = new Object[]{tax, companyname, address, city, state, postal, country, phonenumber, fax, timezone, employeeId, distributorId};
+    public int updateSettings(long distributorId, float tax, String companyname, String address, String city, String state, String postal, String country, String phonenumber, String fax, String timezone,String fulfillmentType, long employeeId) throws ParseException {
+        Object[] args = new Object[]{tax, companyname, address, city, state, postal, country, phonenumber, fax, timezone,employeeId, distributorId};
         int rowCount = template.update(DistributorDBSql.ADMIN_UPDATE_SETTINGS, args);
         String addr[] = address.split(" ");
-        template.update(DistributorDBSql.ADMIN_UPDATE_DISTRIBUTOR_SETTINGS, new Object[]{companyname,employeeId, distributorId});
+        template.update(DistributorDBSql.ADMIN_UPDATE_DISTRIBUTOR_SETTINGS, new Object[]{companyname,fulfillmentType,employeeId, distributorId});
         //template.update(DistributorDBSql.ADMIN_UPDATE_EMPLOYEE_SETTINGS, new Object[]{city, state, postal, country, phonenumber, employeeId});
         return rowCount;
     }
@@ -774,7 +774,7 @@ public class DatabaseManager {
                                              String gender,
                                              boolean manufacturer,
                                              String active, String comments,
-                                             String openToPublic) throws ParseException {
+                                             String openToPublic,String fulfillmentType) throws ParseException {
 
 
         long distributorId = -1;
@@ -799,14 +799,14 @@ public class DatabaseManager {
         Object[] args = new Object[]{companyName, type, firstName, lastName, title,
                 emailAddress, cellPhone, workPhone, homePhone, address1,
                 address2, address3, city, state, postalCode, country, timezone,
-                Boolean.parseBoolean(active), gender, manufacturer, comments, employeeId, Boolean.parseBoolean(openToPublic)};
+                Boolean.parseBoolean(active), gender, manufacturer, comments, employeeId, Boolean.parseBoolean(openToPublic),fulfillmentType};
 
 
         int rowCount = template.update(DistributorDBSql.ADMIN_SAVE_DISTRIBUTOR, args);
         distributorId = template.queryForObject(DistributorDBSql.ADMIN_GET_DIST_FROM_EMAIL, Long.class, new Object[]{emailAddress});
         saveEmployeeForDistributor(employeeId, firstName, lastName, title, gender, "01/01/1901", "0", "01/01/1901", null, "0", "D", address1,
                 address2, address3, city, state, country, postalCode, "", cellPhone, homePhone, workPhone, emailAddress, active, "", "0", 0, distributorId);
-        saveSettings(distributorId, 0f, companyName, address1 + " " + address2 + " " + address3, city, state, postalCode, country, workPhone, "0", timezone, employeeId);
+        saveSettings(distributorId, 0f, companyName, address1 + " " + address2 + " " + address3, city, state, postalCode, country, workPhone, "0", timezone,fulfillmentType, employeeId);
         if (rowCount == 0) return null;
         return getDistributors();
     }
@@ -816,7 +816,7 @@ public class DatabaseManager {
                                                String title, String emailAddress, String cellPhone, String homePhone, String workPhone, String address1,
                                                String address2, String address3,
                                                String city, String state, String postalCode, String country, String timezone, String active, String gender, boolean manufacturer,
-                                               String comments, long employeeId, long newDistributorId, String openToPublic) throws ParseException {
+                                               String comments, long employeeId, long newDistributorId, String openToPublic,String fulfillmentType) throws ParseException {
        long distributorId = 0;
         //Now check Email Address Exists or not.
       /*  try {
@@ -843,7 +843,7 @@ public class DatabaseManager {
         Object[] args = new Object[]{companyName, type, firstName, lastName, title,
                 emailAddress, cellPhone, workPhone, homePhone, address1,
                 address2, address3, city, state, postalCode, country, timezone,
-                Boolean.parseBoolean(active), gender, manufacturer, comments, employeeId, Boolean.parseBoolean(openToPublic), newDistributorId};
+                Boolean.parseBoolean(active), gender, manufacturer, comments, employeeId, Boolean.parseBoolean(openToPublic),fulfillmentType, newDistributorId};
         long newEmployeeId=getEmployeeIdForDistributor(newDistributorId);
         int rowCount = template.update(DistributorDBSql.ADMIN_UPDATE_DISTRIBUTOR, args);
 
@@ -852,9 +852,9 @@ public class DatabaseManager {
         if (rowCount == 0)
             return null;
 
-       rowCount = updateSettings(newDistributorId, 0f, companyName, address1 + " " + address2 + " " + address3, city, state, postalCode, country, workPhone, "0", timezone, employeeId);
+       rowCount = updateSettings(newDistributorId, 0f, companyName, address1 + " " + address2 + " " + address3, city, state, postalCode, country, workPhone, "0", timezone,fulfillmentType, employeeId);
        if (rowCount == 0) {
-            rowCount = saveSettings(newDistributorId, 0f, companyName, address1 + " " + address2 + " " + address3, city, state, postalCode, country, workPhone, "0", timezone, employeeId);
+            rowCount = saveSettings(newDistributorId, 0f, companyName, address1 + " " + address2 + " " + address3, city, state, postalCode, country, workPhone, "0", timezone,fulfillmentType, employeeId);
         }
         if (rowCount == 0) {
             return null;

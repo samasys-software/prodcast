@@ -40,6 +40,8 @@ public class DistributorMapper implements RowMapper<Distributor> {
         distributor.setCurrencySymbol( rs.getString("currency_symbol"));
         distributor.setTimezone(rs.getString("timezone"));
         distributor.setOpenToPublic(rs.getBoolean("open_to_public"));
+        distributor.setFulfillmentType(rs.getString("fulfillment_type"));
+
         distributor.setLogo( rs.getString("logo"));
 
         return distributor;

@@ -231,7 +231,7 @@ public class DatabaseManager {
         return template.update(DBSql.COLLECTION_UPDATE_SQL, new Object[]{dealerId, billId, amount, paymentType, refNo, refDetail, date});
     }
 
-    public long saveOrder(Order order, float paymentAmount, String refNo, String refDetail, String paymentType, String orderStatus) {
+    public long saveOrder(Order order, float paymentAmount, String refNo, String refDetail, String paymentType, String orderStatus,String shippingType,String deliveryAddress) {
 
         //java.sql.Date date=order.getBillDate();
         //TimeZone sourceTimeZone=TimeZone.getDefault();
@@ -270,7 +270,8 @@ public class DatabaseManager {
                 template.update(DBSql.ORDER_DETAILS_SQL_RETAILER, new Object[]{orderDetailId, entry.getProductId(), entry.getQuantity(), entry.getProductId(), entry.getProductId(), entry.getProductId()});
 
         }
-        template.update(DBSql.ORDER_TOTAL_SQL, new Object[]{orderDetailId, orderDetailId, order.getEmployeeId(), orderDetailId});
+        template.update(DBSql.ORDER_TOTAL_SQL, new Object[]{orderDetailId, orderDetailId, order.getEmployeeId(),shippingType,deliveryAddress, orderDetailId});
+
         if (order.getDiscountType() == 2) {
             template.update(DBSql.ORDER_UPDATE_DISCOUNT_PERCENTAGE, new Object[]{order.getDiscount(), orderDetailId});
         } else if (order.getDiscountType() == 1) {

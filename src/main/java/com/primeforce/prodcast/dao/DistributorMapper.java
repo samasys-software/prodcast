@@ -1,6 +1,6 @@
 package com.primeforce.prodcast.dao;
 
-import com.primeforce.prodcast.businessobjects.Area;
+import com.primeforce.prodcast.businessobjects.Distributor;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -41,6 +41,7 @@ public class DistributorMapper implements RowMapper<Distributor> {
         distributor.setTimezone(rs.getString("timezone"));
         distributor.setOpenToPublic(rs.getBoolean("open_to_public"));
         distributor.setFulfillmentType(rs.getString("fulfillment_type"));
+
 
         distributor.setLogo( rs.getString("logo"));
 

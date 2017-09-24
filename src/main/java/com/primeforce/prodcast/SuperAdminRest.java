@@ -1,10 +1,9 @@
 package com.primeforce.prodcast;
 
-import com.primeforce.prodcast.businessobjects.Employee;
 import com.primeforce.prodcast.businessobjects.Registration;
 import com.primeforce.prodcast.businessobjects.StoreType;
 import com.primeforce.prodcast.dao.DatabaseManager;
-import com.primeforce.prodcast.dao.Distributor;
+import com.primeforce.prodcast.businessobjects.Distributor;
 import com.primeforce.prodcast.dto.*;
 import com.primeforce.prodcast.util.Amazon;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,5 @@
 package com.primeforce.prodcast.businessobjects;
 
-import com.primeforce.prodcast.dao.Distributor;
-
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;

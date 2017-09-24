@@ -1,7 +1,5 @@
 package com.primeforce.prodcast.businessobjects;
 
-import com.primeforce.prodcast.dao.Distributor;
-
 /**
  * Created by Hai on 11/7/2016.
  */

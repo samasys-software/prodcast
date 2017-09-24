@@ -25,7 +25,6 @@ public class Notifier extends TimerTask {
     }
     public void run(){
         try {
-            System.out.println("Sending SMS "+smsPhoneNumber+" Subject "+subject );
             if(smsPhoneNumber!=null) {
                 System.out.println("Sending SMS "+smsPhoneNumber+" Subject "+subject );
                 Amazon.sendSMS(subject, smsPhoneNumber);
@@ -34,6 +33,8 @@ public class Notifier extends TimerTask {
         catch(Exception er){
             er.printStackTrace();
         }
+        
+        if( mailMessage == null ) return;
 
         try {
             List<InternetAddress> list = new LinkedList<InternetAddress>();

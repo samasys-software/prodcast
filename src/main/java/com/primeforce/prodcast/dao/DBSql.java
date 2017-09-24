@@ -53,7 +53,7 @@ public class DBSql {
             " (select sum( subtotal) from order_dtl where orderdetailid = ? )-" +
             "(select IFNULL(sum(rd.subtotal),0) from return_dtl rd where rd.orderdetailid = ?)," +
             " outstanding_balance = total_amt ," +
-            " distributor_id=(select dist_manf_id from employees where employee_id = ?) where orderdetailid = ? ";
+            " distributor_id=(select dist_manf_id from employees where employee_id = ?),shippingmethodid=?,delivery_address=? where orderdetailid = ? ";
 
     public final static String ORDER_UPDATE_TOTAL_SQL = "update order_header set outstanding_balance = (total_amt - (select IFNULL(sum(amount_paid),0) from collection_dtl where bill_no = ?)) where bill_no=?";
 

@@ -1,6 +1,6 @@
 package com.primeforce.prodcast.dto;
 
-import com.primeforce.prodcast.dao.Distributor;
+import com.primeforce.prodcast.businessobjects.Distributor;
 import com.primeforce.prodcast.businessobjects.Customer;
 //import com.primeforce.prodcast.businessobjects.NewCustomerRegistrationDetails;
 

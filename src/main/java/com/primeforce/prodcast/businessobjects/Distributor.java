@@ -1,4 +1,4 @@
-package com.primeforce.prodcast.dao;
+package com.primeforce.prodcast.businessobjects;
 
 /**
  * Created by sarathan732 on 5/23/2016.
@@ -34,6 +34,7 @@ public class Distributor {
     private String country;
     private String currencySymbol;
     private String timezone;
+
     private boolean openToPublic;
 
     public String getFulfillmentType() {
@@ -245,4 +246,5 @@ public class Distributor {
     private boolean manufacturer;
     private boolean active;
 
+   
 }

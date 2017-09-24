@@ -2,10 +2,9 @@ package com.primeforce.prodcast;
 
 import com.primeforce.prodcast.businessobjects.*;
 import com.primeforce.prodcast.dao.DatabaseManager;
-import com.primeforce.prodcast.dao.Distributor;
+import com.primeforce.prodcast.businessobjects.Distributor;
 import com.primeforce.prodcast.dto.*;
 import com.primeforce.prodcast.util.Amazon;
-import com.primeforce.prodcast.util.TimeZoneConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.inject.Named;
@@ -15,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
-import java.util.*;
 
 /**
  * Created by Nandhini on 10/31/2016.

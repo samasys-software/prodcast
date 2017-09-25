@@ -246,5 +246,5 @@ public class Distributor {
     private boolean manufacturer;
     private boolean active;
 
-   
+
 }

@@ -579,7 +579,7 @@ public class DatabaseManager {
     }
 
     public int updateSettings(long distributorId, float tax, String companyname, String address, String city, String state, String postal, String country, String phonenumber, String fax, String timezone,String fulfillmentType, long employeeId) throws ParseException {
-        Object[] args = new Object[]{tax, companyname, address, city, state, postal, country, phonenumber, fax, timezone,employeeId, distributorId};
+        Object[] args = new Object[]{tax, companyname, address, city, state, postal, country, phonenumber, fax, timezone,fulfillmentType,employeeId, distributorId};
         int rowCount = template.update(DistributorDBSql.ADMIN_UPDATE_SETTINGS, args);
         String addr[] = address.split(" ");
         template.update(DistributorDBSql.ADMIN_UPDATE_DISTRIBUTOR_SETTINGS, new Object[]{companyname,fulfillmentType,employeeId, distributorId});
@@ -986,6 +986,7 @@ public class DatabaseManager {
         }
 
         emp.setDistributor(template.queryForObject(DBSql.GET_DISTRIBUTOR, new Object[]{distributorId}, new DistributorMapper()));
+        emp.setCustomer(getCustomer(""+emp.getCustomerId()));
         return emp;
     }
 

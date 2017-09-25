@@ -90,12 +90,13 @@ public class DistributorDBSql {
             "?,?,?,?,?,?," +
             "?,?,?,'',NOW() , NOW(), 1, " +
             "'',0,0)";
-    public final static String ADMIN_UPDATE_DISTRIBUTOR = "update dist_dtl set cust_name=?,customer_type=?,firstname=?,lastname=?,title=?," +
+    public final static String ADMIN_UPDATE_DISTRIBUTOR = "update dist_dtl set cust_name=?,customer_type=?,firstname=?," +
+            "lastname=?,title=?," +
             "email_id=?,cellphone=?,workphone=?,homephone=?,address_1=?," +
             "address_2=?,address_3=?,city=?,state=?,`postal code`=?," +
             "country_id=?,timezone=?,active_yn=?,sex=?,manufacture_yn=?,comments=?,user_id =?,open_to_public=?,fulfillment_type=?,updt_dt_tm=NOW() where dist_id=?";
 
-    public final static String ADMIN_UPDATE_SETTINGS = "update my_company_information set salestaxrate=?,companyname=?,address=?,city=?,stateorprovince=?,postalcode=?,country_id=?,phonenumber=?,faxnumber=?,timezone=?,user_id=?,updt_dt_tm=NOW() where dist_id=?";
+    public final static String ADMIN_UPDATE_SETTINGS = "update my_company_information set salestaxrate=?,companyname=?,address=?,city=?,stateorprovince=?,postalcode=?,country_id=?,phonenumber=?,faxnumber=?,timezone=?,fulfillment_type=?,user_id=?,updt_dt_tm=NOW() where dist_id=?";
 
     public final static String ADMIN_UPDATE_DISTRIBUTOR_SETTINGS = "update dist_dtl set cust_name=?,fulfillment_type=?,user_id=?,updt_dt_tm=NOW() where dist_id=?";
 

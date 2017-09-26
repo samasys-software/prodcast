@@ -34,13 +34,13 @@ public class SupportRest {
 		
 	}
 	@POST
-	@Path("requestraised")
+	@Path("newrequest")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ProdcastDTO raiseRequest(@FormParam("name") String name, @FormParam("phoneNumber") String phoneNumber,
+	public ProdcastDTO raiseRequest(@FormParam("phoneNumber") String phoneNumber,
 			@FormParam("issue") String issue, @FormParam("countryId") String countryId) {
 		
 		ProdcastDTO dto = new ProdcastDTO();
-		int allServiceReq = databaseManager.saveServiceRequest(name,phoneNumber,countryId,issue,"");
+		int allServiceReq = databaseManager.saveServiceRequest(phoneNumber,countryId,issue,"");
 		if(allServiceReq != 1) {
 			dto.setError(true);
 			dto.setErrorMessage("Request not saved");
@@ -54,7 +54,7 @@ public class SupportRest {
 		return dto;
 		}
 	@GET
-	@Path("newrequest")
+	@Path("viewnewissues")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<ServiceTicket> getNewRequest(@QueryParam("status") int status){
 		ServiceSupportDTO dto = new ServiceSupportDTO();
@@ -77,9 +77,9 @@ public class SupportRest {
 		return dto;
 	}
 	@GET
-	@Path("mytickets/{employeeId}")
+	@Path("mytickets")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ServiceTicket> viewMyTicket(@PathParam("employeeId") String employeeId) {
+	public List<ServiceTicket> viewMyTicket(@QueryParam("employeeId") String employeeId) {
 		ServiceSupportDTO dto = new ServiceSupportDTO();
 		dto.setServiceSupport(databaseManager.findTickerForEmployee(employeeId));
 		return dto.getServiceSupport();

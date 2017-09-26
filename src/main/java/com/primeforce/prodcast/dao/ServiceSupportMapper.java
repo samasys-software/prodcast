@@ -22,7 +22,6 @@ public class ServiceSupportMapper implements RowMapper<ServiceTicket> {
 	public ServiceTicket mapRow(ResultSet rs, int rowNumber) throws SQLException {
 		ServiceTicket support = new ServiceTicket();
 		support.setIssueId(rs.getInt("issue_id"));
-		support.setName(rs.getString("name"));
 		support.setPhoneNumber(rs.getString("phone_number"));
 		support.setCountryId(rs.getString("con_id"));
 		support.setIssue(rs.getString("issue"));

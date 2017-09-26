@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ServiceTicket {
 	private int issueId, status;
-	private String name, issue, assignedTo, phoneNumber, countryId, comments;
+	private String issue, assignedTo, phoneNumber, countryId, comments;
 	private String isdCode;
 	public String getIsdCode() {
 		return isdCode;
@@ -25,12 +25,7 @@ public class ServiceTicket {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	public String getIssue() {
 		return issue;
 	}

@@ -10,14 +10,14 @@ import com.primeforce.prodcast.businessobjects.ServiceTicket;
 @Component
 public class ServiceSupportDatabaseManager {
 
-private static final String SAVE_SERVICE_REQUEST_SQL = "insert into service_support (name,phone_number,con_id,issue,status,assigned_to,issue_startdate,issue_enddate,comments)  value (?,?,?,?,?,?,current_date,?,?)";
+private static final String SAVE_SERVICE_REQUEST_SQL = "insert into service_support (phone_number,con_id,issue,status,assigned_to,issue_startdate,issue_enddate,comments)  value (?,?,?,?,?,?,current_date,?,?)";
 private static final String GET_ALL_REQUEST = "SELECT * from service_support Where status = ?";	
 private static final String ASSIGN_TICKET = "UPDATE service_support SET assigned_to =? , status = 1 WHERE issue_id =? AND status = 0";
 private static final String FIND_MY_TICKET = "SELECT * from service_support Where assigned_to=? AND status != 2";
 private static final String CLOSE_TICKET = "UPDATE service_support SET comments =concat(comments,'\n',?), status =?, issue_enddate = current_date WHERE issue_id = ? AND assigned_to = ?";
 private static final String REPORT_FOR_EMPLOYEE = "SELECT * from service_support WHERE issue_startdate >= ? AND issue_enddate <= ? AND assigned_to = ?";
 private static final String ALL_REPORTS = "SELECT * from service_support WHERE issue_startdate >= ? AND issue_enddate <= ?";
-private static final String GET_ISSUE = "SELECT ctry.isd_code,ser.* from service_support ser, country ctry WHERE ser.issue_id = ? AND ser.con_id = ctry.country_id ";
+private static final String GET_ISSUE = "SELECT ctry.isd_code,ser.* from service_support ser, country ctry WHERE ser.issue_id = ? AND ser.con_id = ctry.country_name ";
 private static final String GET_ISD_CODE = "SELECT isd_code from country WHERE country_id =?";
 private static final String REASSIGN_TICKET = "UPDATE service_support SET assigned_to = ? WHERE status = 1 AND issue_id = ?";
 
@@ -27,9 +27,9 @@ public ServiceSupportDatabaseManager(JdbcTemplate template) {
 	this.template=template;
 }
 
-public int saveServiceRequest(String name, String phoneNumber,String countryId, String issue, String comments){
+public int saveServiceRequest(String phoneNumber,String countryId, String issue, String comments){
 	
-	Object[] obj = new Object[] {name, phoneNumber, countryId, issue,0,null,null,comments};
+	Object[] obj = new Object[] {phoneNumber, countryId, issue,0,null,null,comments};
     return template.update(SAVE_SERVICE_REQUEST_SQL,obj);
 }
 

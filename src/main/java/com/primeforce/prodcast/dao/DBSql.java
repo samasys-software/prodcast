@@ -62,7 +62,7 @@ public class DBSql {
     public final static String ORDER_UPDATE_DISCOUNT_VALUE = "update order_header set discount=?, discount_type=1, total_amt = (total_amt-discount),outstanding_balance = total_amt where orderdetailid = ? ";
     public final static String FETCH_ORDER_SQL = " select  dst.cust_name,cust.outlet_email_id , emp.email_id , dst.email_id as dist_email_id  , oh.bill_date," +
             " oh.distributor_id , oh.orderdetailid , oh.bill_no, oh.cust_id, cust.outlet_name, oh.emp_id , " +
-            "emp.firstname , emp.lastname, oh.total_amt, oh.enter_dt_tm , oh.order_status,oh.outstanding_balance,oh.discount,oh.discount_type, " +
+            "emp.firstname , emp.lastname, oh.total_amt, oh.enter_dt_tm , oh.shippingmethodid,oh.delivery_address,oh.order_status,oh.outstanding_balance,oh.discount,oh.discount_type, " +
             "ctry.isd_code, cust.cellphone from order_header oh , employees emp , outlet_dtl cust ,dist_dtl dst,country ctry where " +
             "oh.cust_id = cust.outlet_id  and oh.emp_id = emp.employee_id and dst.dist_id = oh.distributor_id and oh.bill_no=? and ctry.country_id = cust.country_id and oh.order_status <> 'D' and  distributor_id=(select dist_manf_id from employees where employee_id = ?)";
     public final static String FETCH_ORDER_DTL_SQL = "select od.product_id , od.quantity , od.unitprice, od.amount , pr.product_name,od.sales_tax, od.other_tax, od.subtotal from order_dtl od, products pr where od.product_id = pr.product_id and od.orderdetailid = ?";

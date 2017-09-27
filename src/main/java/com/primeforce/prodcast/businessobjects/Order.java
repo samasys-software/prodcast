@@ -23,6 +23,8 @@ public class Order {
     private long customerId;
     private Distributor distributor;
     private String orderStatus;
+    private String fulfillmentType;
+    private String DeliveryAddress;
 
     public Employee getEmployee() {
         return employee;
@@ -259,5 +261,21 @@ public class Order {
 
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public String getFulfillmentType() {
+        return fulfillmentType;
+    }
+
+    public void setFulfillmentType(String fulfillmentType) {
+        this.fulfillmentType = fulfillmentType;
+    }
+
+    public String getDeliveryAddress() {
+        return DeliveryAddress;
+    }
+
+    public void setDeliveryAddress(String deliveryAddress) {
+        DeliveryAddress = deliveryAddress;
     }
 }

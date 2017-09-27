@@ -463,6 +463,51 @@ public class DistributorRest {
 
 
     @POST
+    @Path("updateDiscount")
+    @Produces(MediaType.APPLICATION_JSON)
+
+    public AdminDTO updateDiscount(@FormParam("orderDetailId") String orderDetailId,
+                                      @FormParam("discountValue") String discountValue,
+                                      @FormParam("discountType") String discountType ,
+                                      @FormParam("employeeId") String employeeId,
+                                   @FormParam("customerId") String customerId)
+    {
+
+        AdminDTO dto = new AdminDTO();
+
+
+        try {
+
+
+            int rowCount = databaseManager.saveDiscount(Integer.parseInt(discountType),Float.parseFloat(discountValue),Long.parseLong(orderDetailId));
+
+
+
+            if (rowCount != 1) {
+                dto.setError(true);
+                dto.setErrorMessage("Unable to Update Discount");
+            } else {
+
+                dto.setResult(databaseManager.fetchOutstandingBills(customerId));
+
+            }
+
+        }
+        catch (Exception er) {
+            er.printStackTrace();
+            dto.setError(true);
+            dto.setErrorMessage(er.toString());
+        }
+
+
+        return dto;
+
+
+    }
+
+
+
+    @POST
     @Path("saveCategory")
     @Produces(MediaType.APPLICATION_JSON)
     public AdminDTO<List<Category>> saveCategory(@FormParam("employeeId") String employeeId,

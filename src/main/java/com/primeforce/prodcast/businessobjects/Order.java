@@ -22,6 +22,7 @@ public class Order {
     private long salesRepId;
     private long customerId;
     private Distributor distributor;
+    private String orderStatus;
 
     public Employee getEmployee() {
         return employee;
@@ -252,5 +253,11 @@ public class Order {
         this.totalAmount = totalAmount;
     }
 
+    public String getOrderStatus() {
+        return orderStatus;
+    }
 
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 }

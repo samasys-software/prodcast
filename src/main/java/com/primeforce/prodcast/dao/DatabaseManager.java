@@ -272,16 +272,46 @@ public class DatabaseManager {
         }
         template.update(DBSql.ORDER_TOTAL_SQL, new Object[]{orderDetailId, orderDetailId, order.getEmployeeId(),shippingType,deliveryAddress, orderDetailId});
 
-        if (order.getDiscountType() == 2) {
-            template.update(DBSql.ORDER_UPDATE_DISCOUNT_PERCENTAGE, new Object[]{order.getDiscount(), orderDetailId});
-        } else if (order.getDiscountType() == 1) {
-            template.update(DBSql.ORDER_UPDATE_DISCOUNT_VALUE, new Object[]{order.getDiscount(), orderDetailId});
-        }
+        saveDiscount(order.getDiscountType(),order.getDiscount(),orderDetailId);
 
         if (paymentAmount > 0) {
             updateCollectionPayment(order.getEmployeeId(), billNumber, paymentAmount, refNo, refDetail, paymentType);
         }
         return billNumber;
+    }
+
+    public int saveDiscount(int discountType,float discount,long orderDetailId){
+        int result;
+        Discount dis=template.queryForObject(DBSql.GET_DISCOUNT_DETAILS,new Object[]{orderDetailId},new DiscountMapper());
+        if(dis==null) {
+            if (discountType == 2) {
+                template.update(DBSql.ORDER_UPDATE_DISCOUNT_PERCENTAGE, new Object[]{discount, orderDetailId});
+            } else if (discountType == 1) {
+                template.update(DBSql.ORDER_UPDATE_DISCOUNT_VALUE, new Object[]{discount, orderDetailId});
+            }
+            result=1;
+        }
+        else{
+
+            if(discountType!=dis.getDiscountType()){
+                result=0;
+
+            }
+            else{
+                float newDiscount=dis.getDiscountValue()+discount;
+                if (discountType == 2) {
+                    template.update(DBSql.ORDER_UPDATE_DISCOUNT_PERCENTAGE, new Object[]{newDiscount, orderDetailId});
+                } else if (discountType == 1) {
+                    template.update(DBSql.ORDER_UPDATE_DISCOUNT_VALUE, new Object[]{newDiscount, orderDetailId});
+                }
+
+                result=1;
+
+            }
+
+
+        }
+        return result;
     }
 
     public String getPasswordFromEmail(String emailId) {

@@ -35,6 +35,7 @@ public class OrderMapper implements RowMapper<Order> {
         order.setCountryCode(rs.getString("isd_code"));
         order.setCellPhone(rs.getString("cellphone"));
         order.setDistributorId(rs.getLong("distributor_id"));
+        order.setOrderStatus(rs.getString("order_status"));
         //order.setEmployeeId( Long.parseLong( rs.getString("user_id")));
 
         return order;

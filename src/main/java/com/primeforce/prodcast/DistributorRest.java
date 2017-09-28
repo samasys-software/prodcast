@@ -466,14 +466,15 @@ public class DistributorRest {
     @Path("updateDiscount")
     @Produces(MediaType.APPLICATION_JSON)
 
-    public AdminDTO updateDiscount(@FormParam("orderDetailId") String orderDetailId,
-                                      @FormParam("discountValue") String discountValue,
-                                      @FormParam("discountType") String discountType ,
-                                      @FormParam("employeeId") String employeeId,
+    public BillDetailsDTO updateDiscount(@FormParam("orderDetailId") String orderDetailId,
+                                   @FormParam("discountValue") String discountValue,
+                                   @FormParam("discountType") String discountType ,
+                                   @FormParam("employeeId") String employeeId,
+                                   @FormParam("billNumber") String billNumber,
                                    @FormParam("customerId") String customerId)
     {
 
-        AdminDTO dto = new AdminDTO();
+        BillDetailsDTO dto = new BillDetailsDTO();
 
 
         try {
@@ -488,7 +489,8 @@ public class DistributorRest {
                 dto.setErrorMessage("Unable to Update Discount");
             } else {
 
-                dto.setResult(databaseManager.fetchOutstandingBills(customerId));
+                dto.setOrder( databaseManager.fetchOrder( Long.parseLong(billNumber),Long.parseLong(employeeId)));
+                dto.setOutstandingBills(databaseManager.fetchOutstandingBills(customerId));
 
             }
 

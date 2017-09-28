@@ -282,34 +282,48 @@ public class DatabaseManager {
 
     public int saveDiscount(int discountType,float discount,long orderDetailId){
         int result;
-        Discount dis=template.queryForObject(DBSql.GET_DISCOUNT_DETAILS,new Object[]{orderDetailId},new DiscountMapper());
-        if(dis==null) {
+        Discount dis=template.queryForObject(DBSql.GET_DISCOUNT_DETAILS, new Object[]{orderDetailId}, new DiscountMapper());
+        if(dis.getDiscountType()==0){
+            System.out.println("#####################");
+            System.out.println("New Discount");
+            System.out.println("#####################");
             if (discountType == 2) {
                 template.update(DBSql.ORDER_UPDATE_DISCOUNT_PERCENTAGE, new Object[]{discount, orderDetailId});
+
             } else if (discountType == 1) {
                 template.update(DBSql.ORDER_UPDATE_DISCOUNT_VALUE, new Object[]{discount, orderDetailId});
             }
-            result=1;
-        }
-        else{
+            result = 1;
 
-            if(discountType!=dis.getDiscountType()){
-                result=0;
+
+
+        }
+        else {
+
+            if (discountType != dis.getDiscountType()) {
+                result = 0;
+                System.out.println("#####################");
+                System.out.println("Not Equal");
+                System.out.println("#####################");
 
             }
-            else{
+            else {
+
+                System.out.println("#####################");
+                System.out.println("Equals");
+                System.out.println("#####################");
+
                 float newDiscount=dis.getDiscountValue()+discount;
+
                 if (discountType == 2) {
-                    template.update(DBSql.ORDER_UPDATE_DISCOUNT_PERCENTAGE, new Object[]{newDiscount, orderDetailId});
+                    template.update(DBSql.ORDER_UPDATE_DISCOUNT_PERCENTAGE_NEW, new Object[]{newDiscount,discount,discount, orderDetailId});
                 } else if (discountType == 1) {
-                    template.update(DBSql.ORDER_UPDATE_DISCOUNT_VALUE, new Object[]{newDiscount, orderDetailId});
+                    template.update(DBSql.ORDER_UPDATE_DISCOUNT_VALUE_NEW, new Object[]{newDiscount,discount,discount, orderDetailId});
                 }
 
-                result=1;
+                result = 1;
 
             }
-
-
         }
         return result;
     }

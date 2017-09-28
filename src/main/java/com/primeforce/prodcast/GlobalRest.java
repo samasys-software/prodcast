@@ -4,20 +4,18 @@ package com.primeforce.prodcast;
 import com.primeforce.prodcast.businessobjects.*;
 import com.primeforce.prodcast.businessobjects.Collection;
 import com.primeforce.prodcast.dao.DatabaseManager;
-import com.primeforce.prodcast.dao.Distributor;
+import com.primeforce.prodcast.businessobjects.Distributor;
 import com.primeforce.prodcast.dto.*;
 import com.primeforce.prodcast.messaging.MessagingManager;
 import com.primeforce.prodcast.messaging.OrderDataProvider;
 import com.primeforce.prodcast.util.Amazon;
 import com.primeforce.prodcast.util.Notifier;
-import com.primeforce.prodcast.util.TimeZoneConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.inject.Named;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -410,6 +408,9 @@ public class GlobalRest {
     @Path("saveOrder")
     @Produces(MediaType.APPLICATION_JSON)
 
+
+
+
     public CustomerDTO saveOrder(@RequestBody OrderDetailDTO orderDto) {
 
         System.out.println(orderDto );
@@ -460,7 +461,7 @@ public class GlobalRest {
 
 
 
-            long billNumber = databaseManager.saveOrder(order,paymentAmount,refNo,refDetail,paymentType,orderStatus);
+            long billNumber = databaseManager.saveOrder(order,paymentAmount,refNo,refDetail,paymentType,orderStatus,orderDto.getShippingType(),orderDto.getDeliveryAddress());
             //int rowCount=databaseManager.updateOrderStatus(billNumber,orderStatus);
 
             System.out.println("Order Saved "+(System.currentTimeMillis() - start ));

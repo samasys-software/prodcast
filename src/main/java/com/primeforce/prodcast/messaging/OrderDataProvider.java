@@ -3,7 +3,7 @@ package com.primeforce.prodcast.messaging;
 import com.primeforce.prodcast.businessobjects.*;
 import com.primeforce.prodcast.businessobjects.Collection;
 import com.primeforce.prodcast.dao.DatabaseManager;
-import com.primeforce.prodcast.dao.Distributor;
+import com.primeforce.prodcast.businessobjects.Distributor;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;

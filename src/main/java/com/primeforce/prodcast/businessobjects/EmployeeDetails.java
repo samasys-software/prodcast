@@ -1,7 +1,5 @@
 package com.primeforce.prodcast.businessobjects;
 
-import com.primeforce.prodcast.dao.Distributor;
-
 /**
  * Created by Hai on 11/7/2016.
  */
@@ -9,6 +7,7 @@ public class EmployeeDetails {
     private long employeeId,CustomerId;
     private Distributor distributor;
     private String customerType,userRole,customerName,firstName,lastName,mobileNumber;
+    private Customer customer;
 
     public String getCustomerType() {
         return customerType;
@@ -80,5 +79,13 @@ public class EmployeeDetails {
 
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

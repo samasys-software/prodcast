@@ -1,7 +1,5 @@
 package com.primeforce.prodcast.businessobjects;
 
-import com.primeforce.prodcast.dao.Distributor;
-
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
@@ -24,6 +22,9 @@ public class Order {
     private long salesRepId;
     private long customerId;
     private Distributor distributor;
+    private String orderStatus;
+    private String fulfillmentType;
+    private String DeliveryAddress;
 
     public Employee getEmployee() {
         return employee;
@@ -254,5 +255,27 @@ public class Order {
         this.totalAmount = totalAmount;
     }
 
+    public String getOrderStatus() {
+        return orderStatus;
+    }
 
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public String getFulfillmentType() {
+        return fulfillmentType;
+    }
+
+    public void setFulfillmentType(String fulfillmentType) {
+        this.fulfillmentType = fulfillmentType;
+    }
+
+    public String getDeliveryAddress() {
+        return DeliveryAddress;
+    }
+
+    public void setDeliveryAddress(String deliveryAddress) {
+        DeliveryAddress = deliveryAddress;
+    }
 }

@@ -1,10 +1,9 @@
 package com.primeforce.prodcast;
 
-import com.primeforce.prodcast.businessobjects.Employee;
 import com.primeforce.prodcast.businessobjects.Registration;
 import com.primeforce.prodcast.businessobjects.StoreType;
 import com.primeforce.prodcast.dao.DatabaseManager;
-import com.primeforce.prodcast.dao.Distributor;
+import com.primeforce.prodcast.businessobjects.Distributor;
 import com.primeforce.prodcast.dto.*;
 import com.primeforce.prodcast.util.Amazon;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +72,7 @@ public class SuperAdminRest {
                                                          @FormParam("active") String active,
                                                          @FormParam("comments") String comments,
                                                          @FormParam("openToPublic") String openToPublic,
+                                                         @FormParam("fulfillmentType") String fulfillmentType,
                                                          @FormParam("newDistributorId") String newDistributorId
                                                       ){
         AdminDTO<List<Distributor>> dto = new AdminDTO<List<Distributor>>();
@@ -103,7 +103,7 @@ public class SuperAdminRest {
 
                 result  = databaseManager.saveDistributor(employeeId, companyName, type, firstName, lastName, title,
                         emailAddress, cellPhone, homePhone, workPhone, address1, address2, address3,
-                        city, state, postalCode, country, timezone, gender, manufacturer, active, comments,openToPublic);
+                        city, state, postalCode, country, timezone, gender, manufacturer, active, comments,openToPublic,fulfillmentType);
                // String emailId[] = {emailAddress};
 
 
@@ -117,7 +117,7 @@ public class SuperAdminRest {
 
                 result= databaseManager.updateDistributor(companyName, type, firstName, lastName, title,
                         emailAddress, cellPhone, homePhone, workPhone, address1, address2, address3,
-                        city, state, postalCode, country, timezone, active, gender, manufacturer, comments, employeeId, Long.parseLong(newDistributorId),openToPublic);
+                        city, state, postalCode, country, timezone, active, gender, manufacturer, comments, employeeId, Long.parseLong(newDistributorId),openToPublic,fulfillmentType);
 
 
                     if(!emailAddress.equals(oldMailId))

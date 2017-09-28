@@ -11,7 +11,19 @@ public class CompanySetting {
     private String address;
     private String city;
     private String stateorprovince;
-    private String postalcode,timezone;
+    private String postalcode;
+    private String timezone;
+
+
+    public String getFulfillmentType() {
+        return fulfillmentType;
+    }
+
+    public void setFulfillmentType(String fulfillmentType) {
+        this.fulfillmentType = fulfillmentType;
+    }
+
+    private String fulfillmentType;
 
     public long getDistributorId() {
         return distributorId;

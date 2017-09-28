@@ -248,16 +248,17 @@ public class DistributorRest {
                                                  @FormParam("set_addr") String address,
                                                  @FormParam("set_city") String city ,
                                                  @FormParam("set_state") String state,
-                                                 @FormParam("set_postal") String postal ,
+                                                 @FormParam("set_state") String postal ,
                                                  @FormParam("set_country") String country,
                                                  @FormParam("set_ph") String phonenumber,
                                                  @FormParam("set_fax") String fax,
-                                                 @FormParam("set_timezone") String timezone)
+                                                 @FormParam("set_timezone") String timezone,
+                                                 @FormParam("set_fulfillmenttype") String fulfillmenttype)
     {
         AdminDTO<CompanySetting> dto = new AdminDTO<CompanySetting>();
         try {
             long distributorId = databaseManager.getDistributorForEmployee( Long.parseLong ( employeeId  ) );
-            int rowCount = databaseManager.updateSettings( distributorId,Float.parseFloat(tax) , companyname, address, city, state, postal, country,phonenumber,fax,timezone, Long.parseLong( employeeId));
+            int rowCount = databaseManager.updateSettings( distributorId,Float.parseFloat(tax) , companyname, address, city, state, postal, country,phonenumber,fax,timezone, fulfillmenttype,Long.parseLong( employeeId));
 
             if( rowCount == 0 ) {
                 dto.setError(true);
@@ -459,6 +460,53 @@ public class DistributorRest {
 
 
     }
+
+
+    @POST
+    @Path("updateDiscount")
+    @Produces(MediaType.APPLICATION_JSON)
+
+    public BillDetailsDTO updateDiscount(@FormParam("orderDetailId") String orderDetailId,
+                                   @FormParam("discountValue") String discountValue,
+                                   @FormParam("discountType") String discountType ,
+                                   @FormParam("employeeId") String employeeId,
+                                   @FormParam("billNumber") String billNumber,
+                                   @FormParam("customerId") String customerId)
+    {
+
+        BillDetailsDTO dto = new BillDetailsDTO();
+
+
+        try {
+
+
+            int rowCount = databaseManager.saveDiscount(Integer.parseInt(discountType),Float.parseFloat(discountValue),Long.parseLong(orderDetailId));
+
+
+
+            if (rowCount != 1) {
+                dto.setError(true);
+                dto.setErrorMessage("Unable to Update Discount");
+            } else {
+
+                dto.setOrder( databaseManager.fetchOrder( Long.parseLong(billNumber),Long.parseLong(employeeId)));
+                dto.setOutstandingBills(databaseManager.fetchOutstandingBills(customerId));
+
+            }
+
+        }
+        catch (Exception er) {
+            er.printStackTrace();
+            dto.setError(true);
+            dto.setErrorMessage(er.toString());
+        }
+
+
+        return dto;
+
+
+    }
+
 
 
     @POST

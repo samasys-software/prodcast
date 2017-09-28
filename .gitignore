@@ -1,0 +1,9 @@
+*.class
+target
+target/*
+*.class
+*.class
+target/classes/com/primeforce/prodcast/ApplicationConfig$JerseyConfig.class
+*.class
+*.class
+*.class

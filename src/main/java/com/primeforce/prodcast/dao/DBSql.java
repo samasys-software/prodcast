@@ -59,7 +59,7 @@ public class DBSql {
 
     public final static String ORDER_UPDATE_DISCOUNT_PERCENTAGE = "update order_header set discount=?, discount_type=2, total_amt = (total_amt*(1-discount/100)), outstanding_balance = total_amt where orderdetailid = ? ";
     public final static String ORDER_UPDATE_DISCOUNT_PERCENTAGE_NEW = "update order_header set discount=?, discount_type=2, total_amt = (total_amt*(1-?/100)), outstanding_balance = (outstanding_balance*(1-?/100)) where orderdetailid = ? ";
-    public final static String GET_DISCOUNT_DETAILS = "select discount, discount_type from order_header where orderdetailid = ? ";
+    public final static String GET_DISCOUNT_DETAILS = "select discount, discount_type,total_amt from order_header where orderdetailid = ? ";
     public final static String ORDER_UPDATE_DISCOUNT_VALUE = "update order_header set discount=?, discount_type=1, total_amt = (total_amt-discount),outstanding_balance = total_amt where orderdetailid = ? ";
     public final static String ORDER_UPDATE_DISCOUNT_VALUE_NEW = "update order_header set discount=?, discount_type=1, total_amt = (total_amt-?),outstanding_balance = (outstanding_balance-?) where orderdetailid = ? ";
     public final static String FETCH_ORDER_SQL = " select  dst.cust_name,cust.outlet_email_id , emp.email_id , dst.email_id as dist_email_id  , oh.bill_date," +

@@ -253,12 +253,13 @@ public class DistributorRest {
                                                  @FormParam("set_ph") String phonenumber,
                                                  @FormParam("set_fax") String fax,
                                                  @FormParam("set_timezone") String timezone,
-                                                 @FormParam("set_fulfillmenttype") String fulfillmenttype)
+                                                 @FormParam("set_fulfillmenttype") String fulfillmenttype,
+                                                 @FormParam("set_minimumDeliveryAmount") float minimumDeliveryAmount)
     {
         AdminDTO<CompanySetting> dto = new AdminDTO<CompanySetting>();
         try {
             long distributorId = databaseManager.getDistributorForEmployee( Long.parseLong ( employeeId  ) );
-            int rowCount = databaseManager.updateSettings( distributorId,Float.parseFloat(tax) , companyname, address, city, state, postal, country,phonenumber,fax,timezone, fulfillmenttype,Long.parseLong( employeeId));
+            int rowCount = databaseManager.updateSettings( distributorId,Float.parseFloat(tax) , companyname, address, city, state, postal, country,phonenumber,fax,timezone, fulfillmenttype,minimumDeliveryAmount,Long.parseLong( employeeId));
 
             if( rowCount == 0 ) {
                 dto.setError(true);
@@ -466,15 +467,14 @@ public class DistributorRest {
     @Path("updateDiscount")
     @Produces(MediaType.APPLICATION_JSON)
 
-    public BillDetailsDTO updateDiscount(@FormParam("orderDetailId") String orderDetailId,
+    public OrderDTO updateDiscount(@FormParam("orderDetailId") String orderDetailId,
                                    @FormParam("discountValue") String discountValue,
                                    @FormParam("discountType") String discountType ,
                                    @FormParam("employeeId") String employeeId,
-                                   @FormParam("billNumber") String billNumber,
-                                   @FormParam("customerId") String customerId)
+                                   @FormParam("billNumber") String billNumber)
     {
 
-        BillDetailsDTO dto = new BillDetailsDTO();
+        OrderDTO dto = new OrderDTO();
 
 
         try {
@@ -490,7 +490,7 @@ public class DistributorRest {
             } else {
 
                 dto.setOrder( databaseManager.fetchOrder( Long.parseLong(billNumber),Long.parseLong(employeeId)));
-                dto.setOutstandingBills(databaseManager.fetchOutstandingBills(customerId));
+                //dto.setOutstandingBills(databaseManager.fetchOutstandingBills(customerId));
 
             }
 

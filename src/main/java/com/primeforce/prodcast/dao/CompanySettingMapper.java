@@ -24,6 +24,7 @@ public class CompanySettingMapper implements RowMapper<CompanySetting> {
         setting.setPhoneNumber(rs.getString("phonenumber"));
         setting.setFaxNumber(rs.getString("faxnumber"));
         setting.setFulfillmentType(rs.getString("fulfillment_type"));
+        setting.setMinimumDeliveryAmount(rs.getFloat("min_delivery_amount"));
         return setting;
     }
 }

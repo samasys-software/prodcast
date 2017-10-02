@@ -73,6 +73,7 @@ public class SuperAdminRest {
                                                          @FormParam("comments") String comments,
                                                          @FormParam("openToPublic") String openToPublic,
                                                          @FormParam("fulfillmentType") String fulfillmentType,
+                                                         @FormParam("minimumDeliveryAmount") float minimumDeliveryAmount,
                                                          @FormParam("newDistributorId") String newDistributorId
                                                       ){
         AdminDTO<List<Distributor>> dto = new AdminDTO<List<Distributor>>();
@@ -103,7 +104,7 @@ public class SuperAdminRest {
 
                 result  = databaseManager.saveDistributor(employeeId, companyName, type, firstName, lastName, title,
                         emailAddress, cellPhone, homePhone, workPhone, address1, address2, address3,
-                        city, state, postalCode, country, timezone, gender, manufacturer, active, comments,openToPublic,fulfillmentType);
+                        city, state, postalCode, country, timezone, gender, manufacturer, active, comments,openToPublic,fulfillmentType,minimumDeliveryAmount);
                // String emailId[] = {emailAddress};
 
 
@@ -117,7 +118,7 @@ public class SuperAdminRest {
 
                 result= databaseManager.updateDistributor(companyName, type, firstName, lastName, title,
                         emailAddress, cellPhone, homePhone, workPhone, address1, address2, address3,
-                        city, state, postalCode, country, timezone, active, gender, manufacturer, comments, employeeId, Long.parseLong(newDistributorId),openToPublic,fulfillmentType);
+                        city, state, postalCode, country, timezone, active, gender, manufacturer, comments, employeeId, Long.parseLong(newDistributorId),openToPublic,fulfillmentType,minimumDeliveryAmount);
 
 
                     if(!emailAddress.equals(oldMailId))

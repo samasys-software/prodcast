@@ -41,6 +41,7 @@ public class DistributorMapper implements RowMapper<Distributor> {
         distributor.setTimezone(rs.getString("timezone"));
         distributor.setOpenToPublic(rs.getBoolean("open_to_public"));
         distributor.setFulfillmentType(rs.getString("fulfillment_type"));
+        distributor.setMinimumDeliveryAmount(rs.getFloat("min_delivery_amt"));
 
 
         distributor.setLogo( rs.getString("logo"));

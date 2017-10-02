@@ -13,6 +13,7 @@ public class DiscountMapper implements RowMapper<Discount> {
         Discount discount = new Discount();
         discount.setDiscountType(rs.getInt("discount_type"));
         discount.setDiscountValue(rs.getFloat("discount"));
+        discount.setTotalAmount(rs.getFloat("total_amt"));
 
         return discount;
     }

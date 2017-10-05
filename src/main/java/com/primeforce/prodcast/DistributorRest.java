@@ -2,7 +2,7 @@ package com.primeforce.prodcast;
 
 import com.amazonaws.util.IOUtils;
 import com.primeforce.prodcast.businessobjects.*;
-import com.primeforce.prodcast.dao.CompanySetting;
+import com.primeforce.prodcast.businessobjects.CompanySetting;
 import com.primeforce.prodcast.dao.DatabaseManager;
 import com.primeforce.prodcast.dto.*;
 import com.primeforce.prodcast.messaging.MessagingManager;
@@ -23,9 +23,7 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.inject.Named;
-import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.io.*;
 import java.sql.Date;

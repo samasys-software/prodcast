@@ -257,7 +257,7 @@ public class GlobalRest {
                 Customer customer  = null;
                 if( customerId!= null && customerId.trim().length()>0 ) {
                     customer = databaseManager.getCustomer(customerId);
-                    customer.setOutstandingBill(  databaseManager.fetchOutstandingBills(customerId ));
+                    customer.setOutstandingBill(  databaseManager.fetchOutstandingBillsForCustomer(customerId,employeeId ));
                 }
                 else {
                     customer = databaseManager.getCustomerForBillId(billId);
@@ -265,6 +265,7 @@ public class GlobalRest {
                 }
                 //long billNumber=
                 dto.setCustomer( customer );
+                dto.setBill(databaseManager.fetchOrder(Long.parseLong(billId),Long.parseLong(employeeId)));
                 try {
                     Order order;
                     OrderDataProvider orderDataProvider = new OrderDataProvider();

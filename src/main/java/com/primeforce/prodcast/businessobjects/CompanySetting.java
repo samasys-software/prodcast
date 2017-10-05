@@ -1,4 +1,4 @@
-package com.primeforce.prodcast.dao;
+package com.primeforce.prodcast.businessobjects;
 
 /**
  * Created by sarathan732 on 5/21/2016.
@@ -13,6 +13,7 @@ public class CompanySetting {
     private String stateorprovince;
     private String postalcode;
     private String timezone;
+    private float minimumDeliveryAmount;
 
 
     public String getFulfillmentType() {
@@ -117,4 +118,11 @@ public class CompanySetting {
     private String phoneNumber;
     private String faxNumber;
 
+    public float getMinimumDeliveryAmount() {
+        return minimumDeliveryAmount;
+    }
+
+    public void setMinimumDeliveryAmount(float minimumDeliveryAmount) {
+        this.minimumDeliveryAmount = minimumDeliveryAmount;
+    }
 }

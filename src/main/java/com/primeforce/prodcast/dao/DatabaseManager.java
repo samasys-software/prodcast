@@ -194,6 +194,11 @@ public class DatabaseManager {
         return template.query(DBSql.OUTSTANDING_BILL_SEARCH, new Object[]{Long.parseLong(customerID)}, new BillMapper());
     }
 
+    public List<Bill> fetchOutstandingBillsForCustomer(String customerId,String employeeId) {
+        return template.query(DBSql.OUTSTANDING_BILL_SEARCH_CUST, new Object[]{Long.parseLong(customerId),Long.parseLong(employeeId)}, new BillMapper());
+    }
+
+
     public List<Bill> fetchOutstandingBillsForDistOnly(String customerID, String employeeId) {
         return template.query(DBSql.OUTSTANDING_BILL_SEARCH_PUBLIC, new Object[]{Long.parseLong(customerID), Long.parseLong(employeeId)}, new BillMapper());
     }

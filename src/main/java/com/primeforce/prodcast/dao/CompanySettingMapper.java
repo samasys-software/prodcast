@@ -1,6 +1,6 @@
 package com.primeforce.prodcast.dao;
 
-import com.primeforce.prodcast.businessobjects.Collection;
+import com.primeforce.prodcast.businessobjects.CompanySetting;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -24,7 +24,7 @@ public class CompanySettingMapper implements RowMapper<CompanySetting> {
         setting.setPhoneNumber(rs.getString("phonenumber"));
         setting.setFaxNumber(rs.getString("faxnumber"));
         setting.setFulfillmentType(rs.getString("fulfillment_type"));
-        setting.setMinimumDeliveryAmount(rs.getFloat("min_delivery_amount"));
+        setting.setMinimumDeliveryAmount(rs.getFloat("min_delivery_amt"));
         return setting;
     }
 }

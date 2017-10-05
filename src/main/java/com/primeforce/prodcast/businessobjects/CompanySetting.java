@@ -1,4 +1,4 @@
-package com.primeforce.prodcast.dao;
+package com.primeforce.prodcast.businessobjects;
 
 /**
  * Created by sarathan732 on 5/21/2016.

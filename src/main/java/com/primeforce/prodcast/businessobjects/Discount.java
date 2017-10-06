@@ -4,6 +4,7 @@ public class Discount {
     private int discountType;
     private float discountValue;
     private float totalAmount;
+    private float oldTotalAmount;
 
     public int getDiscountType() {
         return discountType;
@@ -27,5 +28,13 @@ public class Discount {
 
     public void setTotalAmount(float totalAmount) {
         this.totalAmount = totalAmount;
+    }
+
+    public float getOldTotalAmount() {
+        return oldTotalAmount;
+    }
+
+    public void setOldTotalAmount(float oldTotalAmount) {
+        this.oldTotalAmount = oldTotalAmount;
     }
 }

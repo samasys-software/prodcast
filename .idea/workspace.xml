@@ -2,21 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="acb2881b-2623-4935-833e-c98d2f69adc0" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/dao/CompanySetting.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/CompanySetting.java" afterPath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/businessobjects/CompanySetting.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/DistributorRest.class" afterPath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/DistributorRest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/GlobalRest.class" afterPath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/GlobalRest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/dao/CompanySettingMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/dao/CompanySettingMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/dao/DBSql.class" afterPath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/dao/DBSql.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/dao/DatabaseManager.class" afterPath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/dao/DatabaseManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/dto/CustomerDTO.class" afterPath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/dto/CustomerDTO.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/DistributorRest.java" afterPath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/DistributorRest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/GlobalRest.java" afterPath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/GlobalRest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/CompanySettingMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/CompanySettingMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/businessobjects/Discount.java" afterPath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/businessobjects/Discount.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DBSql.java" afterPath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DBSql.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DatabaseManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DatabaseManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dto/CustomerDTO.java" afterPath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dto/CustomerDTO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DiscountMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DiscountMapper.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DatabaseManager.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DatabaseManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DatabaseManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2685">
-              <caret line="197" column="56" lean-forward="false" selection-start-line="197" selection-start-column="56" selection-end-line="197" selection-end-column="56" />
+            <state relative-caret-position="216">
+              <caret line="304" column="42" lean-forward="false" selection-start-line="304" selection-start-column="42" selection-end-line="304" selection-end-column="42" />
               <folding>
                 <element signature="method#saveDistributor#0;class#DatabaseManager#0" expanded="false" />
                 <element signature="method#saveExpense#0;class#DatabaseManager#0" expanded="false" />
@@ -44,11 +34,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBSql.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DiscountMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DiscountMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Discount.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/businessobjects/Discount.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="32" column="38" lean-forward="false" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
+              <folding>
+                <element signature="e#801#802#0" expanded="true" />
+                <element signature="e#860#861#0" expanded="true" />
+                <element signature="e#912#913#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DBSql.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DBSql.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+            <state relative-caret-position="216">
+              <caret line="61" column="42" lean-forward="false" selection-start-line="61" selection-start-column="42" selection-end-line="61" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -119,26 +133,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Bill.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/businessobjects/Bill.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DistributorDBSql.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DistributorDBSql.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="41" column="45" lean-forward="false" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -166,14 +160,14 @@
         <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DistributorDBSql.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/businessobjects/Distributor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DistributorMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/businessobjects/Discount.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DiscountMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/DistributorRest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/CompanySetting.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/businessobjects/CompanySetting.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/CompanySettingMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dto/CustomerDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/GlobalRest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/businessobjects/Discount.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DiscountMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DatabaseManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DBSql.java" />
       </list>
@@ -201,10 +195,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -274,6 +267,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -393,6 +387,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -414,7 +409,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -427,12 +421,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DatabaseManager.java</url>
-          <line>934</line>
+          <line>940</line>
           <properties />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DatabaseManager.java</url>
-          <line>329</line>
+          <line>335</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
@@ -714,20 +708,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/businessobjects/Discount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DiscountMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/config/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -824,20 +804,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DatabaseManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2685">
-          <caret line="197" column="56" lean-forward="false" selection-start-line="197" selection-start-column="56" selection-end-line="197" selection-end-column="56" />
-          <folding>
-            <element signature="method#saveDistributor#0;class#DatabaseManager#0" expanded="false" />
-            <element signature="method#saveExpense#0;class#DatabaseManager#0" expanded="false" />
-            <element signature="method#updateExpense#0;class#DatabaseManager#0" expanded="false" />
-            <element signature="method#fetchReportForDistributors#0;class#DatabaseManager#0" expanded="false" />
-            <element signature="method#saveExpenseCategory#0;class#DatabaseManager#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/DistributorRest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6795">
@@ -846,11 +812,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/businessobjects/Discount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="32" column="38" lean-forward="false" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
+          <folding>
+            <element signature="e#801#802#0" expanded="true" />
+            <element signature="e#860#861#0" expanded="true" />
+            <element signature="e#912#913#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DiscountMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DBSql.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        <state relative-caret-position="216">
+          <caret line="61" column="42" lean-forward="false" selection-start-line="61" selection-start-column="42" selection-end-line="61" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DatabaseManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="304" column="42" lean-forward="false" selection-start-line="304" selection-start-column="42" selection-end-line="304" selection-end-column="42" />
+          <folding>
+            <element signature="method#saveDistributor#0;class#DatabaseManager#0" expanded="false" />
+            <element signature="method#saveExpense#0;class#DatabaseManager#0" expanded="false" />
+            <element signature="method#updateExpense#0;class#DatabaseManager#0" expanded="false" />
+            <element signature="method#fetchReportForDistributors#0;class#DatabaseManager#0" expanded="false" />
+            <element signature="method#saveExpenseCategory#0;class#DatabaseManager#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

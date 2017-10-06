@@ -14,6 +14,7 @@ public class DiscountMapper implements RowMapper<Discount> {
         discount.setDiscountType(rs.getInt("discount_type"));
         discount.setDiscountValue(rs.getFloat("discount"));
         discount.setTotalAmount(rs.getFloat("total_amt"));
+        discount.setOldTotalAmount(rs.getFloat("old_total_amt"));
 
         return discount;
     }

@@ -299,6 +299,8 @@ public class DatabaseManager {
                 System.out.println("#####################");
                 System.out.println("New Discount");
                 System.out.println("#####################");
+                template.update(DBSql.ORDER_OLD_TOTAL_SQL, new Object[]{orderDetailId});
+
                 if (discountType == 2) {
                     template.update(DBSql.ORDER_UPDATE_DISCOUNT_PERCENTAGE, new Object[]{discount, orderDetailId});
 
@@ -322,11 +324,15 @@ public class DatabaseManager {
                     System.out.println("Equals");
                     System.out.println("#####################");
 
-                    float newDiscount = dis.getDiscountValue() + discount;
+
+
 
                     if (discountType == 2) {
-                        template.update(DBSql.ORDER_UPDATE_DISCOUNT_PERCENTAGE_NEW, new Object[]{newDiscount, discount, discount, orderDetailId});
+                        float newPercentage=dis.getOldTotalAmount()*(discount/100);
+                        float newDiscount=dis.getDiscountValue()+newPercentage;
+                        template.update(DBSql.ORDER_UPDATE_DISCOUNT_PERCENTAGE_NEW, new Object[]{newDiscount, newPercentage, newPercentage, orderDetailId});
                     } else if (discountType == 1) {
+                        float newDiscount = dis.getDiscountValue() + discount;
                         template.update(DBSql.ORDER_UPDATE_DISCOUNT_VALUE_NEW, new Object[]{newDiscount, discount, discount, orderDetailId});
                     }
 

@@ -263,6 +263,9 @@ public class DistributorRest {
                 dto.setError(true);
                 dto.setErrorMessage("Unable to save settings.Please try again!");
             }
+            else{
+                dto.setResult( databaseManager.fetchCompanySetting(Long.parseLong( employeeId) ));
+            }
         }
         catch(Exception er){
             er.printStackTrace();

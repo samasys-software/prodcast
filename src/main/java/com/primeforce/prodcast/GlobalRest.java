@@ -473,6 +473,7 @@ public class GlobalRest {
             else
                 customer.setOutstandingBill(  databaseManager.fetchOutstandingBills(orderDto.getCustomerId() ));
             dto.setCustomer( customer );
+            dto.setBill(databaseManager.fetchOrder(billNumber,Long.parseLong(orderDto.getEmployeeId())));
             System.out.println("After Outstanding Bill "+(System.currentTimeMillis() - start ));
            try {
                 OrderDataProvider orderDataProvider = new OrderDataProvider();

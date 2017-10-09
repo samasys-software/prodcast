@@ -33,8 +33,8 @@ public class Amazon {
     static final String SUBJECT = "Amazon SES test (SMTP interface accessed using Java)";
 
     // Supply your SMTP credentials below. Note that your SMTP credentials are different from your AWS credentials.
-    static final String SMTP_USERNAME = "AKIAJ32EKFNBCZIPIA5A";  // Replace with your SMTP username.
-    static final String SMTP_PASSWORD = "AlYhHv63z8rx8WFHJIn9a5Jh9ggNrcPGYWMSVQRIw4G/";  // Replace with your SMTP password.
+    static final String SMTP_USERNAME = "AKIAIUYGPEGGVFSVK4QQ";//"AKIAJ32EKFNBCZIPIA5A";  // Replace with your SMTP username.
+    static final String SMTP_PASSWORD = "AvMamoqu0XobfD4TVlNGeujR3Y+F71dXfxL25Ogt9OAG"; //"AlYhHv63z8rx8WFHJIn9a5Jh9ggNrcPGYWMSVQRIw4G/";  // Replace with your SMTP password.
 
     // Amazon SES SMTP host name. This example uses the US West (Oregon) region.
     static final String HOST = "email-smtp.us-east-1.amazonaws.com";

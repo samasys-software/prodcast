@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0b7a0d1-68de-431b-bc2f-818d255bb7a6" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/prodcast.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/DistributorRest.class" afterPath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/DistributorRest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/GlobalRest.class" afterPath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/GlobalRest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/util/Amazon$1.class" afterPath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/util/Amazon$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/util/Amazon.class" afterPath="$PROJECT_DIR$/target/classes/com/primeforce/prodcast/util/Amazon.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/DistributorRest.java" afterPath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/DistributorRest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/GlobalRest.java" afterPath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/GlobalRest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/util/Amazon.java" afterPath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/util/Amazon.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dto/OrderDTO.java" afterPath="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dto/OrderDTO.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,31 +16,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GlobalRest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/GlobalRest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4230">
-              <caret line="300" column="12" lean-forward="false" selection-start-line="300" selection-start-column="11" selection-end-line="300" selection-end-column="12" />
+            <state relative-caret-position="381">
+              <caret line="263" column="126" lean-forward="false" selection-start-line="263" selection-start-column="49" selection-end-line="263" selection-end-column="126" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DatabaseManager.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DatabaseManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DatabaseManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9105">
-              <caret line="625" column="119" lean-forward="false" selection-start-line="625" selection-start-column="119" selection-end-line="625" selection-end-column="119" />
+            <state relative-caret-position="42">
+              <caret line="181" column="5" lean-forward="false" selection-start-line="181" selection-start-column="5" selection-end-line="181" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -57,18 +40,24 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/CompanySettingMapper.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="18" column="46" lean-forward="true" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+              <caret line="18" column="46" lean-forward="false" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Amazon.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Amazon.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/util/Amazon.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="58" column="56" lean-forward="true" selection-start-line="58" selection-start-column="56" selection-end-line="58" selection-end-column="56" />
-              <folding />
+            <state relative-caret-position="15">
+              <caret line="58" column="56" lean-forward="false" selection-start-line="58" selection-start-column="56" selection-end-line="58" selection-end-column="56" />
+              <folding>
+                <element signature="e#3666#3863#0" expanded="true" />
+                <element signature="e#3862#3863#0" expanded="true" />
+                <element signature="e#6743#6760#0" expanded="true" />
+                <element signature="e#8477#8489#0" expanded="true" />
+                <element signature="e#8975#9006#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -103,22 +92,55 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Order.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/businessobjects/Order.java">
+      <file leaf-file-name="DistributorRest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/DistributorRest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="27" />
-              <folding />
+            <state relative-caret-position="216">
+              <caret line="425" column="60" lean-forward="true" selection-start-line="425" selection-start-column="60" selection-end-line="425" selection-end-column="60" />
+              <folding>
+                <element signature="method#updateDiscount#0;class#DistributorRest#0" expanded="false" />
+                <marker date="1507887008000" expanded="false" signature="17717:17733" ph="&lt;~&gt;" />
+                <marker date="1507887008000" expanded="false" signature="18877:18896" ph="&lt;~&gt;" />
+                <marker date="1507887008000" expanded="false" signature="19833:19852" ph="&lt;~&gt;" />
+                <marker date="1507887008000" expanded="false" signature="21153:21168" ph="&lt;~&gt;" />
+                <marker date="1507887008000" expanded="false" signature="22354:22369" ph="&lt;~&gt;" />
+                <marker date="1507887008000" expanded="false" signature="26485:26501" ph="&lt;~&gt;" />
+                <marker date="1507887008000" expanded="false" signature="35534:35557" ph="&lt;~&gt;" />
+                <marker date="1507887008000" expanded="false" signature="36643:36666" ph="&lt;~&gt;" />
+                <marker date="1507887008000" expanded="false" signature="39828:39837" ph="&lt;~&gt;" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DistributorRest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/DistributorRest.java">
+      <file leaf-file-name="AdminDTO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dto/AdminDTO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3540">
-              <caret line="266" column="55" lean-forward="false" selection-start-line="266" selection-start-column="55" selection-end-line="266" selection-end-column="55" />
-              <folding />
+            <state relative-caret-position="240">
+              <caret line="22" column="16" lean-forward="false" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+              <folding>
+                <element signature="e#473#474#0" expanded="true" />
+                <element signature="e#509#510#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OrderDTO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dto/OrderDTO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" column="45" lean-forward="false" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#291#292#0" expanded="true" />
+                <element signature="e#319#320#0" expanded="true" />
+                <element signature="e#360#361#0" expanded="true" />
+                <element signature="e#394#395#0" expanded="true" />
+                <element signature="e#549#550#0" expanded="true" />
+                <element signature="e#617#618#0" expanded="true" />
+                <element signature="e#673#674#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -129,6 +151,10 @@
     <findStrings>
       <find>saveOrder</find>
       <find>saveS</find>
+      <find>(long employeeId)</find>
+      <find>COLLECTION</find>
+      <find>updateD</find>
+      <find>updateOrder</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -143,8 +169,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/GlobalRest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/DistributorRest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/util/Amazon.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/DistributorRest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dto/OrderDTO.java" />
       </list>
     </option>
   </component>
@@ -170,10 +197,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -235,6 +258,10 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -350,6 +377,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="44" y="43" width="1396" height="767" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -359,18 +387,18 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -383,10 +411,116 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/DistributorRest.java</url>
+          <line>475</line>
+          <properties />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DatabaseManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9375">
+          <caret line="625" column="119" lean-forward="false" selection-start-line="625" selection-start-column="119" selection-end-line="625" selection-end-column="119" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/GlobalRest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4500">
+          <caret line="300" column="12" lean-forward="false" selection-start-line="300" selection-start-column="11" selection-end-line="300" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/CompanySettingMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="46" lean-forward="true" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DistributorDBSql.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1500">
+          <caret line="100" column="168" lean-forward="false" selection-start-line="100" selection-start-column="168" selection-end-line="100" selection-end-column="168" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dto/CustomerDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/SuperAdminRest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3840">
+          <caret line="269" column="12" lean-forward="false" selection-start-line="269" selection-start-column="11" selection-end-line="269" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/businessobjects/Order.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/DistributorRest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3990">
+          <caret line="266" column="55" lean-forward="false" selection-start-line="266" selection-start-column="55" selection-end-line="266" selection-end-column="55" />
+          <folding>
+            <element signature="method#updateDiscount#0;class#DistributorRest#0" expanded="false" />
+            <marker date="1507887008000" expanded="false" signature="17717:17733" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="18877:18896" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="19833:19852" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="21153:21168" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="22354:22369" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="26485:26501" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="35534:35557" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="36643:36666" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="39828:39837" ph="&lt;~&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/util/Amazon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="58" column="56" lean-forward="true" selection-start-line="58" selection-start-column="56" selection-end-line="58" selection-end-column="56" />
+          <folding>
+            <element signature="e#3666#3863#0" expanded="true" />
+            <element signature="e#3862#3863#0" expanded="true" />
+            <element signature="e#6743#6760#0" expanded="true" />
+            <element signature="e#8477#8489#0" expanded="true" />
+            <element signature="e#8975#9006#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -447,7 +581,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3990">
           <caret line="266" column="55" lean-forward="false" selection-start-line="266" selection-start-column="55" selection-end-line="266" selection-end-column="55" />
-          <folding />
+          <folding>
+            <element signature="method#updateDiscount#0;class#DistributorRest#0" expanded="false" />
+            <marker date="1507887008000" expanded="false" signature="17717:17733" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="18877:18896" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="19833:19852" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="21153:21168" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="22354:22369" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="26485:26501" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="35534:35557" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="36643:36666" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="39828:39837" ph="&lt;~&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -491,14 +636,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/GlobalRest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4230">
-          <caret line="300" column="12" lean-forward="false" selection-start-line="300" selection-start-column="11" selection-end-line="300" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DistributorDBSql.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1500">
@@ -507,34 +644,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/DistributorRest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3540">
-          <caret line="266" column="55" lean-forward="false" selection-start-line="266" selection-start-column="55" selection-end-line="266" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DatabaseManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9105">
-          <caret line="625" column="119" lean-forward="false" selection-start-line="625" selection-start-column="119" selection-end-line="625" selection-end-column="119" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/CompanySettingMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="18" column="46" lean-forward="true" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+          <caret line="18" column="46" lean-forward="false" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/util/Amazon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="58" column="56" lean-forward="true" selection-start-line="58" selection-start-column="56" selection-end-line="58" selection-end-column="56" />
+        <state relative-caret-position="15">
+          <caret line="58" column="56" lean-forward="false" selection-start-line="58" selection-start-column="56" selection-end-line="58" selection-end-column="56" />
+          <folding>
+            <element signature="e#3666#3863#0" expanded="true" />
+            <element signature="e#3862#3863#0" expanded="true" />
+            <element signature="e#6743#6760#0" expanded="true" />
+            <element signature="e#8477#8489#0" expanded="true" />
+            <element signature="e#8975#9006#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/GlobalRest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="263" column="126" lean-forward="false" selection-start-line="263" selection-start-column="49" selection-end-line="263" selection-end-column="126" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dto/OrderDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="45" lean-forward="false" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#291#292#0" expanded="true" />
+            <element signature="e#319#320#0" expanded="true" />
+            <element signature="e#360#361#0" expanded="true" />
+            <element signature="e#394#395#0" expanded="true" />
+            <element signature="e#549#550#0" expanded="true" />
+            <element signature="e#617#618#0" expanded="true" />
+            <element signature="e#673#674#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dto/AdminDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="22" column="16" lean-forward="false" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+          <folding>
+            <element signature="e#473#474#0" expanded="true" />
+            <element signature="e#509#510#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/DistributorRest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="425" column="60" lean-forward="true" selection-start-line="425" selection-start-column="60" selection-end-line="425" selection-end-column="60" />
+          <folding>
+            <element signature="method#updateDiscount#0;class#DistributorRest#0" expanded="false" />
+            <marker date="1507887008000" expanded="false" signature="17717:17733" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="18877:18896" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="19833:19852" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="21153:21168" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="22354:22369" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="26485:26501" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="35534:35557" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="36643:36666" ph="&lt;~&gt;" />
+            <marker date="1507887008000" expanded="false" signature="39828:39837" ph="&lt;~&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/primeforce/prodcast/dao/DatabaseManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="181" column="5" lean-forward="false" selection-start-line="181" selection-start-column="5" selection-end-line="181" selection-end-column="5" />
           <folding />
         </state>
       </provider>

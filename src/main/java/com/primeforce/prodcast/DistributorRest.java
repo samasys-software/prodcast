@@ -491,7 +491,7 @@ public class DistributorRest {
             } else {
 
                 dto.setOrder( databaseManager.fetchOrder( Long.parseLong(billNumber),Long.parseLong(employeeId)));
-                //dto.setOutstandingBills(databaseManager.fetchOutstandingBills(customerId));
+                dto.setOutstandingBills(databaseManager.fetchOutstandingBillsForCustomers(Long.parseLong( employeeId)));
 
             }
 

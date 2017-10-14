@@ -6,6 +6,19 @@ public class ServiceTicket {
 	private int issueId, status;
 	private String issue, assignedTo, phoneNumber, countryId, comments;
 	private String isdCode;
+	private String firstName, lastName;
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 	public String getIsdCode() {
 		return isdCode;
 	}

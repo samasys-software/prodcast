@@ -40,6 +40,7 @@ public class SupportRest {
 			@FormParam("issue") String issue, @FormParam("countryId") String countryId) {
 		
 		ProdcastDTO dto = new ProdcastDTO();
+		
 		int allServiceReq = databaseManager.saveServiceRequest(phoneNumber,countryId,issue,"");
 		if(allServiceReq != 1) {
 			dto.setError(true);
@@ -106,10 +107,12 @@ public class SupportRest {
 			dto.setError(false);
 			dto.setErrorMessage("Successfully closed the issue");
 		}
+		if(status == 2 || status == 3) {
 		ServiceTicket support = databaseManager.getIssue(issueId);
 		String msg = "Good News!! The Prodcast Issue Id: "+issueId+" is resolved.";
 		String customerNumber = support.getIsdCode()+support.getPhoneNumber();
-		Notifier.sendNotification( customerNumber , msg , null , null);;
+		Notifier.sendNotification( customerNumber , msg , null , null);
+		}
 		
 		return dto;
 	}
@@ -162,8 +165,8 @@ public class SupportRest {
 			
 		
 		}else {
-			startDate = new java.sql.Date(new SimpleDateFormat("dd/MM/yyyy").parse(customStartDate).getTime());
-			endDate = new java.sql.Date(new SimpleDateFormat("dd/MM/yyyy").parse(customEndDate).getTime());
+			startDate = new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(customStartDate).getTime());
+			endDate = new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(customEndDate).getTime());
 			
 		}
 		if(selectedEmployee != null && selectedEmployee.equals("ALL")) {

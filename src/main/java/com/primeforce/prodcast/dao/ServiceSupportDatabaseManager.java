@@ -1,5 +1,6 @@
 package com.primeforce.prodcast.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,21 +11,22 @@ import com.primeforce.prodcast.businessobjects.ServiceTicket;
 @Component
 public class ServiceSupportDatabaseManager {
 
-private static final String SAVE_SERVICE_REQUEST_SQL = "insert into service_support (phone_number,con_id,issue,status,assigned_to,issue_startdate,issue_enddate,comments)  value (?,?,?,?,?,?,current_date,?,?)";
+private static final String SAVE_SERVICE_REQUEST_SQL = "insert into service_support (phone_number,con_id,issue,status,assigned_to,issue_startdate,issue_enddate,comments)  value (?,?,?,?,?,current_date,?,?)";
 private static final String GET_ALL_REQUEST = "SELECT * from service_support Where status = ?";	
 private static final String ASSIGN_TICKET = "UPDATE service_support SET assigned_to =? , status = 1 WHERE issue_id =? AND status = 0";
-private static final String FIND_MY_TICKET = "SELECT * from service_support Where assigned_to=? AND status != 2";
+private static final String FIND_MY_TICKET = "SELECT * from service_support Where assigned_to=? AND status != 3 ORDER BY status ASC";
 private static final String CLOSE_TICKET = "UPDATE service_support SET comments =concat(comments,'\n',?), status =?, issue_enddate = current_date WHERE issue_id = ? AND assigned_to = ?";
-private static final String REPORT_FOR_EMPLOYEE = "SELECT * from service_support WHERE issue_startdate >= ? AND issue_enddate <= ? AND assigned_to = ?";
-private static final String ALL_REPORTS = "SELECT * from service_support WHERE issue_startdate >= ? AND issue_enddate <= ?";
-private static final String GET_ISSUE = "SELECT ctry.isd_code,ser.* from service_support ser, country ctry WHERE ser.issue_id = ? AND ser.con_id = ctry.country_name ";
+private static final String REPORT_FOR_EMPLOYEE = "SELECT * from service_support WHERE issue_startdate >= ? AND issue_startdate <= ? AND assigned_to = ?";
+private static final String ALL_REPORTS = "SELECT service_support.*, employees.firstname, employees.lastname, country.isd_code FROM service_support as service_support LEFT JOIN employees as employees ON employees.employee_id = service_support.assigned_to JOIN country as country ON service_support.con_id = country.country_id WHERE service_support.issue_startdate>=? AND service_support.issue_startdate<=? ";
+private static final String GET_ISSUE = "SELECT ctry.isd_code,ser.* from service_support ser, country ctry WHERE ser.issue_id = ? AND ser.con_id = ctry.country_id ";
 private static final String GET_ISD_CODE = "SELECT isd_code from country WHERE country_id =?";
 private static final String REASSIGN_TICKET = "UPDATE service_support SET assigned_to = ? WHERE status = 1 AND issue_id = ?";
-
+private static final String GET_ISSUE_DETAILS = "SELECT * from service_support WHERE issue_id = ?";
 public final JdbcTemplate template;
 @Autowired
 public ServiceSupportDatabaseManager(JdbcTemplate template) {
 	this.template=template;
+	
 }
 
 public int saveServiceRequest(String phoneNumber,String countryId, String issue, String comments){
@@ -50,7 +52,7 @@ public List<ServiceTicket> findTickerForEmployee(String employeeId) {
 
 public int updateTicket(String employeeId, int issueId, int status, String comments) {
 	
-   Object[] obj = new Object[] {new Date()+":"+comments, status, issueId, employeeId};
+   Object[] obj = new Object[] {""+new SimpleDateFormat("MM,dd,yyyy HH:mm").format(new Date())+":"+comments+"<br />", status, issueId, employeeId};
    return template.update(CLOSE_TICKET,obj);
 }
 
@@ -67,12 +69,16 @@ public List<ServiceTicket> viewReport(String employeeId, java.sql.Date startDate
 
 public List<ServiceTicket> viewReportForAllEmployee( java.sql.Date startDate, java.sql.Date endDate){
 	Object[] obj = new Object[] {startDate, endDate};
-	return template.query(ALL_REPORTS, obj, new ServiceSupportMapper());
+	return template.query(ALL_REPORTS, obj, new ServiceSupportMapper(true,true,true));
+}
+public List<ServiceTicket> getIssueDetails(int issueId){
+	Object[] obj = new Object[] {issueId};
+	return template.query(GET_ISSUE, obj, new ServiceSupportMapper(true,false,false));
 }
 
 public ServiceTicket getIssue(int issueId) {
 	Object[] obj = new Object[] {issueId};
-	return template.queryForObject(GET_ISSUE, obj,new ServiceSupportMapper(true));
+	return template.queryForObject(GET_ISSUE, obj,new ServiceSupportMapper(true,false,false));
 }
 
 

@@ -11,11 +11,17 @@ import com.primeforce.prodcast.businessobjects.ServiceTicket;
 public class ServiceSupportMapper implements RowMapper<ServiceTicket> {
 	
 	private boolean useIsdCode;
+	private boolean useFirstName;
+	private boolean useLastName;
 	public ServiceSupportMapper() {
 		useIsdCode = false;
+		useFirstName = false;
+		useLastName = false;
 	}
-	public ServiceSupportMapper(boolean useIsdCode) {
+	public ServiceSupportMapper(boolean useIsdCode, boolean useFirstName, boolean useLastName) {
 		this.useIsdCode = useIsdCode;
+		this.useFirstName = useFirstName;
+		this.useLastName = useLastName;
 	}
 
 	@Override
@@ -34,6 +40,13 @@ public class ServiceSupportMapper implements RowMapper<ServiceTicket> {
 		if( useIsdCode ) {
 			support.setIsdCode( rs.getString("isd_code"));
 		}
+		if(useFirstName) {
+			support.setFirstName(rs.getString("firstname"));
+		}
+		if(useLastName) {
+			support.setLastName(rs.getString("lastname"));
+		}
+		
 		
 		return support;
 	}

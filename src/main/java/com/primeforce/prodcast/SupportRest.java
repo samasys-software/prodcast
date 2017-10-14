@@ -34,12 +34,13 @@ public class SupportRest {
 		
 	}
 	@POST
-	@Path("newrequest")
+	@Path("newIssue")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ProdcastDTO raiseRequest(@FormParam("phoneNumber") String phoneNumber,
 			@FormParam("issue") String issue, @FormParam("countryId") String countryId) {
 		
 		ProdcastDTO dto = new ProdcastDTO();
+		
 		int allServiceReq = databaseManager.saveServiceRequest(phoneNumber,countryId,issue,"");
 		if(allServiceReq != 1) {
 			dto.setError(true);
@@ -54,15 +55,15 @@ public class SupportRest {
 		return dto;
 		}
 	@GET
-	@Path("viewnewissues")
+	@Path("issues")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ServiceTicket> getNewRequest(@QueryParam("status") int status){
+	public ServiceSupportDTO getIssues(@QueryParam("status") int status){
 		ServiceSupportDTO dto = new ServiceSupportDTO();
 		dto.setServiceSupport(databaseManager.getRequestForStatus(status));
-		return dto.getServiceSupport();
+		return dto;
 	}
 	@POST
-	@Path("assignrequest")
+	@Path("assignRequest")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ProdcastDTO assignRequest(@FormParam("employeeId")String employeeId,@FormParam("issueId") int issueId) {
 		ProdcastDTO dto = new ProdcastDTO();
@@ -77,15 +78,23 @@ public class SupportRest {
 		return dto;
 	}
 	@GET
-	@Path("mytickets")
+	@Path("myTickets")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ServiceTicket> viewMyTicket(@QueryParam("employeeId") String employeeId) {
+	public ServiceSupportDTO viewMyTicket(@QueryParam("employeeId") String employeeId) {
 		ServiceSupportDTO dto = new ServiceSupportDTO();
 		dto.setServiceSupport(databaseManager.findTickerForEmployee(employeeId));
-		return dto.getServiceSupport();
+		return dto;
+	}
+	@GET
+	@Path("issueDetails")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ServiceSupportDTO getIssueDetails(@QueryParam("issueId") int issueId) {
+		ServiceSupportDTO dto = new ServiceSupportDTO();
+		dto.setServiceSupport(databaseManager.getIssueDetails(issueId));
+		return dto;
 	}
 	@POST
-	@Path("updateticket")
+	@Path("updateTicket")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ProdcastDTO updateTicket(@FormParam("employeeId") String employeeId, @FormParam("issueId") int issueId,
 			@FormParam("status") int status, @FormParam("comments") String comments) {
@@ -98,15 +107,17 @@ public class SupportRest {
 			dto.setError(false);
 			dto.setErrorMessage("Successfully closed the issue");
 		}
+		if(status == 2 || status == 3) {
 		ServiceTicket support = databaseManager.getIssue(issueId);
 		String msg = "Good News!! The Prodcast Issue Id: "+issueId+" is resolved.";
 		String customerNumber = support.getIsdCode()+support.getPhoneNumber();
-		Notifier.sendNotification( customerNumber , msg , null , null);;
+		Notifier.sendNotification( customerNumber , msg , null , null);
+		}
 		
 		return dto;
 	}
 	@POST 
-	@Path("reassignticket")
+	@Path("reassignTicket")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ProdcastDTO reassignTicket(@FormParam("employeeId") String employeeId, @FormParam("issueId") int issueId) {
 		int assign = databaseManager.viewSupport(employeeId, issueId);
@@ -122,9 +133,9 @@ public class SupportRest {
 	}
 	
 	@GET
-	@Path("supportreport")
+	@Path("supportReport")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ServiceTicket> viewServiceReport(@QueryParam("employeeId") String employeeId, @QueryParam("startDate") String customStartDate,
+	public ServiceSupportDTO viewServiceReport(@QueryParam("employeeId") String employeeId, @QueryParam("startDate") String customStartDate,
 			@QueryParam("endDate") String customEndDate, @QueryParam("type") int type, 
 			@QueryParam("selectedEmployee") String selectedEmployee){
 		ServiceSupportDTO dto = new ServiceSupportDTO();
@@ -154,8 +165,8 @@ public class SupportRest {
 			
 		
 		}else {
-			startDate = new java.sql.Date(new SimpleDateFormat("dd/MM/yyyy").parse(customStartDate).getTime());
-			endDate = new java.sql.Date(new SimpleDateFormat("dd/MM/yyyy").parse(customEndDate).getTime());
+			startDate = new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(customStartDate).getTime());
+			endDate = new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(customEndDate).getTime());
 			
 		}
 		if(selectedEmployee != null && selectedEmployee.equals("ALL")) {
@@ -175,14 +186,10 @@ public class SupportRest {
 			
 		}
 		
-	return dto.getServiceSupport();
+	return dto;
 	}
-	@GET
-	@Path("allreports")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<ServiceTicket> getAllReports(@QueryParam("status") int status){
-		return databaseManager.getRequestForStatus(status);
-	}
+	
+	
 
 
 }

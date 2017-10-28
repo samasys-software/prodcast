@@ -21,6 +21,7 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.inject.Named;
 import javax.ws.rs.*;
@@ -611,12 +612,14 @@ public class DistributorRest {
     @GET
     @Path("getProducts")
     @Produces(MediaType.APPLICATION_JSON)
-    public AdminDTO<List<Product>> getProducts(@QueryParam("employeeId") String employeeId) {
-        AdminDTO<List<Product>> dto = new AdminDTO<List<Product>>();
+    public ProductListDTO getProducts(@QueryParam("employeeId") String employeeId) {
+        ProductListDTO dto = new ProductListDTO();
 
         try {
             List<Product> products = databaseManager.fetchProductsForDistributor(Long.parseLong(employeeId ));
-            dto.setResult( products );
+            dto.setProductList( products );
+            dto.setProductOptionsList(databaseManager.fetchProductOptionsForDistributor(Long.parseLong(employeeId)));
+            dto.setProductFlavorsList(databaseManager.fetchProductFlavorsForDistributor(Long.parseLong(employeeId)));
         }
         catch(Exception er){
             er.printStackTrace();
@@ -630,28 +633,96 @@ public class DistributorRest {
     @POST
     @Path("saveProduct")
     @Produces(MediaType.APPLICATION_JSON)
-    public AdminDTO<List<Product>> saveProduct(@FormParam("employeeId") String employeeId, @FormParam("productId") String productId, @FormParam("productName") String productName, @FormParam("productDesc") String productDesc, @FormParam("productSku") String productSku, @FormParam("unitPrice") String unitPrice,@FormParam("priceType") String priceType,@FormParam("categoryId") String categoryId, @FormParam("subCategoryId") String subCategoryId, @FormParam("brandId") String brandId, @FormParam("active") String active ,@FormParam("salesTax") String salesTaxRate, @FormParam("otherTax") String otherTaxRate,@FormParam("retailPrice") String retailPrice, @FormParam("uom") String unitofMeasure  ){
-        AdminDTO<List<Product>> dto = new AdminDTO<List<Product>>();
+
+    public ProductListDTO saveProduct(@RequestBody ProductDetailDTO productDto)
+   /* @FormParam("employeeId") String employeeId,
+                                      @FormParam("productId") String productId,
+                                      @FormParam("productName") String productName,
+                                      @FormParam("productDesc") String productDesc,
+                                      @FormParam("productSku") String productSku,
+                                      @FormParam("unitPrice") String unitPrice,
+                                      @FormParam("priceType") String priceType,
+                                      @FormParam("categoryId") String categoryId,
+                                      @FormParam("subCategoryId") String subCategoryId,
+                                      @FormParam("brandId") String brandId,
+                                      @FormParam("active") String active ,
+                                      @FormParam("salesTax") String salesTaxRate,
+                                      @FormParam("otherTax") String otherTaxRate,
+                                      @FormParam("retailPrice") String retailPrice,
+                                      @FormParam("uom") String unitofMeasure ,
+                                      @FormParam("hasOptions") boolean hasOptions,
+                                      @FormParam("optionName") String optionName,
+                                      )*/
+   {
+        ProductListDTO dto = new ProductListDTO();
         try {
             List<Product> result;
-            System.out.println("Product>>"+productId+"<<");
-            if(productId==null || productId.trim().length()==0 || productId.equals("0"))
-            {
+            String productId= productDto.getProductId() ;
+            String employeeId=productDto.getEmployeeId();
+            if (productId == null || productId.trim().length() == 0 || productId.equals("0")) {
                 System.out.println("Saving Product");
-                result=databaseManager.saveProductForDistributor(Long.parseLong(employeeId), 0 , productName , productDesc , productSku , Float.parseFloat(unitPrice) , priceType,Long.parseLong(categoryId ) , Long.parseLong(subCategoryId ) , Long.parseLong(brandId ), Boolean.parseBoolean( active ) , salesTaxRate, otherTaxRate,retailPrice,unitofMeasure );
-            }
-            else
-            {
+
+                result = databaseManager.saveProductForDistributor(Long.parseLong(employeeId), 0, productDto.getProductName(), productDto.getProductDesc(), productDto.getProductSku(), Float.parseFloat(productDto.getUnitPrice()), productDto.getPriceType(), Long.parseLong(productDto.getCategoryId()), Long.parseLong(productDto.getSubCategoryId()), Long.parseLong(productDto.getBrandId()), Boolean.parseBoolean(productDto.getActive()), productDto.getSalesTax(),productDto.getOtherTax() , productDto.getRetailPrice(), productDto.getUom(),productDto.isHasOptions(),productDto.getOptionName(),productDto.isHasFlavors(),productDto.getFlavorName());
+                productId=databaseManager.getProductId();
+            } else {
                 System.out.println("Updating Product");
-                result = databaseManager.updateProductForDistributor(Long.parseLong(employeeId), Long.parseLong( productId ) , productName , productDesc , productSku , Float.parseFloat(unitPrice) , priceType,Long.parseLong(categoryId ) , Long.parseLong(subCategoryId ) , Long.parseLong(brandId ), Boolean.parseBoolean( active ),salesTaxRate, otherTaxRate,retailPrice,unitofMeasure );
+                result = databaseManager.updateProductForDistributor(Long.parseLong(employeeId), Long.parseLong(productDto.getProductId()), productDto.getProductName(), productDto.getProductDesc(), productDto.getProductSku(), Float.parseFloat(productDto.getUnitPrice()), productDto.getPriceType(), Long.parseLong(productDto.getCategoryId()), Long.parseLong(productDto.getSubCategoryId()), Long.parseLong(productDto.getBrandId()), Boolean.parseBoolean(productDto.getActive()), productDto.getSalesTax(), productDto.getOtherTax(), productDto.getRetailPrice(), productDto.getUom(),productDto.isHasOptions(),productDto.getOptionName(),productDto.isHasFlavors(),productDto.getFlavorName());
             }
 
-            if( result == null ) {
+            if (result == null) {
                 dto.setError(true);
                 dto.setErrorMessage("Unable to save product");
             }
-            else
-                dto.setResult( result );
+            else {
+                int res = 0;
+                if (productDto.isHasOptions()) {
+                    for (int i = 0; i < productDto.getProductOptions().size(); i++) {
+                        ProductOptions options = productDto.getProductOptions().get(i);
+
+                        if (options.getOptionId() == null || options.getOptionId().trim().length() == 0 || options.getOptionId().equals("0")) {
+                            System.out.println("Saving Product Options");
+                            res = databaseManager.saveProductOptionsForDistributor(Long.parseLong(employeeId), Long.parseLong(productId), options.getOptionValue(), options.getUnitPrice(), options.getRetailPrice(), options.isActive());
+
+                        } else {
+                            System.out.println("Updating Product Options");
+                            res = databaseManager.updateProductOptionsForDistributor(Long.parseLong(employeeId), Long.parseLong(productId), options.getOptionValue(), options.getUnitPrice(), options.getRetailPrice(), options.isActive(), Long.parseLong(options.getOptionId()));
+
+                        }
+
+                    }
+                    if (res == 0) {
+                        dto.setError(true);
+                        dto.setErrorMessage("Unable to save product Option");
+                    }
+                }
+                if (productDto.isHasFlavors()) {
+                    for (int i = 0; i < productDto.getProductFlavors().size(); i++) {
+                        ProductFlavors flavors = productDto.getProductFlavors().get(i);
+
+                        if (flavors.getFlavorId() == null || flavors.getFlavorId().trim().length() == 0 || flavors.getFlavorId().equals("0")) {
+                            System.out.println("Saving Product Flavors");
+                            res = databaseManager.saveProductFlavorsForDistributor(Long.parseLong(employeeId), Long.parseLong(productId), flavors.getFlavorValue(), flavors.isActive());
+
+                        } else {
+                            System.out.println("Updating Product Options");
+                            res = databaseManager.updateProductFlavorsForDistributor(Long.parseLong(employeeId), Long.parseLong(productId), flavors.getFlavorValue(), flavors.isActive(), Long.parseLong(flavors.getFlavorId()));
+
+                        }
+
+                    }
+                    if (res == 0) {
+                        dto.setError(true);
+                        dto.setErrorMessage("Unable to save product Option");
+                    }
+                }
+
+
+                    dto.setProductList(result);
+                    dto.setProductOptionsList(databaseManager.fetchProductOptionsForDistributor(Long.parseLong(employeeId)));
+                    dto.setProductFlavorsList(databaseManager.fetchProductFlavorsForDistributor(Long.parseLong(employeeId)));
+
+            }
+
         }
         catch(Exception er){
             er.printStackTrace();
@@ -979,6 +1050,8 @@ public DistributorReportDTO getReport(@QueryParam("reportType") String reportTyp
             dto.setCategoryList(databaseManager.fetchCategoriesForDistributor(Long.parseLong(employeeId)));
             dto.setSubCategoryList(databaseManager.fetchSubCategoriesForDistributor(Long.parseLong(employeeId)));
             dto.setProductList(databaseManager.fetchProductsForDistributor(Long.parseLong(employeeId)));
+            dto.setProductOptionsList(databaseManager.fetchProductOptionsForDistributor(Long.parseLong(employeeId)));
+            dto.setProductFlavorsList(databaseManager.fetchProductFlavorsForDistributor(Long.parseLong(employeeId)));
             if(file.delete())
             {
                 System.out.println(file.getName() + " is deleted!");
@@ -1154,11 +1227,11 @@ public DistributorReportDTO getReport(@QueryParam("reportType") String reportTyp
             long subCategoryId = saveSubCategoryFile(employeeId, categoryId, subCategoryName);
             Long productId = databaseManager.fetchProductInUse(Long.parseLong(employeeId), productSku.trim().toUpperCase());
             if (productId==null) {
-                products = databaseManager.saveProductForDistributor(Long.parseLong(employeeId), 0, productName, productDesc, productSku, unitPrice, priceType, categoryId, subCategoryId, brandId, active, salesTaxRate, otherTaxRate, retailPrice, unitofMeasure);
+                products = databaseManager.saveProductForDistributor(Long.parseLong(employeeId), 0, productName, productDesc, productSku, unitPrice, priceType, categoryId, subCategoryId, brandId, active, salesTaxRate, otherTaxRate, retailPrice, unitofMeasure,false,null,false,null);
 
             }
             else{
-                products=databaseManager.updateProductForDistributor(Long.parseLong(employeeId),productId, productName, productDesc, productSku, unitPrice, priceType, categoryId, subCategoryId, brandId, active, salesTaxRate, otherTaxRate, retailPrice, unitofMeasure);
+                products=databaseManager.updateProductForDistributor(Long.parseLong(employeeId),productId, productName, productDesc, productSku, unitPrice, priceType, categoryId, subCategoryId, brandId, active, salesTaxRate, otherTaxRate, retailPrice, unitofMeasure,false,null,false,null);
 
             }
 

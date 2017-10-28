@@ -1,9 +1,6 @@
 package com.primeforce.prodcast.dto;
 
-import com.primeforce.prodcast.businessobjects.Brand;
-import com.primeforce.prodcast.businessobjects.Category;
-import com.primeforce.prodcast.businessobjects.Product;
-import com.primeforce.prodcast.businessobjects.SubCategory;
+import com.primeforce.prodcast.businessobjects.*;
 
 import java.util.List;
 
@@ -15,6 +12,8 @@ public class FileDTO extends ProdcastDTO {
     private List<Brand> brandList;
     private List<Category> categoryList;
     private List<SubCategory> subCategoryList;
+    private List<ProductOptions> productOptionsList;
+    private List<ProductFlavors> productFlavorsList;
 
     public List<Product> getProductList() {
         return productList;
@@ -46,5 +45,21 @@ public class FileDTO extends ProdcastDTO {
 
     public void setSubCategoryList(List<SubCategory> subCategoryList) {
         this.subCategoryList = subCategoryList;
+    }
+
+    public List<ProductOptions> getProductOptionsList() {
+        return productOptionsList;
+    }
+
+    public void setProductOptionsList(List<ProductOptions> productOptionsList) {
+        this.productOptionsList = productOptionsList;
+    }
+
+    public List<ProductFlavors> getProductFlavorsList() {
+        return productFlavorsList;
+    }
+
+    public void setProductFlavorsList(List<ProductFlavors> productFlavorsList) {
+        this.productFlavorsList = productFlavorsList;
     }
 }

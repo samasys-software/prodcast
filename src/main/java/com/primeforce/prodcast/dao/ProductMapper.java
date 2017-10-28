@@ -32,6 +32,11 @@ public class ProductMapper implements RowMapper<Product> {
         product.setUom(rs.getString("uom"));
         product.setRetailPrice(rs.getFloat("retailprice"));
         product.setProductDisplayName(rs.getString("product_brand_name")+" "+product.getProductName()+" "+product.getUom());
+        product.setOptionName(rs.getString("option_name"));
+        product.setHasOptions(rs.getBoolean("has_options"));
+        product.setHasFlavors(rs.getBoolean("has_flavors"));
+        product.setFlavorName(rs.getString("flavor_name"));
+
 
         return product;
     }

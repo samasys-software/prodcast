@@ -1,5 +1,7 @@
 package com.primeforce.prodcast.businessobjects;
 
+import java.util.List;
+
 /**
  * Created by sarathan732 on 4/23/2016.
  */
@@ -14,6 +16,35 @@ public class Product {
     private String brandName;
     private String categoryName;
     private String subCategoryName;
+    private String optionName;
+    private boolean hasOptions;
+    private boolean hasFlavors;
+    private String flavorName;
+
+
+    public String getFlavorName() {
+        return flavorName;
+    }
+
+    public void setFlavorName(String flavorName) {
+        this.flavorName = flavorName;
+    }
+
+    public boolean isHasOptions() {
+        return hasOptions;
+    }
+
+    public void setHasOptions(boolean hasOptions) {
+        this.hasOptions = hasOptions;
+    }
+
+    public String getOptionName() {
+        return optionName;
+    }
+
+    public void setOptionName(String optionName) {
+        this.optionName = optionName;
+    }
 
     public String getProductDisplayName() {
         return productDisplayName;
@@ -167,5 +198,11 @@ public class Product {
     public float getRetailPrice(){ return retailPrice;}
     public void setRetailPrice(float retailPrice) { this.retailPrice=retailPrice; }
 
+    public boolean isHasFlavors() {
+        return hasFlavors;
+    }
 
+    public void setHasFlavors(boolean hasFlavors) {
+        this.hasFlavors = hasFlavors;
+    }
 }

@@ -189,6 +189,8 @@ public class GlobalRest {
         try {
             List<Product> list = databaseManager.fetchProductsForDistributor(Long.parseLong( employeeId));
             dto.setProductList( list );
+            dto.setProductOptionsList(databaseManager.fetchProductOptionsForDistributor(Long.parseLong( employeeId)));
+            dto.setProductFlavorsList(databaseManager.fetchProductFlavorsForDistributor(Long.parseLong( employeeId)));
         }
         catch(Exception er){
             er.printStackTrace();

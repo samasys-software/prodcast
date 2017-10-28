@@ -72,11 +72,32 @@ public class DistributorDBSql {
     public final static String DISTRIBUTOR_UPDATE_SUBCATEGORY_SQL = "update product_sub_category set product_subcag_name=? ,  user_id =?,updt_dt_tm =NOW() where product_sub_catg_id=?";
 
     public final static String DISTRIBUTOR_GET_PRODUCTS_SQL = "select p.*, b.product_brand_name  from products p, product_brand b where b.product_brand_id = p.product_brand_id and p.distributor_id = ( select dist_manf_id from employees where employee_id = ?) and p.active=1 order by product_name";
-    public final static String DISTRIBUTOR_CREATE_PRODUCT_SQL = "insert into products (product_name , product_desc, product_sku, distributor_id ,  manufacturer_id ,  unitprice, price_type , prod_catg_id , product_sub_catg_id , product_brand_id , active,  user_id , updt_dt_tm , ip_address,enter_dt_tm,sales_tax, other_tax,retailprice,uom) " +
-            "values ( ? , ? , ? , (select dist_manf_id from employees where employee_id = ? ) , (select dist_manf_id from employees where employee_id = ? ) , ? ,  ? , ? , ? , ? , ? , ? , NOW() , '127.0.0.1' , NOW(),?,?,?,?) ";
-    public final static String DISTRIBUTOR_UPDATE_PRODUCT_SQL = "update products set product_name=? , product_desc=?, product_sku=? , unitprice=?, price_type=? , prod_catg_id=? , product_sub_catg_id=? , product_brand_id=?, active=?,sales_tax=?, other_tax=?,retailprice=?, uom=?,user_id=?, updt_dt_tm=NOW() where product_id=?";
+    public final static String DISTRIBUTOR_GET_PRODUCTS_OPTIONS_SQL = "select po.* from product_options po,products p where po.distributor_id = ( select dist_manf_id from employees where employee_id = ?) and p.product_id=po.product_id";
+    public final static String DISTRIBUTOR_GET_PRODUCTS_FLAVORS_SQL = "select pf.* from product_flavors pf,products p where pf.distributor_id = ( select dist_manf_id from employees where employee_id = ?) and p.product_id=pf.product_id";
+    public final static String DISTRIBUTOR_CREATE_PRODUCT_SQL = "insert into products (product_name , product_desc, product_sku, distributor_id ,  manufacturer_id ,  " +
+            "unitprice, price_type , prod_catg_id , product_sub_catg_id , product_brand_id , " +
+            "active,  user_id , updt_dt_tm , ip_address,enter_dt_tm," +
+            "sales_tax, other_tax,retailprice,uom,has_options,option_name,has_flavors,flavor_name) " +
+            "values ( ? , ? , ? , (select dist_manf_id from employees where employee_id = ? ) , (select dist_manf_id from employees where employee_id = ? ) , " +
+            "? ,  ? , ? , ? , ? ," +
+            " ? , ? , NOW() , '127.0.0.1' , NOW()," +
+            "?,?,?,?,?,?,?,?) ";
+    public final static String DISTRIBUTOR_UPDATE_PRODUCT_SQL = "update products set product_name=? , product_desc=?, product_sku=? , unitprice=?, price_type=? , prod_catg_id=? , product_sub_catg_id=? , product_brand_id=?, active=?,sales_tax=?, other_tax=?,retailprice=?, uom=?,has_options=?,option_name=?,has_flavors=?,flavor_name=?,user_id=?, updt_dt_tm=NOW() where product_id=?";
     public final static String ADMIN_ALL_DISTRIBUTORS = "select dst.*, ctry.currency_symbol from dist_dtl dst , country ctry where dst.country_id = ctry.country_id and active_yn='1' order by cust_name";
     public final static String FETCH_DISTRIBUTOR = "select dst.*, ctry.currency_symbol from dist_dtl dst , country ctry where dst.country_id = ctry.country_id and dst.dist_id = ? ";
+
+    public final static String DISTRIBUTOR_CREATE_PRODUCT_OPTIONS_SQL = "insert into product_options (option_value , product_id, option_wholesale_price,option_retail_price,option_active, distributor_id , updt_dt_tm , ip_address,enter_dt_tm) " +
+            "values ( ? , ? , ? , ? , ? , (select dist_manf_id from employees where employee_id = ? ) , NOW() , '127.0.0.1' , NOW()) ";
+
+
+    public final static String DISTRIBUTOR_CREATE_PRODUCT_FLAVORS_SQL = "insert into product_flavors (flavor_value , product_id,flavor_active, distributor_id , updt_dt_tm , ip_address,enter_dt_tm) " +
+            "values ( ? , ? , ? , (select dist_manf_id from employees where employee_id = ? ) , NOW() , '127.0.0.1' , NOW()) ";
+
+
+    public final static String DISTRIBUTOR_UPDATE_PRODUCT_OPTIONS_SQL = "update product_options set option_value=? , product_id=?, option_wholesale_price=?,option_retail_price=?, option_active=?, distributor_id=(select dist_manf_id from employees where employee_id = ? ), updt_dt_tm =NOW() where product_option_id=?";
+
+
+    public final static String DISTRIBUTOR_UPDATE_PRODUCT_FLAVORS_SQL = "update product_flavors set flavor_value=? , product_id=?, flavor_active=?, distributor_id=(select dist_manf_id from employees where employee_id = ? ), updt_dt_tm =NOW() where product_flavor_id=?";
 
     public final static String ADMIN_SAVE_DISTRIBUTOR = "insert into dist_dtl (cust_name,customer_type,firstname,lastname,title," +
             "email_id,cellphone,workphone,homephone,address_1," +
@@ -125,6 +146,8 @@ public class DistributorDBSql {
     public final static String GET_CATEGORY_SQL = "select product_catg_id from product_category where product_cag_name=? and distributor_id=(select dist_manf_id from employees where employee_id = ? )";
     public final static String GET_SUB_CATEGORY_SQL = "select product_sub_catg_id from product_sub_category where product_catg_id=? and product_subcag_name=? and distributor_id=(select dist_manf_id from employees where employee_id = ? )";
     public final static String GET_PRODUCT_SQL = "select product_id from products where product_sku=? and distributor_id=(select dist_manf_id from employees where employee_id = ? )";
+
+    public final static String GET_PRODUCT_ID="select max(product_id) from products";
 
 
 }

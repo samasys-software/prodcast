@@ -672,23 +672,81 @@ public class DatabaseManager {
     }
 
 
-    public List<Product> saveProductForDistributor(long employeeId, long productId, String productName, String productDesc, String productSku, float unitPrice, String priceType, long categoryId, long subCategoryId, long brandId, boolean active, String salesTaxRate, String otherTaxRate, String retailPrice, String unitofMeasure) {
+    public List<Product> saveProductForDistributor(long employeeId, long productId, String productName, String productDesc, String productSku, float unitPrice, String priceType, long categoryId, long subCategoryId, long brandId, boolean active, String salesTaxRate, String otherTaxRate, String retailPrice, String unitofMeasure,boolean hasOptions, String optionName,boolean hasFlavors, String flavorName) {
         //(product_name , product_desc, product_sku, distributor_id ,  manufacturer_id ,  unitprice, price_type , prod_catg_id , prod_sub_catg_id , product_brand_id , active,  user_id , updt_dt_tm , ip_address)
         int rowcount = 0;
-        rowcount = template.update(DistributorDBSql.DISTRIBUTOR_CREATE_PRODUCT_SQL, new Object[]{productName, productDesc, productSku, employeeId, employeeId, unitPrice, priceType, categoryId, subCategoryId, brandId, active, employeeId, salesTaxRate, otherTaxRate, retailPrice, unitofMeasure});
+        rowcount = template.update(DistributorDBSql.DISTRIBUTOR_CREATE_PRODUCT_SQL, new Object[]{productName, productDesc, productSku, employeeId, employeeId, unitPrice, priceType, categoryId, subCategoryId, brandId, active, employeeId, salesTaxRate, otherTaxRate, retailPrice, unitofMeasure,hasOptions,optionName,hasFlavors,flavorName});
         if (rowcount != 1) return null;
         return fetchProductsForDistributor(employeeId);
     }
 
-    public List<Product> updateProductForDistributor(long employeeId, long productId, String productName, String productDesc, String productSku, float unitPrice, String priceType, long categoryId, long subCategoryId, long brandId, boolean active, String salesTaxRate, String otherTaxRate, String retailPrice, String unitofMeasure) {
+    public List<Product> updateProductForDistributor(long employeeId, long productId, String productName, String productDesc, String productSku, float unitPrice, String priceType, long categoryId, long subCategoryId, long brandId, boolean active, String salesTaxRate, String otherTaxRate, String retailPrice, String unitofMeasure,boolean hasOptions, String optionName,boolean hasFlavors, String flavorName) {
         //(product_name , product_desc, product_sku, distributor_id ,  manufacturer_id ,  unitprice, price_type , prod_catg_id , prod_sub_catg_id , product_brand_id , active,  user_id , updt_dt_tm , ip_address)
-        int rowcount = template.update(DistributorDBSql.DISTRIBUTOR_UPDATE_PRODUCT_SQL, new Object[]{productName, productDesc, productSku, unitPrice, priceType, categoryId, subCategoryId, brandId, active, salesTaxRate, otherTaxRate, retailPrice, unitofMeasure, employeeId, productId});
+        int rowcount = template.update(DistributorDBSql.DISTRIBUTOR_UPDATE_PRODUCT_SQL, new Object[]{productName, productDesc, productSku, unitPrice, priceType, categoryId, subCategoryId, brandId, active, salesTaxRate, otherTaxRate, retailPrice, unitofMeasure,hasOptions,optionName,hasFlavors,flavorName,employeeId, productId});
         if (rowcount != 1) return null;
         return fetchProductsForDistributor(employeeId);
     }
 
     public List<Product> fetchProductsForDistributor(long employeeId) {
-        return template.query(DistributorDBSql.DISTRIBUTOR_GET_PRODUCTS_SQL, new Object[]{employeeId}, new ProductMapper());
+        List<Product> products= template.query(DistributorDBSql.DISTRIBUTOR_GET_PRODUCTS_SQL, new Object[]{employeeId}, new ProductMapper());
+        return products;
+    }
+    public int saveProductOptionsForDistributor(long employeeId, long productId, String optionValue, float wholesalePrice, float retailPrice, boolean active) {
+        int rowcount = 0;
+        rowcount = template.update(DistributorDBSql.DISTRIBUTOR_CREATE_PRODUCT_OPTIONS_SQL, new Object[]{optionValue, productId, wholesalePrice, retailPrice ,active,employeeId});
+
+
+        return rowcount;
+    }
+
+    public int updateProductOptionsForDistributor(long employeeId, long productId, String optionValue, float wholesalePrice, float retailPrice, boolean active,long optionId) {
+        int rowcount = 0;
+        rowcount = template.update(DistributorDBSql.DISTRIBUTOR_UPDATE_PRODUCT_OPTIONS_SQL, new Object[]{optionValue, productId, wholesalePrice, retailPrice ,active,employeeId,optionId});
+
+
+        return rowcount;
+    }
+
+    public int saveProductFlavorsForDistributor(long employeeId, long productId, String flavorValue, boolean active) {
+        int rowcount = 0;
+        rowcount = template.update(DistributorDBSql.DISTRIBUTOR_CREATE_PRODUCT_FLAVORS_SQL, new Object[]{flavorValue, productId, active,employeeId});
+
+
+        return rowcount;
+    }
+
+    public int updateProductFlavorsForDistributor(long employeeId, long productId, String flavorValue, boolean active,long flavorId) {
+        int rowcount = 0;
+        rowcount = template.update(DistributorDBSql.DISTRIBUTOR_UPDATE_PRODUCT_FLAVORS_SQL, new Object[]{flavorValue, productId,active,employeeId,flavorId});
+
+
+        return rowcount;
+    }
+
+
+
+    public List<ProductOptions> fetchProductOptionsForDistributor(long employeeId) {
+        List<ProductOptions> productOptions;
+         try{
+             productOptions=template.query(DistributorDBSql.DISTRIBUTOR_GET_PRODUCTS_OPTIONS_SQL, new Object[]{employeeId}, new ProductOptionsMapper());
+         }
+         catch(Exception e){
+             productOptions=null;
+         }
+         return productOptions;
+
+    }
+
+    public List<ProductFlavors> fetchProductFlavorsForDistributor(long employeeId) {
+        List<ProductFlavors> productFlavors;
+        try{
+            productFlavors=template.query(DistributorDBSql.DISTRIBUTOR_GET_PRODUCTS_FLAVORS_SQL, new Object[]{employeeId}, new ProductFlavorsMapper());
+        }
+        catch(Exception e){
+            productFlavors=null;
+        }
+        return productFlavors;
+
     }
 
     public long getDistributorForEmployee(long employeeId) {
@@ -1289,6 +1347,11 @@ public class DatabaseManager {
         catch(Exception e){
             return null;
         }
+    }
+
+    public String getProductId(){
+        return template.queryForObject(DistributorDBSql.GET_PRODUCT_ID,(Object[]) null,String.class);
+
     }
 
 

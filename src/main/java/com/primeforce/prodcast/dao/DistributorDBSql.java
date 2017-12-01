@@ -149,5 +149,7 @@ public class DistributorDBSql {
 
     public final static String GET_PRODUCT_ID="select max(product_id) from products";
 
+    public final static String UPDATE_PRODUCT_PRICE="update products set unitprice=(select min(option_wholesale_price) from product_options where product_id=?),retailprice=(select min(option_retail_price) from product_options where product_id=?) where product_id=?";
+
 
 }

@@ -86,8 +86,44 @@ public class OrderEntry {
         this.amount = amount;
     }
 
+    public long getOptionId() {
+        return optionId;
+    }
+
+    public void setOptionId(long optionId) {
+        this.optionId = optionId;
+    }
+
+    public long getFlavorId() {
+        return flavorId;
+    }
+
+    public void setFlavorId(long flavorId) {
+        this.flavorId = flavorId;
+    }
+
+    public String getOptionValue() {
+        return optionValue;
+    }
+
+    public void setOptionValue(String optionValue) {
+        this.optionValue = optionValue;
+    }
+
+    public String getFlavorValue() {
+        return flavorValue;
+    }
+
+    public void setFlavorValue(String flavorValue) {
+        this.flavorValue = flavorValue;
+    }
+
     private long productId;
     private int quantity;
     private float unitPrice;
     private float amount;
+    private long optionId;
+    private long flavorId;
+    private String optionValue;
+    private String flavorValue;
 }

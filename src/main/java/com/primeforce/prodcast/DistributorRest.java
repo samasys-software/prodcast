@@ -694,6 +694,11 @@ public class DistributorRest {
                         dto.setError(true);
                         dto.setErrorMessage("Unable to save product Option");
                     }
+                    else
+                    {
+
+                        databaseManager.updatePriceDetails(Long.parseLong(productId));
+                    }
                 }
                 if (productDto.isHasFlavors()) {
                     for (int i = 0; i < productDto.getProductFlavors().size(); i++) {

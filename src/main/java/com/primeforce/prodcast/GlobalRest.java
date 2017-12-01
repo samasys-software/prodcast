@@ -440,10 +440,51 @@ public class GlobalRest {
                 OrderEntry entry = new OrderEntry();
                 entry.setQuantity(Integer.parseInt( entryDto.getQuantity()));
                 entry.setProductId( Long.parseLong( entryDto.getProductId() ) );
+                entry.setOptionId(entryDto.getOptionId());
+                entry.setFlavorId(entryDto.getFlavorId());
                 if(map.containsKey(entry.getProductId()))
                 {
+
                     OrderEntry existing=map.get(entry.getProductId());
-                    existing.setQuantity(existing.getQuantity()+entry.getQuantity());
+                    System.out.println("Existing Product:"+existing.toString());
+                    System.out.println("Existing Option:"+existing.getOptionId());
+                    System.out.println("Existing Flavor:"+existing.getFlavorId());
+                    if(existing.getOptionId()>0 && existing.getFlavorId()>0){
+                        if(map.containsKey(entry.getOptionId()) && map.containsKey(entry.getFlavorId()))
+                        {
+                                existing.setQuantity(existing.getQuantity()+entry.getQuantity());
+
+                        }
+                        else{
+                            map.put(entry.getProductId(),entry);
+                            orderEntries.add(entry);
+                        }
+                    }
+                    else if(existing.getOptionId()>0)
+                    {
+                        if(map.containsKey(entry.getOptionId()))
+                        {
+                            existing.setQuantity(existing.getQuantity()+entry.getQuantity());
+                        }
+                        else{
+                            map.put(entry.getProductId(),entry);
+                            orderEntries.add(entry);
+                        }
+                    }
+                    else if( existing.getFlavorId()>0){
+                        if(map.containsKey(entry.getFlavorId()))
+                        {
+                            existing.setQuantity(existing.getQuantity()+entry.getQuantity());
+
+                        }
+                        else{
+                            map.put(entry.getProductId(),entry);
+                            orderEntries.add(entry);
+                        }
+                    }
+                    else{
+                        existing.setQuantity(existing.getQuantity()+entry.getQuantity());
+                    }
                 }
                 else
                 {

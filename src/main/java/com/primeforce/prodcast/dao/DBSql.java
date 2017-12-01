@@ -30,15 +30,37 @@ public class DBSql {
     public final static String EMP_CHANGE_PASSWORD = "update user_access set password = ? where employee_id = ? and password = ?";
     public final static String GET_EMPLOYEE_EMAIL = "select email_id from employees where employee_id = ?";
     public final static String GET_EMPLOYEE_EMAIL_FROM_EMAIL = "select password from user_access where email_id = ?";
-    public final static String ORDER_DETAILS_SQL = "insert into order_dtl (orderdetailid, product_id , quantity, unitprice, amount,sales_tax,other_tax,subtotal) values( ? , ? , ?, " +
+    public final static String ORDER_DETAILS_SQL = "insert into order_dtl (orderdetailid, product_id , flavor_id, quantity, unitprice, amount,sales_tax,other_tax,subtotal) " +
+            "values( ? , ? , ?, ?, " +
             "(select unitprice from products where product_id = ?) , " +
             "quantity*unitprice, " +
             "(select sales_tax from products where product_id = ?) , " +
             "(select other_tax from products where product_id = ?), " +
             "(amount+amount*((sales_tax+other_tax)/100))" +
             ")";
-    public final static String ORDER_DETAILS_SQL_RETAILER = "insert into order_dtl (orderdetailid, product_id , quantity, unitprice, amount,sales_tax,other_tax,subtotal) values( ? , ? , ?, " +
+
+    public final static String ORDER_DETAILS_SQL_OPTIONS = "insert into order_dtl (orderdetailid, product_id , option_id, flavor_id, quantity, unitprice, amount,sales_tax,other_tax,subtotal) values" +
+            "( ? , ? , ?, ?, ?, " +
+            "(select option_wholesale_price from product_options where product_option_id = ?) , " +
+            "quantity*unitprice, " +
+            "(select sales_tax from products where product_id = ?) , " +
+            "(select other_tax from products where product_id = ?), " +
+            "(amount+amount*((sales_tax+other_tax)/100))" +
+            ")";
+
+
+    public final static String ORDER_DETAILS_SQL_RETAILER = "insert into order_dtl (orderdetailid, product_id ,flavor_id, quantity, unitprice, amount,sales_tax,other_tax,subtotal) " +
+            "values( ? , ? , ?, ?, " +
             "(select retailprice from products where product_id = ?) , " +
+            "quantity*unitprice, " +
+            "(select sales_tax from products where product_id = ?) , " +
+            "(select other_tax from products where product_id = ?), " +
+            "(amount+amount*((sales_tax+other_tax)/100))" +
+            ")";
+
+    public final static String ORDER_DETAILS_SQL_RETAILER_OPTIONS= "insert into order_dtl (orderdetailid, product_id , option_id, flavor_id, quantity, unitprice, amount,sales_tax,other_tax,subtotal) " +
+            "values( ? , ? , ?, ?, ?, " +
+            "(select option_retail_price from product_options where product_option_id = ?) , " +
             "quantity*unitprice, " +
             "(select sales_tax from products where product_id = ?) , " +
             "(select other_tax from products where product_id = ?), " +
@@ -69,7 +91,7 @@ public class DBSql {
             "emp.firstname , emp.lastname, oh.total_amt, oh.enter_dt_tm , oh.shippingmethodid,oh.delivery_address,oh.order_status,oh.outstanding_balance,oh.discount,oh.discount_type, " +
             "ctry.isd_code, cust.cellphone from order_header oh , employees emp , outlet_dtl cust ,dist_dtl dst,country ctry where " +
             "oh.cust_id = cust.outlet_id  and oh.emp_id = emp.employee_id and dst.dist_id = oh.distributor_id and oh.bill_no=? and ctry.country_id = cust.country_id and oh.order_status <> 'D' and  distributor_id=(select dist_manf_id from employees where employee_id = ?)";
-    public final static String FETCH_ORDER_DTL_SQL = "select od.product_id , od.quantity , od.unitprice, od.amount , pr.product_name,od.sales_tax, od.other_tax, od.subtotal from order_dtl od, products pr where od.product_id = pr.product_id and od.orderdetailid = ?";
+    public final static String FETCH_ORDER_DTL_SQL = "select od.product_id , od.quantity , od.option_id , od.flavor_id , od.unitprice, od.amount , pr.product_name,od.sales_tax, od.other_tax, od.subtotal from order_dtl od, products pr where od.product_id = pr.product_id and od.orderdetailid = ?";
     public final static String FETCH_ORDER_COLLECTION_SQL = "select cd.bill_no, cd.amount_paid, cd.emp_id , emp.firstname , emp.lastname, cd.payment_type, cd.payment_date , cd.ref_no , cd.ref_detail , '' as outlet_name from collection_dtl cd , employees emp where emp.employee_id = cd.emp_id and bill_no=?";
 
     public final static String REPORT_SALES_SQL = "select oh.orderdetailid, oh.bill_no,oh.bill_date, oh.enter_dt_tm, oh.total_amt, oh.outstanding_balance, cust.outlet_name  from order_header oh , outlet_dtl cust where oh.cust_id = cust.outlet_id and oh.bill_date between ? and ? and oh.emp_id = ? and oh.order_status <> 'D'";
@@ -78,7 +100,10 @@ public class DBSql {
     public final static String REPORT_SALES_SQL_DISTRIBUTOR = "select oh.orderdetailid, oh.bill_no,oh.bill_date, oh.enter_dt_tm, oh.total_amt, oh.outstanding_balance, cust.outlet_name  from  order_header oh , outlet_dtl cust where oh.cust_id = cust.outlet_id and oh.bill_date between ? and ? and oh.emp_id in  ( select emp_id from employees where dist_manf_id in ( select dist_manf_id from employees where employee_id = ?) )";
     public final static String REPORT_COLLECTION_SQL_DISTRIBUTOR = "select cd.bill_no, cd.amount_paid , cd.emp_id , emp.firstname , emp.lastname , cd.payment_type , cd.payment_date, cust.outlet_name,cd.ref_no, cd.ref_detail  from collection_dtl cd , outlet_dtl cust , employees emp where emp.employee_id = cd.emp_id and cd.cust_id = cust.outlet_id and cd.payment_date between ? and ? and cd.emp_id in ( select emp_id from employees where dist_manf_id in ( select dist_manf_id from employees where employee_id = ?) )";
 
-    public final static String FETCH_RETURN_DTL_SQL = "select rd.product_id , rd.quantity , od.unitprice, rd.amount , pr.product_name ,od.sales_tax, od.other_tax, rd.subtotal from order_dtl od, return_dtl rd, products pr where  rd.orderdetailid = od.orderdetailid and rd.product_id = pr.product_id and od.orderdetailid = ?";
+    public final static String FETCH_RETURN_DTL_SQL = "select rd.product_id , " +
+            "rd.quantity , od.unitprice, rd.amount , pr.product_name ,od.sales_tax, " +
+            "od.other_tax, rd.subtotal from order_dtl od, " +
+            "return_dtl rd, products pr where  rd.orderdetailid = od.orderdetailid and rd.product_id = pr.product_id and od.orderdetailid = ?";
 
     public final static String FETCH_AREAS_SQL = "select * from area_dtl where area_id in ( select area_id from employee_areamap where employee_id = ?) order by area_desc";
     public final static String CREATE_CUSTOMER_SQL = "insert into outlet_dtl ( " +
@@ -173,6 +198,8 @@ public class DBSql {
     public final static String CHECK_CUSTOMER_CELLPHONE_UNIQUE="select outlet_id from outlet_dtl where cellphone=? and " +
             " dist_id=(select dist_manf_id from employees where employee_id= ?)";
     public final static String FETCH_CUSTOMER_DISTID="select dist_id from outlet_dtl where cellPhone=?";
+    public final static String FETCH_ORDER_OPTION_VALUE="select option_value from product_options where product_option_id=?";
+    public final static String FETCH_ORDER_FLAVOR_VALUE="select flavor_value from product_flavors where product_flavor_id=?";
     public final static String CHECK_CUSTOMER_CELLPHONE="select outlet_id from outlet_dtl where cellphone=? and " +
             " dist_id=?";
 

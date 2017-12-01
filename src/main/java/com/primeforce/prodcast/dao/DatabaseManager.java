@@ -267,14 +267,24 @@ public class DatabaseManager {
         updateOrderStatus(billNumber, orderStatus);
         String customerType = getCustomerType(order.getCustomerId());
 
-        for (OrderEntry entry : order.getOrderEntries()
-                ) {
-            if (customerType.equals("W"))
-                template.update(DBSql.ORDER_DETAILS_SQL, new Object[]{orderDetailId, entry.getProductId(), entry.getQuantity(), entry.getProductId(), entry.getProductId(), entry.getProductId()});
-            else
-                template.update(DBSql.ORDER_DETAILS_SQL_RETAILER, new Object[]{orderDetailId, entry.getProductId(), entry.getQuantity(), entry.getProductId(), entry.getProductId(), entry.getProductId()});
+        for (OrderEntry entry : order.getOrderEntries()) {
 
+            if(entry.getOptionId()==0) {
+                if (customerType.equals("W"))
+                    template.update(DBSql.ORDER_DETAILS_SQL, new Object[]{orderDetailId, entry.getProductId(), entry.getFlavorId(), entry.getQuantity(), entry.getProductId(), entry.getProductId(), entry.getProductId()});
+                else
+                    template.update(DBSql.ORDER_DETAILS_SQL_RETAILER, new Object[]{orderDetailId, entry.getProductId(), entry.getFlavorId(), entry.getQuantity(), entry.getProductId(), entry.getProductId(), entry.getProductId()});
+            }
+            else {
+                if (customerType.equals("W"))
+                    template.update(DBSql.ORDER_DETAILS_SQL_OPTIONS, new Object[]{orderDetailId, entry.getProductId(), entry.getOptionId(), entry.getFlavorId(), entry.getQuantity(), entry.getOptionId(), entry.getProductId(), entry.getProductId()});
+                else
+                    template.update(DBSql.ORDER_DETAILS_SQL_RETAILER_OPTIONS, new Object[]{orderDetailId, entry.getProductId(), entry.getOptionId(), entry.getFlavorId(), entry.getQuantity(),entry.getOptionId(), entry.getProductId(), entry.getProductId()});
+
+
+            }
         }
+
         template.update(DBSql.ORDER_TOTAL_SQL, new Object[]{orderDetailId, orderDetailId, order.getEmployeeId(),shippingType,deliveryAddress, orderDetailId});
 
         saveDiscount(order.getDiscountType(),order.getDiscount(),orderDetailId);
@@ -445,7 +455,20 @@ public class DatabaseManager {
 
 
         order.setOrderEntries(template.query(DBSql.FETCH_ORDER_DTL_SQL, new Object[]{order.getOrderId()}, new OrderDetailMapper()));
+        if(order.getOrderEntries().size()>0)
+        {
+            for(OrderEntry entry:order.getOrderEntries()){
+                long optionId=entry.getOptionId();
+                long flavorId=entry.getFlavorId();
+                if(optionId>0){
+                    entry.setOptionValue(template.queryForObject(DBSql.FETCH_ORDER_OPTION_VALUE, new Object[]{optionId},  String.class));
+                }
+                if(entry.getFlavorId()>0){
+                    entry.setFlavorValue(template.queryForObject(DBSql.FETCH_ORDER_FLAVOR_VALUE, new Object[]{flavorId},  String.class));
 
+                }
+            }
+        }
         order.setReturnEntries(template.query(DBSql.FETCH_RETURN_DTL_SQL, new Object[]{order.getOrderId()}, new OrderDetailMapper()));
 
         order.setCollectionEntries(template.query(DBSql.FETCH_ORDER_COLLECTION_SQL, new Object[]{billId}, new CollectionMapper()));
@@ -1351,6 +1374,13 @@ public class DatabaseManager {
 
     public String getProductId(){
         return template.queryForObject(DistributorDBSql.GET_PRODUCT_ID,(Object[]) null,String.class);
+
+    }
+
+
+
+    public int updatePriceDetails(long productId){
+        return template.update(DistributorDBSql.UPDATE_PRODUCT_PRICE,new Object[]{productId,productId,productId});
 
     }
 

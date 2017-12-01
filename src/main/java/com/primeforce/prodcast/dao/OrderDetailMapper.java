@@ -15,6 +15,8 @@ public class OrderDetailMapper implements RowMapper<OrderEntry> {
         OrderEntry oe = new OrderEntry();
         oe.setAmount( rs.getFloat("amount"));
         oe.setProductId( rs.getLong( "product_id"));
+        oe.setOptionId(rs.getLong("option_id"));
+        oe.setFlavorId(rs.getLong("flavor_id"));
         oe.setUnitPrice( rs.getFloat("unitprice"));
         oe.setQuantity( rs.getInt("quantity"));
         oe.setProductName( rs.getString("product_name"));

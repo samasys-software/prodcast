@@ -6,6 +6,8 @@ package com.primeforce.prodcast.dto;
 public class OrderEntryDTO {
     private String productId;
     private String quantity;
+    private long optionId;
+    private long flavorId;
 
     public String getProductId() {
         return productId;
@@ -23,6 +25,19 @@ public class OrderEntryDTO {
         this.quantity = quantity;
     }
 
+    public long getOptionId() {
+        return optionId;
+    }
 
+    public void setOptionId(long optionId) {
+        this.optionId = optionId;
+    }
 
+    public long getFlavorId() {
+        return flavorId;
+    }
+
+    public void setFlavorId(long flavorId) {
+        this.flavorId = flavorId;
+    }
 }

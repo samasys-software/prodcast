@@ -4,7 +4,10 @@ package com.primeforce.prodcast.dto;
  * Created by sarathan732 on 4/23/2016.
  */
 public class ProdcastDTO {
-    private boolean error;
+    private boolean error,authenticationError,validationFailed;
+
+    private String errorMessage,validationErrorMessage,authenticationErrorMessage;
+
     public String getErrorMessage() {
         return errorMessage;
     }
@@ -21,10 +24,6 @@ public class ProdcastDTO {
         this.error = error;
     }
 
-    private String errorMessage;
-    private boolean validationFailed;
-    private String validationErrorMessage;
-
     public boolean isValidationFailed() {
         return validationFailed;
     }
@@ -39,5 +38,21 @@ public class ProdcastDTO {
 
     public void setValidationErrorMessage(String validationErrorMessage) {
         this.validationErrorMessage = validationErrorMessage;
+    }
+
+    public boolean isAuthenticationError() {
+        return authenticationError;
+    }
+
+    public void setAuthenticationError(boolean authenticationError) {
+        this.authenticationError = authenticationError;
+    }
+
+    public String getAuthenticationErrorMessage() {
+        return authenticationErrorMessage;
+    }
+
+    public void setAuthenticationErrorMessage(String authenticationErrorMsg) {
+        this.authenticationErrorMessage = authenticationErrorMsg;
     }
 }

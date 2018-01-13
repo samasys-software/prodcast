@@ -98,6 +98,11 @@ public class Amazon {
             transport.sendMessage(msg, msg.getAllRecipients());
             System.out.println("Email sent!");
         }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
         finally
         {
             // Close and terminate the connection.
@@ -190,49 +195,63 @@ public class Amazon {
     }
 
     public static void sendSMS(String msg,String phoneNumber){
-        System.out.println("Sending SMS to "+phoneNumber+" Message="+msg);
-        Map<String, MessageAttributeValue> smsAttributes =
-                new HashMap<String, MessageAttributeValue>();
-        smsAttributes.put("AWS.SNS.SMS.SenderID", new MessageAttributeValue()
-                .withStringValue("2168680677") //The sender ID shown on the device.
-                .withDataType("String"));
-        smsAttributes.put("AWS.SNS.SMS.MaxPrice", new MessageAttributeValue()
-                .withStringValue("0.50") //Sets the max price to 0.50 USD.
-                .withDataType("Number"));
-        smsAttributes.put("AWS.SNS.SMS.SMSType", new MessageAttributeValue()
-                .withStringValue("Promotional") //Sets the type to promotional.
-                .withDataType("String"));
+        try {
 
-        AmazonSNS snsClient = null;
 
-        String message = msg;
-        String phoneNo = phoneNumber;
+            System.out.println("Sending SMS to " + phoneNumber + " Message=" + msg);
+            Map<String, MessageAttributeValue> smsAttributes =
+                    new HashMap<String, MessageAttributeValue>();
+            smsAttributes.put("AWS.SNS.SMS.SenderID", new MessageAttributeValue()
+                    .withStringValue("2168680677") //The sender ID shown on the device.
+                    .withDataType("String"));
+            smsAttributes.put("AWS.SNS.SMS.MaxPrice", new MessageAttributeValue()
+                    .withStringValue("0.50") //Sets the max price to 0.50 USD.
+                    .withDataType("Number"));
+            smsAttributes.put("AWS.SNS.SMS.SMSType", new MessageAttributeValue()
+                    .withStringValue("Promotional") //Sets the type to promotional.
+                    .withDataType("String"));
 
-        final BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAIC3PKI4JEI2BOEBA", "GiQd6KnowSlstjytR6qf1oVb0mNGsWDzI6IIPd7X");
+            AmazonSNS snsClient = null;
 
-        snsClient = AmazonSNSClientBuilder.standard().withRegion(Regions.US_WEST_2).withCredentials(new AWSCredentialsProvider() {
-            @Override
-            public AWSCredentials getCredentials() {
-                return awsCreds;
-            }
+            String message = msg;
+            String phoneNo = phoneNumber;
 
-            @Override
-            public void refresh() {
+            final BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAIC3PKI4JEI2BOEBA", "GiQd6KnowSlstjytR6qf1oVb0mNGsWDzI6IIPd7X");
 
-            }
-        }).build();
+            snsClient = AmazonSNSClientBuilder.standard().withRegion(Regions.US_WEST_2).withCredentials(new AWSCredentialsProvider() {
+                @Override
+                public AWSCredentials getCredentials() {
+                    return awsCreds;
+                }
 
-        //<set SMS attributes>
-        sendSMSMessage(snsClient, message, phoneNo, smsAttributes);
+                @Override
+                public void refresh() {
 
+                }
+            }).build();
+
+            //<set SMS attributes>
+            sendSMSMessage(snsClient, message, phoneNo, smsAttributes);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
 
     }
     public static void sendSMSMessage(AmazonSNS snsClient, String message,
                                       String phoneNumber, Map<String, MessageAttributeValue> smsAttributes) {
-        PublishResult result = snsClient.publish(new PublishRequest()
-                .withMessage(message)
-                .withPhoneNumber(phoneNumber)
-                .withMessageAttributes(smsAttributes));
-        System.out.println(result); // Prints the message ID.
+        try{
+            PublishResult result = snsClient.publish(new PublishRequest()
+                    .withMessage(message)
+                    .withPhoneNumber(phoneNumber)
+                    .withMessageAttributes(smsAttributes));
+            System.out.println(result); // Prints the message ID.
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
 }

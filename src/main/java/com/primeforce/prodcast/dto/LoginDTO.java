@@ -11,7 +11,7 @@ public class LoginDTO extends ProdcastDTO{
 
     private Employee employee;
 
-    private String timezone;
+    private String timezone,authenticationKey;
 
     public String getTimezone() {
         return timezone;
@@ -35,5 +35,13 @@ public class LoginDTO extends ProdcastDTO{
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public String getAuthenticationKey() {
+        return authenticationKey;
+    }
+
+    public void setAuthenticationKey(String authenticationKey) {
+        this.authenticationKey = authenticationKey;
     }
 }

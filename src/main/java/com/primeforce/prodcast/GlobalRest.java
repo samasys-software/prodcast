@@ -1,6 +1,7 @@
 
 package com.primeforce.prodcast;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.primeforce.prodcast.businessobjects.*;
 import com.primeforce.prodcast.businessobjects.Collection;
 import com.primeforce.prodcast.dao.DatabaseManager;
@@ -10,12 +11,21 @@ import com.primeforce.prodcast.messaging.MessagingManager;
 import com.primeforce.prodcast.messaging.OrderDataProvider;
 import com.primeforce.prodcast.util.Amazon;
 import com.primeforce.prodcast.util.Notifier;
+import com.primeforce.prodcast.util.encryptLoginDetails;
+import com.primeforce.prodcast.util.decryptCookie;
+
+import jdk.nashorn.internal.parser.JSONParser;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.inject.Named;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
+import java.net.InetAddress;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -66,7 +76,17 @@ public class GlobalRest {
         try {
             employee = databaseManager.login(id,password);
             if( employee == null ) dto.setSuccess( false );
-            else dto.setSuccess(true);
+            else {
+                dto.setSuccess(true);
+               /* final long DAY = 24*60*60*1000;
+                long dateTime=Calendar.getInstance().getTime().getTime() + 5* DAY;
+                String successmsg="userId="+employee.getEmployeeId()+"; Expiration Date Time="+dateTime +";";
+                //System.out.println(successmsg);
+                String encodedText=new encryptLoginDetails().encrypt(successmsg);
+                System.out.println(encodedText);
+                dto.setAuthenticationKey(encodedText);*/
+            }
+
             dto.setEmployee(employee);
         } catch (Exception er) {
             er.printStackTrace();
@@ -330,27 +350,30 @@ public class GlobalRest {
                                     @FormParam("active") String active,
                                     @FormParam("storeTypeId") String storeType)
     {
+
+
+
         CustomerListDTO dto = new CustomerListDTO();
+
         try {
-            int rowCount=0;
 
-
+                int rowCount = 0;
                 if (customerId == null || customerId.trim().length() == 0) {
-                    String custcellphone = databaseManager.fetchDistributorCustMobileNumber(cellPhoneNumber,employeeId );
-                    if (custcellphone==null) {
+                    String custcellphone = databaseManager.fetchDistributorCustMobileNumber(cellPhoneNumber, employeeId);
+                    if (custcellphone == null) {
 
                         rowCount = databaseManager.createCustomer(
-                            Long.parseLong(employeeId), customerName, customerType,
-                            Long.parseLong(areaId), weekDay, firstName, lastName,
-                            emailAddress, cellPhoneNumber, phoneNumber, unitNumber, billingAddress1,
-                            billingAddress2, billingAddress3, city,
-                            state, countryId, postalCode, notes, customerid1, desc1, secondId, desc2, smsAllowed, active, Long.parseLong(storeType));
+                                Long.parseLong(employeeId), customerName, customerType,
+                                Long.parseLong(areaId), weekDay, firstName, lastName,
+                                emailAddress, cellPhoneNumber, phoneNumber, unitNumber, billingAddress1,
+                                billingAddress2, billingAddress3, city,
+                                state, countryId, postalCode, notes, customerid1, desc1, secondId, desc2, smsAllowed, active, Long.parseLong(storeType));
 
 
-                         List customerData = databaseManager.fetchMobileNumbers(countryId, cellPhoneNumber);
+                        List customerData = databaseManager.fetchMobileNumbers(countryId, cellPhoneNumber);
                         if (customerData.size() == 0) {
 
-                             Random random = new Random();
+                            Random random = new Random();
                             int code = (100000 + random.nextInt(900000));
                             int password = (100000 + random.nextInt(900000));
                             String pinNumber = Integer.toString(password);
@@ -365,15 +388,12 @@ public class GlobalRest {
 
 
                         }
-                    }
-                    else
-                    {
+                    } else {
                         dto.setError(true);
                         dto.setErrorMessage("Different Customers Should Have Unique Numbers!");
 
                     }
-                }
-                else {
+                } else {
                     rowCount = databaseManager.updateCustomer(customerName, customerType, Long.parseLong(areaId), weekDay, firstName,
                             lastName, emailAddress, cellPhoneNumber,
                             phoneNumber, unitNumber, billingAddress1,
@@ -389,12 +409,6 @@ public class GlobalRest {
                 } else {
                     dto.setCustomerList(databaseManager.fetchCustomers(Long.parseLong(employeeId)));
                 }
-
-
-
-
-
-
         }
         catch(Exception er){
 
@@ -776,6 +790,8 @@ public class GlobalRest {
         }
         return dto;
     }
+
+
 }
 
 

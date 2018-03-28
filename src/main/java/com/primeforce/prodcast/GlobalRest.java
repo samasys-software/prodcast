@@ -420,7 +420,6 @@ public class GlobalRest {
         return  dto;
     }
 
-
     @POST
     @Path("saveOrder")
     @Produces(MediaType.APPLICATION_JSON)
@@ -448,7 +447,7 @@ public class GlobalRest {
             }
             List<OrderEntry> orderEntries = new LinkedList<OrderEntry>();
             order.setOrderEntries( orderEntries );
-            HashMap<Long,OrderEntry> map=new HashMap<Long, OrderEntry>();
+            HashMap<Long,List<OrderEntry>> map=new HashMap<Long, List<OrderEntry>>();
 
             for (OrderEntryDTO entryDto:orderDto.getEntries()) {
                 OrderEntry entry = new OrderEntry();
@@ -456,57 +455,48 @@ public class GlobalRest {
                 entry.setProductId( Long.parseLong( entryDto.getProductId() ) );
                 entry.setOptionId(entryDto.getOptionId());
                 entry.setFlavorId(entryDto.getFlavorId());
-                if(map.containsKey(entry.getProductId()))
-                {
+               List<OrderEntry> newEntriesList = new LinkedList<OrderEntry>();
+               boolean alreadyExist=false;
 
-                    OrderEntry existing=map.get(entry.getProductId());
-                    System.out.println("Existing Product:"+existing.toString());
-                    System.out.println("Existing Option:"+existing.getOptionId());
-                    System.out.println("Existing Flavor:"+existing.getFlavorId());
-                    if(existing.getOptionId()>0 && existing.getFlavorId()>0){
-                        if(map.containsKey(entry.getOptionId()) && map.containsKey(entry.getFlavorId()))
-                        {
-                                existing.setQuantity(existing.getQuantity()+entry.getQuantity());
+                if(map.containsKey(entry.getProductId())) {
 
-                        }
-                        else{
-                            map.put(entry.getProductId(),entry);
-                            orderEntries.add(entry);
-                        }
-                    }
-                    else if(existing.getOptionId()>0)
-                    {
-                        if(map.containsKey(entry.getOptionId()))
-                        {
-                            existing.setQuantity(existing.getQuantity()+entry.getQuantity());
-                        }
-                        else{
-                            map.put(entry.getProductId(),entry);
-                            orderEntries.add(entry);
-                        }
-                    }
-                    else if( existing.getFlavorId()>0){
-                        if(map.containsKey(entry.getFlavorId()))
-                        {
-                            existing.setQuantity(existing.getQuantity()+entry.getQuantity());
+                    List<OrderEntry> existing = map.get(entry.getProductId());
+                    newEntriesList.addAll(existing);
 
+                    for (OrderEntry entries : existing) {
+                        if (entries.getOptionId() > 0 && entries.getFlavorId() > 0) {
+                            if ((entries.getOptionId()==entry.getOptionId()) && (entries.getOptionId()==entry.getFlavorId())) {
+                                entries.setQuantity(entries.getQuantity() + entry.getQuantity());
+                                alreadyExist=true;
+                                break;
+                            }
+                        } else if (entries.getOptionId() > 0) {
+                            if (entries.getOptionId()==entry.getOptionId()) {
+                                entries.setQuantity(entries.getQuantity() + entry.getQuantity());
+                                alreadyExist=true;
+                                break;
+                            }
                         }
-                        else{
-                            map.put(entry.getProductId(),entry);
-                            orderEntries.add(entry);
+                        else if (entries.getFlavorId() > 0) {
+                            if (entries.getFlavorId()==entry.getFlavorId()) {
+                                entries.setQuantity(entries.getQuantity() + entry.getQuantity());
+                                alreadyExist=true;
+                                break;
+                            }
                         }
-                    }
-                    else{
-                        existing.setQuantity(existing.getQuantity()+entry.getQuantity());
+                        else {
+                            entries.setQuantity(entries.getQuantity() + entry.getQuantity());
+                            alreadyExist=true;
+                            break;
+                        }
                     }
                 }
-                else
+                if(!alreadyExist)
                 {
-                    map.put(entry.getProductId(),entry);
+                    newEntriesList.add(entry);
+                    map.put(entry.getProductId(),newEntriesList);
                     orderEntries.add(entry);
-
                 }
-
             }
 
             float paymentAmount = Float.parseFloat( orderDto.getPaymentAmount());
@@ -515,13 +505,7 @@ public class GlobalRest {
             String paymentType=orderDto.getPaymentType();
             String orderStatus=orderDto.getOrderStatus();
 
-
-
-
-
             long billNumber = databaseManager.saveOrder(order,paymentAmount,refNo,refDetail,paymentType,orderStatus,orderDto.getShippingType(),orderDto.getDeliveryAddress());
-            //int rowCount=databaseManager.updateOrderStatus(billNumber,orderStatus);
-
             System.out.println("Order Saved "+(System.currentTimeMillis() - start ));
             Customer customer  = databaseManager.getCustomer( orderDto.getCustomerId() );
             boolean openToPublic=databaseManager.isOpenToPublic(order.getEmployeeId());
@@ -532,18 +516,17 @@ public class GlobalRest {
             dto.setCustomer( customer );
             dto.setBill(databaseManager.fetchOrder(billNumber,Long.parseLong(orderDto.getEmployeeId())));
             System.out.println("After Outstanding Bill "+(System.currentTimeMillis() - start ));
-           try {
+            try {
                 OrderDataProvider orderDataProvider = new OrderDataProvider();
                 orderDataProvider.setBillNo(billNumber);
 
                 orderDataProvider.setEmployeeId(order.getEmployeeId());
                 orderDataProvider.setAmountPaid(paymentAmount);
                 MessagingManager msgManager = new MessagingManager();
-
                 String mailMessage = msgManager.mailMerge(0, orderDataProvider,databaseManager);
                 String subject = orderDataProvider.getSubject();
                 order = orderDataProvider.getOrder();
-                //Amazon.sendSMS(subject, orderDataProvider.getSmsPhoneNumber());
+                    //Amazon.sendSMS(subject, orderDataProvider.getSmsPhoneNumber());
                 String[] emailds = { order.getCustomerEmail() , order.getEmployeeEmail(), order.getDistributorEmail()  };
                 Notifier.sendNotification( orderDataProvider.getSmsPhoneNumber() , subject , mailMessage , emailds );
             }
@@ -558,12 +541,13 @@ public class GlobalRest {
 
         }
         catch (Exception er) {
-            er.printStackTrace();
-            dto.setError(true);
-            dto.setErrorMessage( er.toString() );
+                er.printStackTrace();
+                dto.setError(true);
+                dto.setErrorMessage( er.toString() );
         }
         return dto;
     }
+
     @GET
     @Path("retrievePassword")
     @Produces(MediaType.APPLICATION_JSON)

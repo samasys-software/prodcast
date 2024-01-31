@@ -13,6 +13,7 @@ import com.primeforce.prodcast.util.Amazon;
 import com.primeforce.prodcast.util.Notifier;
 import com.primeforce.prodcast.util.encryptLoginDetails;
 import com.primeforce.prodcast.util.decryptCookie;
+import java.security.SecureRandom;
 
 import jdk.nashorn.internal.parser.JSONParser;
 import org.joda.time.DateTime;
@@ -373,7 +374,7 @@ public class GlobalRest {
                         List customerData = databaseManager.fetchMobileNumbers(countryId, cellPhoneNumber);
                         if (customerData.size() == 0) {
 
-                            Random random = new Random();
+                            Random random = new SecureRandom();
                             int code = (100000 + random.nextInt(900000));
                             int password = (100000 + random.nextInt(900000));
                             String pinNumber = Integer.toString(password);

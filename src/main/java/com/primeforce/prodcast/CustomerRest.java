@@ -5,6 +5,7 @@ import com.primeforce.prodcast.dao.DatabaseManager;
 import com.primeforce.prodcast.businessobjects.Distributor;
 import com.primeforce.prodcast.dto.*;
 import com.primeforce.prodcast.util.Amazon;
+import java.security.SecureRandom;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.inject.Named;
@@ -88,7 +89,7 @@ public class CustomerRest {
                 dto.setErrorMessage("The Mobile number Already Exists");
 
             } else {
-                Random random = new Random();
+                Random random = new SecureRandom();
                 int code = (100000 + random.nextInt(900000));
                 CustomerRegistration register = databaseManager.registerCustomer(country, mobilePhone, pinNumber, code);
                 long accessId = register.getConfirmationId();

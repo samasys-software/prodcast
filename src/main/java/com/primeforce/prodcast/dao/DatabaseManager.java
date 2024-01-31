@@ -3,6 +3,7 @@ package com.primeforce.prodcast.dao;
 import com.primeforce.prodcast.businessobjects.*;
 import com.primeforce.prodcast.businessobjects.Collection;
 import com.primeforce.prodcast.util.TimeZoneConvertor;
+import java.security.SecureRandom;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -66,7 +67,7 @@ public class DatabaseManager {
 
     public int generateConfirmationNumber()
     {
-        Random random = new Random();
+        Random random = new SecureRandom();
         int randomNumber = (100000 + random.nextInt(900000));
         return randomNumber;
 
